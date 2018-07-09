@@ -1,8 +1,9 @@
 <?php
 
-namespace semsty\connect\base;
+namespace semsty\connect;
 
 use semsty\connect\amocrm\Service as AmoCRM;
+use semsty\connect\bitrix24\Service as Bitrix24;
 use semsty\connect\custom\Service as Custom;
 use yii\base\BaseObject;
 
@@ -16,7 +17,8 @@ class Settings extends BaseObject
     {
         $services = [
             Custom::class,
-            AmoCRM::class
+            AmoCRM::class,
+            Bitrix24::class
         ];
         if ($with_id) {
             $result = [];

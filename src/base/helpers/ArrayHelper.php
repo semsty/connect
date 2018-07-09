@@ -2,7 +2,7 @@
 
 namespace semsty\connect\base\helpers;
 
-use semsty\connect\base\Settings;
+use semsty\connect\Settings;
 use yii\helpers\ArrayHelper as BaseArrayHelper;
 use yii\helpers\ReplaceArrayValue;
 use yii\helpers\UnsetArrayValue;

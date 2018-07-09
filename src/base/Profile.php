@@ -6,6 +6,7 @@ use semsty\connect\base\db\ActiveRecord;
 use semsty\connect\base\helpers\ArrayHelper;
 use semsty\connect\base\traits\ReferenceReflection;
 use semsty\connect\base\traits\ServiceModel;
+use semsty\connect\Settings;
 
 /**
  * Class Profile

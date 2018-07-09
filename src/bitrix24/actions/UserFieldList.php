@@ -1,0 +1,14 @@
+<?php
+
+namespace semsty\connect\bitrix24\actions;
+
+class UserFieldList extends ListAction
+{
+    const ID = 11;
+    const NAME = 'user.field.list';
+
+    public function getPath(): string
+    {
+        return 'rest/crm.' . $this->entity . '.userfield.list';
+    }
+}

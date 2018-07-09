@@ -2,8 +2,6 @@
 
 namespace tests\base;
 
-use semsty\connect\base\Service;
-
 class ServiceTest extends TestCase
 {
     public function testDictionaries()

@@ -6,11 +6,13 @@ use semsty\connect\base\exception\ConnectException;
 use semsty\connect\base\exception\Exception;
 use semsty\connect\base\exception\ProfileException;
 use semsty\connect\base\helpers\ArrayHelper;
+use semsty\connect\base\helpers\Json;
 use semsty\connect\base\query\Connection;
 use semsty\connect\base\query\Query;
 use semsty\connect\base\traits\ProfiledModel;
 use semsty\connect\base\traits\ReferenceReflection;
 use semsty\connect\base\traits\ServiceModel;
+use semsty\connect\Settings;
 use yii\base\Model;
 
 /**
@@ -52,7 +54,7 @@ class Action extends Model
         if ($this->validate()) {
             return $this->getResponse();
         } else {
-            throw new Exception($this->errors);
+            throw new Exception(Json::encode($this->errors, JSON_PRETTY_PRINT));
         }
     }
 
