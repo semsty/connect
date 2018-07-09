@@ -1,0 +1,41 @@
+{
+  "name": "semsty/connect",
+  "description": "service connect",
+  "keywords": [
+    "service connector"
+  ],
+  "type": "project",
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.1",
+    "yiisoft/yii2": "~2.0.14",
+    "yiisoft/yii2-queue": "~2.0.2",
+    "yiisoft/yii2-httpclient": "*"
+  },
+  "require-dev": {
+    "yiisoft/yii2-shell": "^2.0",
+    "yiisoft/yii2-debug": "~2.0.0",
+    "yiisoft/yii2-faker": "~2.0.0",
+    "codeception/codeception": "*",
+    "codeception/base": "^2.2.3",
+    "codeception/verify": "~0.3.1",
+    "phpunit/phpunit": "~4.4"
+  },
+  "config": {
+    "process-timeout": 1800
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "semsty\\connect\\": "src",
+      "semsty\\connect\\base\\": "src/base",
+      "semsty\\connect\\amocrm\\": "src/amocrm",
+      "semsty\\connect\\custom\\": "src/custom"
+    }
+  }
+}
