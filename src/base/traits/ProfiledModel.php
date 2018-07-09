@@ -88,7 +88,8 @@ trait ProfiledModel
     }
 
     /**
-     * @param $profile Profile
+     * @param Profile $profile
+     * @throws \semsty\connect\base\exception\ProfileException
      */
     public function setProfile(Profile &$profile)
     {

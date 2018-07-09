@@ -35,6 +35,7 @@
       "semsty\\connect\\": "src",
       "semsty\\connect\\base\\": "src/base",
       "semsty\\connect\\amocrm\\": "src/amocrm",
+      "semsty\\connect\\bitrix24\\": "src/bitrix24",
       "semsty\\connect\\custom\\": "src/custom"
     }
   }
