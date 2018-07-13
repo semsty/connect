@@ -3,7 +3,7 @@
 namespace tests\bitrix24;
 
 use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\bitrix24\actions\Auth;
+use semsty\connect\bitrix24\action\Auth;
 use semsty\connect\bitrix24\Profile;
 use semsty\connect\bitrix24\query\Connection;
 use semsty\connect\bitrix24\Service;

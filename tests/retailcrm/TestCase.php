@@ -1,11 +1,11 @@
 <?php
 
-namespace tests\amocrm;
+namespace tests\retailcrm;
 
-use semsty\connect\amocrm\action\Auth;
-use semsty\connect\amocrm\Profile;
-use semsty\connect\amocrm\query\Connection;
-use semsty\connect\amocrm\Service;
+use semsty\connect\retailcrm\action\lists\Dictionaries;
+use semsty\connect\retailcrm\Profile;
+use semsty\connect\retailcrm\query\Connection;
+use semsty\connect\retailcrm\Service;
 use semsty\connect\base\helpers\ArrayHelper;
 
 class TestCase extends \tests\TestCase
@@ -15,15 +15,17 @@ class TestCase extends \tests\TestCase
     public $_profile_class = Profile::class;
     public $profile_config = [
         'subdomain' => 'subdomain',
-        'apiKey' => 'imanicelittletoken',
-        'login' => 'login@subdomain.com'
+        'apiKey' => 'imanicelittletoken'
     ];
 
     public function getResponse()
     {
         return ArrayHelper::merge(parent::getResponses(), [
-            Auth::NAME => [
-                'success' => true
+            Dictionaries::NAME => [
+                'success' => true,
+                'customDictionaries' => [
+                    'dict1' => ['ae']
+                ]
             ]
         ]);
     }

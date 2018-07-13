@@ -135,6 +135,10 @@ class Service extends Component
         return $this->_path;
     }
 
+    /**
+     * @return object|Schema
+     * @throws \yii\base\InvalidConfigException
+     */
     public function getSchema()
     {
         if (empty($this->_schema)) {
@@ -145,7 +149,7 @@ class Service extends Component
 
     public static function getSchemaClass()
     {
-        return static::getReferenceClass('\query\Schema', Schema::class);
+        return static::getReferenceClass('query\Schema', Schema::class);
     }
 
     /**

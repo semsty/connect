@@ -2,7 +2,7 @@
 
 namespace tests\amocrm;
 
-use semsty\connect\amocrm\actions\Auth;
+use semsty\connect\amocrm\action\Auth;
 
 class ServiceTest extends TestCase
 {

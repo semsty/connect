@@ -20,6 +20,7 @@ use yii\base\Model;
  * @property $connection
  * @property $service Service
  * @property $profile Profile
+ * @property $client
  * @package semsty\connect\base\action
  */
 class Action extends Model

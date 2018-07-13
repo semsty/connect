@@ -2,20 +2,20 @@
 
 namespace semsty\connect\amocrm;
 
-use semsty\connect\amocrm\actions\Auth;
-use semsty\connect\amocrm\actions\CallsSet;
-use semsty\connect\amocrm\actions\CompanyList;
-use semsty\connect\amocrm\actions\CompanySet;
-use semsty\connect\amocrm\actions\ContactsList;
-use semsty\connect\amocrm\actions\ContactsSet;
-use semsty\connect\amocrm\actions\CustomFieldsSet;
-use semsty\connect\amocrm\actions\Info;
-use semsty\connect\amocrm\actions\LeadsList;
-use semsty\connect\amocrm\actions\LeadsSet;
-use semsty\connect\amocrm\actions\NotesList;
-use semsty\connect\amocrm\actions\NotesSet;
-use semsty\connect\amocrm\actions\TasksList;
-use semsty\connect\amocrm\actions\TasksSet;
+use semsty\connect\amocrm\action\Auth;
+use semsty\connect\amocrm\action\CallsSet;
+use semsty\connect\amocrm\action\CompanyList;
+use semsty\connect\amocrm\action\CompanySet;
+use semsty\connect\amocrm\action\ContactsList;
+use semsty\connect\amocrm\action\ContactsSet;
+use semsty\connect\amocrm\action\CustomFieldsSet;
+use semsty\connect\amocrm\action\Info;
+use semsty\connect\amocrm\action\LeadsList;
+use semsty\connect\amocrm\action\LeadsSet;
+use semsty\connect\amocrm\action\NotesList;
+use semsty\connect\amocrm\action\NotesSet;
+use semsty\connect\amocrm\action\TasksList;
+use semsty\connect\amocrm\action\TasksSet;
 use semsty\connect\amocrm\dict\Data;
 use semsty\connect\amocrm\dict\Entities;
 use semsty\connect\amocrm\dict\Errors;

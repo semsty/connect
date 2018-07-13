@@ -4,7 +4,7 @@ namespace semsty\connect\custom;
 
 use semsty\connect\base\dict\Action;
 use semsty\connect\base\Service as BaseService;
-use semsty\connect\custom\actions\Action as BaseAction;
+use semsty\connect\custom\action\Action as BaseAction;
 
 class Service extends BaseService
 {

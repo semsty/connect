@@ -2,7 +2,7 @@
 
 namespace tests\bitrix24;
 
-use semsty\connect\bitrix24\actions\Auth;
+use semsty\connect\bitrix24\action\Auth;
 
 class ServiceTest extends TestCase
 {

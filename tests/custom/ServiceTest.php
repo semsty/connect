@@ -2,7 +2,7 @@
 
 namespace tests\custom;
 
-use semsty\connect\custom\actions\Action;
+use semsty\connect\custom\action\Action;
 use semsty\connect\custom\Profile;
 use semsty\connect\custom\Service;
 
