@@ -6,7 +6,7 @@ use semsty\connect\base\helpers\ArrayHelper;
 use semsty\connect\retailcrm\filter\base\Filter;
 use semsty\connect\retailcrm\filter\base\TransactionFilterTrait;
 
-class OrdersFilter extends Filter
+class Orders extends Filter
 {
     use TransactionFilterTrait;
 

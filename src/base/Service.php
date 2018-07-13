@@ -3,7 +3,7 @@
 namespace semsty\connect\base;
 
 use semsty\connect\base\dict\Data;
-use semsty\connect\base\dict\DictionaryCollection;
+use semsty\connect\base\dict\Dictionaries;
 use semsty\connect\base\dict\Entities;
 use semsty\connect\base\dict\Utm;
 use semsty\connect\base\exception\Exception;
@@ -49,7 +49,7 @@ class Service extends Component
     protected $_schema;
     protected $_connection_class = Connection::class;
     /**
-     * @var $_dictionaries DictionaryCollection
+     * @var $_dictionaries Dictionaries
      */
     protected $_dictionaries;
 
@@ -60,7 +60,7 @@ class Service extends Component
     public function __construct(array $config = [])
     {
         parent::__construct($config);
-        $this->_dictionaries = new DictionaryCollection(static::getDictionariesList());
+        $this->_dictionaries = new Dictionaries(static::getDictionariesList());
     }
 
     /**

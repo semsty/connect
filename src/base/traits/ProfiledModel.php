@@ -19,10 +19,11 @@ trait ProfiledModel
     protected $_profile;
 
     /**
-     * @param $profile mixed
+     * @param $profile
+     * @return ProfiledModel
      * @throws InvalidConfiguration
      * @throws ProfileDoesNotExists
-     * @return $this
+     * @throws \semsty\connect\base\exception\ProfileException
      */
     public function withProfile($profile): self
     {

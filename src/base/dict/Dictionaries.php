@@ -4,7 +4,7 @@ namespace semsty\connect\base\dict;
 
 use yii\base\UnknownMethodException;
 
-class DictionaryCollection extends BaseCollection
+class Dictionaries extends Collection
 {
     protected $_instance_class = Dictionary::class;
 

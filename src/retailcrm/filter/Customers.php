@@ -9,7 +9,7 @@ use semsty\connect\retailcrm\filter\base\TransactionFilterTrait;
 /**
  * Class CustomersFilter
  */
-class CustomersFilter extends Filter
+class Customers extends Filter
 {
     use TransactionFilterTrait;
 

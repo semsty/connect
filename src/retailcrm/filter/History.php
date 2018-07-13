@@ -9,7 +9,7 @@ use semsty\connect\retailcrm\filter\base\Filter;
  * Class HistoryFilter
  * @package semsty\connect\retailcrm\filter
  */
-class HistoryFilter extends Filter
+class History extends Filter
 {
     /**
      * @var $orderId

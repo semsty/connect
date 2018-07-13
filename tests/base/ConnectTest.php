@@ -3,8 +3,8 @@
 namespace tests\base;
 
 use semsty\connect\custom\Profile;
-use Yii;
 use semsty\connect\custom\Service as CustomService;
+use Yii;
 
 class ConnectTest extends TestCase
 {

@@ -6,6 +6,7 @@ use semsty\connect\amocrm\Service as AmoCRM;
 use semsty\connect\base\helpers\ArrayHelper;
 use semsty\connect\bitrix24\Service as Bitrix24;
 use semsty\connect\custom\Service as Custom;
+use semsty\connect\retailcrm\Service as RetailCRM;
 use yii\base\BaseObject;
 
 class Settings extends BaseObject
@@ -28,7 +29,8 @@ class Settings extends BaseObject
         $services = [
             Custom::class,
             AmoCRM::class,
-            Bitrix24::class
+            Bitrix24::class,
+            RetailCRM::class
         ];
         if ($with_id) {
             $result = [];

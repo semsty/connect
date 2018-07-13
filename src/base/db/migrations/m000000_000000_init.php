@@ -25,11 +25,21 @@ class m000000_000000_init extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ]);
+        $this->createTable('{{%operation}}', [
+            'id' => $this->bigPrimaryKey(),
+            'type_id' => $this->integer(),
+            'status_id' => $this->integer(),
+            'config_json' => $this->text(),
+            'executing_time' => $this->float(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+        ]);
     }
 
     public function down()
     {
         $this->dropTable('{{%profile}}');
         $this->dropTable('{{%session}}');
+        $this->dropTable('{{%operation}}');
     }
 }

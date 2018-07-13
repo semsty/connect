@@ -28,6 +28,7 @@ class Action extends Model
     use ServiceModel, ProfiledModel, ReferenceReflection;
 
     const ID = 0; //in service id
+    const ACTION_ID = self::ID;
     const NAME = 'base-action';
 
     const EVENT_RUN = 'run';

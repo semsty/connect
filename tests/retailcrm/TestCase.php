@@ -2,11 +2,11 @@
 
 namespace tests\retailcrm;
 
+use semsty\connect\base\helpers\ArrayHelper;
 use semsty\connect\retailcrm\action\lists\Dictionaries;
 use semsty\connect\retailcrm\Profile;
 use semsty\connect\retailcrm\query\Connection;
 use semsty\connect\retailcrm\Service;
-use semsty\connect\base\helpers\ArrayHelper;
 
 class TestCase extends \tests\TestCase
 {

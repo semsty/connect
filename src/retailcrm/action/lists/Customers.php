@@ -5,7 +5,7 @@ namespace semsty\connect\retailcrm\action\lists;
 use semsty\connect\base\dict\Action;
 use semsty\connect\retailcrm\action\base\ListAction;
 use semsty\connect\retailcrm\dict\Entities;
-use semsty\connect\retailcrm\filter\CustomersFilter;
+use semsty\connect\retailcrm\filter\Customers as Filter;
 
 class Customers extends ListAction
 {
@@ -13,5 +13,5 @@ class Customers extends ListAction
     const NAME = Entities::CUSTOMER . Action::NAME_DELIMITER . Action::LIST;
 
     public $entity = Entities::CUSTOMER;
-    public $_filter_class = CustomersFilter::class;
+    public $_filter_class = Filter::class;
 }

@@ -5,7 +5,7 @@ namespace semsty\connect\base\dict;
 use yii\base\BaseObject;
 use yii\base\InvalidCallException;
 
-class BaseCollection extends BaseObject implements \IteratorAggregate, \ArrayAccess, \Countable
+class Collection extends BaseObject implements \IteratorAggregate, \ArrayAccess, \Countable
 {
     public $readOnly = true;
 
