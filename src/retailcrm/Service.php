@@ -25,7 +25,7 @@ use yii\helpers\ArrayHelper;
 
 class Service extends BaseService
 {
-    const SERVICE_ID = 2;
+    const ID = 2;
     const NAME = 'retailcrm';
 
     public $url = 'https://{subdomain}.retailcrm.ru';

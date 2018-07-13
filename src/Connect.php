@@ -52,14 +52,19 @@ class Connect extends Component
      * @throws InvalidConfiguration
      * @throws ProfileDoesNotExists
      */
-    public function byProfile($profile, $db = false)
+    public function byProfile($profile, $db = true)
     {
+        $class = Profile::class;
         if ($db) {
             if (!$this->profile = Profile::findOne($profile)) {
                 throw new ProfileDoesNotExists("Profile does not exists: $profile");
             }
         } else {
-            $this->profile = new Profile($profile);
+            if ($id = ArrayHelper::getValue($profile, 'service_id')) {
+                $class = ArrayHelper::getValue(Settings::getServices(), $id);
+                $class = $class::getProfileClass();
+            }
+            $this->profile = new $class($profile);
         }
         if ($this->profile) {
             if ($class = ArrayHelper::getValue(Settings::getServices(), $this->profile->service_id)) {

@@ -3,7 +3,6 @@
 namespace semsty\connect\amocrm;
 
 use semsty\connect\amocrm\action\Auth;
-use semsty\connect\amocrm\action\CallsSet;
 use semsty\connect\amocrm\action\CompanyList;
 use semsty\connect\amocrm\action\CompanySet;
 use semsty\connect\amocrm\action\ContactsList;
@@ -96,10 +95,6 @@ class Service extends BaseService
             Entities::TASK => [
                 Action::CREATE => TasksSet::class,
                 Action::UPDATE => TasksSet::class
-            ],
-            Entities::CALL => [
-                Action::CREATE => CallsSet::class,
-                Action::UPDATE => CallsSet::class
             ],
             Entities::CUSTOM_FIELD => [
                 Action::CREATE => CustomFieldsSet::class,

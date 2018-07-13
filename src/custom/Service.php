@@ -8,7 +8,7 @@ use semsty\connect\custom\action\Action as BaseAction;
 
 class Service extends BaseService
 {
-    const SERVICE_ID = 1000;
+    const ID = 1000;
     const NAME = 'custom';
 
     public $url = '';

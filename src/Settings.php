@@ -33,7 +33,7 @@ class Settings extends BaseObject
         if ($with_id) {
             $result = [];
             foreach ($services as $no => $class) {
-                $result[$class::SERVICE_ID] = $class;
+                $result[$class::ID] = $class;
             }
         } else {
             $result = $services;

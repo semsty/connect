@@ -16,6 +16,9 @@ $config = [
             'username' => getenv('POSTGRES_USER'),
             'password' => getenv('POSTGRES_PASSWORD'),
             'charset' => 'utf8'
+        ],
+        'connect' => [
+            'class' => \semsty\connect\Connect::class
         ]
     ],
 ];

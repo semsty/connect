@@ -30,6 +30,7 @@ class Service extends Component
     use ProfiledModel, ReferenceReflection;
 
     const ID = 0;
+    const SERVICE_ID = self::ID;
     const NAME = 'base-service';
     public $with_session = true;
     public $formats = ['json'];
