@@ -206,7 +206,7 @@ class Service extends Component
 
     public static function getConnectionClass()
     {
-        return static::getReferenceClass('\query\Connection', Connection::class);
+        return static::getReferenceClass('query\Connection', Connection::class);
     }
 
     public function getConfig(): array

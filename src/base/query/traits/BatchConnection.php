@@ -112,7 +112,7 @@ trait BatchConnection
     protected function endTrigger($data)
     {
         $current = $this->max_limit * $this->current_offset;
-        $max = $this->max_limit * $this->getByKey($data, $this->offset_response_key);
+        $max = $this->max_limit * ArrayHelper::getValue($data, $this->offset_response_key, 0);
         return $current <= $max;
     }
 }
