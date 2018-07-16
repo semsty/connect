@@ -47,7 +47,6 @@ class Service extends Component
      * @var $_schema Schema
      */
     protected $_schema;
-    protected $_connection_class = Connection::class;
     /**
      * @var $_dictionaries Dictionaries
      */
@@ -191,7 +190,7 @@ class Service extends Component
     public function getConnection(): Connection
     {
         if (!is_object($this->_connection)) {
-            $class = $this->_connection_class;
+            $class = self::getConnectionClass();
             $this->_connection = \Yii::createObject(ArrayHelper::merge([
                 'class' => $class,
                 'service' => &$this
@@ -203,6 +202,11 @@ class Service extends Component
     public function setConnection(Connection $client)
     {
         $this->_connection = $client;
+    }
+
+    public static function getConnectionClass()
+    {
+        return static::getReferenceClass('\query\Connection', Connection::class);
     }
 
     public function getConfig(): array
