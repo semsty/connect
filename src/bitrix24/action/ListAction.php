@@ -111,7 +111,7 @@ class ListAction extends Action
 
     public function getResponse(): array
     {
-        return $this->client->sendWithOffset();
+        return $this->connection->sendWithOffset();
     }
 
     public function run()

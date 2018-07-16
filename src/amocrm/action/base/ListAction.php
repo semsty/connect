@@ -83,7 +83,7 @@ class ListAction extends Action
             }
             return $result;
         } else {
-            return $this->client->sendWithOffset();
+            return $this->connection->sendWithOffset();
         }
     }
 
