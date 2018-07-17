@@ -12,6 +12,7 @@ use yii\httpclient\Client;
 /**
  * Class Connection
  * @property $service Service
+ * @property $owner
  * @package connect\base\query
  */
 class Connection extends Client

@@ -9,7 +9,7 @@ use semsty\connect\base\Profile;
 use semsty\connect\base\query\Connection;
 use semsty\connect\base\query\Query;
 use semsty\connect\base\query\Response;
-use semsty\connect\base\Service;
+use semsty\connect\base\BaseService;
 use semsty\connect\base\Session;
 
 /**
@@ -22,7 +22,7 @@ use semsty\connect\base\Session;
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     public $_connection_class = Connection::class;
-    public $_service_class = Service::class;
+    public $_service_class = BaseService::class;
     public $_profile_class = Profile::class;
     public $connection;
     public $request;

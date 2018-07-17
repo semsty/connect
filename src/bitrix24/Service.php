@@ -22,11 +22,6 @@ use semsty\connect\bitrix24\dict\Entities;
 use semsty\connect\bitrix24\dict\Fields as FieldsDictionary;
 use semsty\connect\bitrix24\dict\Selects;
 use semsty\connect\bitrix24\dict\Types;
-use semsty\connect\bitrix24\operations\CheckLeads;
-use semsty\connect\bitrix24\operations\GetChanges;
-use semsty\connect\bitrix24\operations\GetLeads;
-use semsty\connect\bitrix24\operations\ProxyOperation;
-use semsty\connect\bitrix24\operations\StatFullUpdate;
 use semsty\connect\bitrix24\query\Query;
 use yii\helpers\ArrayHelper;
 
