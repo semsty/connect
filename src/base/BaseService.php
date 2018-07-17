@@ -291,9 +291,9 @@ class BaseService extends Component
     public static function getActionClass($name): string
     {
         if (is_numeric($name)) {
-            return ArrayHelper::getValue(static::getActionsById(), $name);
+            return ArrayHelper::getValue(static::getActionsById(), $name, '');
         } elseif (is_string($name)) {
-            return ArrayHelper::getValue(static::getActions(true), $name);
+            return ArrayHelper::getValue(static::getActions(true), $name, '');
         }
     }
 

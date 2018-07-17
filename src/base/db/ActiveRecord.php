@@ -19,6 +19,26 @@ class ActiveRecord extends BaseActiveRecord
     const TIME_CREATED = BaseData::TIME_CREATED;
     const TIME_UPDATED = BaseData::TIME_UPDATED;
 
+    public static function isModelEvent($event)
+    {
+        return ArrayHelper::isIn($event, static::getModelEvents());
+    }
+
+    public static function getModelEvents()
+    {
+        return [
+            static::EVENT_INIT,
+            static::EVENT_AFTER_FIND,
+            static::EVENT_BEFORE_INSERT,
+            static::EVENT_AFTER_INSERT,
+            static::EVENT_BEFORE_UPDATE,
+            static::EVENT_AFTER_UPDATE,
+            static::EVENT_BEFORE_DELETE,
+            static::EVENT_AFTER_DELETE,
+            static::EVENT_AFTER_REFRESH
+        ];
+    }
+
     public static function getOrCreate($condition)
     {
         $model = static::find()->where($condition)->one();

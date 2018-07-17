@@ -33,7 +33,7 @@ class BaseServiceOperation extends Operation
 
     public static function getProfileClass()
     {
-        return static::getReferenceClass('\Profile', Profile::class, 1);
+        return static::getReferenceClass('Profile', Profile::class, 1);
     }
 
     public function rules(): array
@@ -64,6 +64,6 @@ class BaseServiceOperation extends Operation
 
     public static function getServiceClass()
     {
-        return static::getReferenceClass('\Service', Service::class, 1);
+        return static::getReferenceClass('Service', Service::class, 1);
     }
 }

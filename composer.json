@@ -36,7 +36,14 @@
       "semsty\\connect\\base\\": "src/base",
       "semsty\\connect\\amocrm\\": "src/amocrm",
       "semsty\\connect\\bitrix24\\": "src/bitrix24",
-      "semsty\\connect\\custom\\": "src/custom"
+      "semsty\\connect\\custom\\": "src/custom",
+      "semsty\\connect\\retailcrm\\": "src/retailcrm",
+      "semsty\\connect\\test": "src/tests",
+      "semsty\\connect\\test\\base\\": "src/tests/base",
+      "semsty\\connect\\test\\amocrm\\": "src/tests/amocrm",
+      "semsty\\connect\\test\\bitrix24\\": "src/tests/bitrix24",
+      "semsty\\connect\\test\\custom\\": "src/tests/custom",
+      "semsty\\connect\\test\\retailcrm\\": "src/tests/retailcrm"
     }
   }
 }
