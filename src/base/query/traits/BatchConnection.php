@@ -88,18 +88,6 @@ trait BatchConnection
         );
     }
 
-    public function all()
-    {
-        $result = [];
-        $i = 0;
-        while ($data = $this->batch()) {
-            $i++;
-            $result = ArrayHelper::merge($result, $data);
-        }
-        $this->current_batch = 0;
-        return $result;
-    }
-
     protected function prepareRequest()
     {
         $sub_config = [
@@ -121,5 +109,17 @@ trait BatchConnection
         $current = $this->max_limit * $this->current_offset;
         $max = $this->max_limit * ArrayHelper::getValue($data, $this->offset_response_key, 0);
         return $current <= $max;
+    }
+
+    public function all()
+    {
+        $result = [];
+        $i = 0;
+        while ($data = $this->batch()) {
+            $i++;
+            $result = ArrayHelper::merge($result, $data);
+        }
+        $this->current_batch = 0;
+        return $result;
     }
 }

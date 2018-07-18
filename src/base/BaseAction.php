@@ -72,6 +72,44 @@ class BaseAction extends Model
         }
     }
 
+    public function getConnection(): Connection
+    {
+        foreach ($this->getConfig() as $key => $value) {
+            $this->service->connection->$key = $value;
+        }
+        $this->service->connection->owner = $this;
+        return $this->service->connection;
+    }
+
+    public function getConfig(): array
+    {
+        return ArrayHelper::merge(
+            $this->service->getConfig(),
+            $this->getDefaultConfig(),
+            $this->custom_config
+        );
+    }
+
+    public function getDefaultConfig(): array
+    {
+        return [
+            'requestConfig' => [
+                'url' => [
+                    $this->getUrl()
+                ],
+                'method' => property_exists(static::class, 'method') ? $this->method : 'GET',
+                'options' => [
+                    'returntransfer' => true,
+                ]
+            ]
+        ];
+    }
+
+    protected function getUrl(): string
+    {
+        return $this->service->url . $this->path;
+    }
+
     /**
      * @return array
      * @throws ConnectException
@@ -118,44 +156,6 @@ class BaseAction extends Model
         } else {
             throw new ConnectException($response->toString());
         }
-    }
-
-    public function getConnection(): Connection
-    {
-        foreach ($this->getConfig() as $key => $value) {
-            $this->service->connection->$key = $value;
-        }
-        $this->service->connection->owner = $this;
-        return $this->service->connection;
-    }
-
-    public function getConfig(): array
-    {
-        return ArrayHelper::merge(
-            $this->service->getConfig(),
-            $this->getDefaultConfig(),
-            $this->custom_config
-        );
-    }
-
-    public function getDefaultConfig(): array
-    {
-        return [
-            'requestConfig' => [
-                'url' => [
-                    $this->getUrl()
-                ],
-                'method' => property_exists(static::class, 'method') ? $this->method : 'GET',
-                'options' => [
-                    'returntransfer' => true,
-                ]
-            ]
-        ];
-    }
-
-    protected function getUrl(): string
-    {
-        return $this->service->url . $this->path;
     }
 
     public function setAuth($data)

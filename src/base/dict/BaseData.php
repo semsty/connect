@@ -25,7 +25,8 @@ class BaseData extends Dictionary
     const MARK = 'mark';
     const DATE_CREATE = 'date_create';
     const CLIENT_ID_DATE = 'client_id_date';
-
+    const TIME_CREATED = 'created_at';
+    const TIME_UPDATED = 'updated_at';
     const EMPTY_NOT_SET = '(not set)';
     const EMPTY_DASH = '-';
     const EMPTY_DASH_2 = '–';

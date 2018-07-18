@@ -3,13 +3,13 @@
 namespace connect\crm\tests;
 
 use Codeception\Util\Stub;
-use connect\crm\base\Service;
 use connect\crm\base\exception\InvalidConfiguration;
 use connect\crm\base\helpers\ArrayHelper;
 use connect\crm\base\Profile;
 use connect\crm\base\query\Connection;
 use connect\crm\base\query\Query;
 use connect\crm\base\query\Response;
+use connect\crm\base\Service;
 use connect\crm\base\Session;
 
 /**

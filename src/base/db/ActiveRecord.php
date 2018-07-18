@@ -2,7 +2,7 @@
 
 namespace connect\crm\base\db;
 
-use connect\crm\base\data\BaseData;
+use connect\crm\base\dict\BaseData;
 use connect\crm\base\helpers\ArrayHelper;
 use connect\crm\base\helpers\Json;
 use yii\behaviors\TimestampBehavior;
