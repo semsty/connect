@@ -92,7 +92,7 @@ trait BatchConnection
     {
         $result = [];
         while ($data = $this->batch()) {
-            $result = ArrayHelper::merge($result, ArrayHelper::getValue($data, $this->cursor, []));
+            $result = ArrayHelper::merge($result, $data);
         }
         $this->current_batch = 0;
         return $result;

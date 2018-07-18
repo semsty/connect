@@ -66,15 +66,18 @@ class BaseAction extends Model
         $this->trigger(static::EVENT_RUN);
         if ($this->validate()) {
             if ($this->batch) {
-                while ($data = $this->connection->batch()) {
-                    return $data;
-                }
+                return $this->batch();
             } else {
                 return $this->getResponse();
             }
         } else {
             throw new Exception(Json::encode($this->errors, JSON_PRETTY_PRINT));
         }
+    }
+
+    public function batch()
+    {
+        return $this->service->connection->batch();
     }
 
     public function trigger($name, \yii\base\Event $event = null)
