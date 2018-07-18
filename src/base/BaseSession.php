@@ -57,7 +57,7 @@ class BaseSession extends ActiveRecord
 
     public function getConfig(): array
     {
-        return $this->getJsonField('config_json');
+        return $this->getJsonField('config_json') ?? [];
     }
 
     public function setConfig($value)

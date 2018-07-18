@@ -33,6 +33,7 @@ class BaseAction extends Model
 
     const EVENT_RUN = 'run';
     public $custom_config = [];
+    public $batch = false;
     protected $path;
 
     public static function getProfileClass()
@@ -64,7 +65,13 @@ class BaseAction extends Model
     {
         $this->trigger(static::EVENT_RUN);
         if ($this->validate()) {
-            return $this->getResponse();
+            if ($this->batch) {
+                while ($data = $this->connection->batch()) {
+                    return $data;
+                }
+            } else {
+                return $this->getResponse();
+            }
         } else {
             throw new Exception(Json::encode($this->errors, JSON_PRETTY_PRINT));
         }

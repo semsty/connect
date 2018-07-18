@@ -63,34 +63,39 @@ trait BatchConnection
      */
     public $max_offset = 0;
 
-    public function sendWithOffset()
+    /**
+     * @var int $current_batch
+     */
+    protected $current_batch = 0;
+
+    public function batch()
     {
-        $data = [];
-        $result = [];
-        $i = 0;
         do {
-            $i++;
+            $this->current_batch++;
             $this->prepareRequest();
             $request = $this->createRequest();
             $response = $request->send();
-            $data[$i] = $response->getData();
-            $this->increment($data[$i]);
+            $payload = $response->getData();
+            $this->increment($payload);
+            $data = ArrayHelper::getValue($payload, $this->cursor, []);
+            return $data;
         } while (
-            ArrayHelper::keyExists($i, $data)
+            $data
             &&
-            $data[$i]
+            $this->endTrigger($payload)
             &&
-            $this->endTrigger($data[$i])
-            &&
-            ($this->max_offset ? $i < $this->max_offset : true)
+            ($this->max_offset ? $this->current_batch < $this->max_offset : true)
         );
-        foreach ($data as $sub_data) {
-            if ($sub_data) {
-                $sub_data = ArrayHelper::getValue($sub_data, $this->cursor);
-                $result = ArrayHelper::merge($sub_data, $result);
-            }
+    }
+
+    public function all()
+    {
+        $result = [];
+        while ($data = $this->batch()) {
+            $result = ArrayHelper::merge($result, ArrayHelper::getValue($data, $this->cursor, []));
         }
-        return $result ? $result : [];
+        $this->current_batch = 0;
+        return $result;
     }
 
     protected function prepareRequest()

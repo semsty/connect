@@ -74,6 +74,6 @@ class ListAction extends Action
 
     public function getResponse(): array
     {
-        return $this->connection->sendWithOffset();
+        return $this->connection->all();
     }
 }
