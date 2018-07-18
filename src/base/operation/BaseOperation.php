@@ -6,7 +6,6 @@ use connect\crm\base\helpers\ArrayHelper;
 use connect\crm\base\helpers\DateHelper;
 use connect\crm\Settings;
 
-
 /**
  * Class BaseOperation
  * @property $config
@@ -31,7 +30,7 @@ class BaseOperation extends AbstractDataOperation
             [['executing_time'], 'double'],
             [['config_json'], 'safe'],
             [['config_json'], 'default', 'value' => '{}'],
-            [['type_id'], 'default', 'value' => static::OPERATION_ID],
+            [['type_id'], 'default', 'value' => static::ID],
             [['config', 'typeName'], 'safe']
         ];
     }

@@ -15,7 +15,7 @@ use yii\base\Event;
  */
 abstract class AbstractDataOperation extends ActiveRecord
 {
-    const OPERATION_ID = 0;
+    const ID = 0;
     const NAME = 'abstract';
 
     const STATUS_CREATED = 0;

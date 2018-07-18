@@ -16,15 +16,6 @@ class Info extends BaseAction
 
     protected $path = 'private/api/{version}/json/accounts/current';
 
-    public function getDefaultConfig(): array
-    {
-        return ArrayHelper::merge(parent::getDefaultConfig(), [
-            'requestConfig' => [
-                'url' => $this->getUrl()
-            ]
-        ]);
-    }
-
     public function run()
     {
         $data = parent::run();

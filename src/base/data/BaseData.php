@@ -11,8 +11,8 @@ class BaseData extends BaseObject
     const PHONE = 'phone_number';
     const EMAIL = 'email';
     const PROFILE_ID = 'external_profile_id';
-    const TIME_CREATED = 'time_created';
-    const TIME_UPDATED = 'time_created';
+    const TIME_CREATED = 'created_at';
+    const TIME_UPDATED = 'updated_at';
 
     const EMPTY_NOT_SET = '(not set)';
     const EMPTY_DASH = '-';
