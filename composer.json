@@ -13,6 +13,9 @@
     "yiisoft/yii2-httpclient": "*"
   },
   "require-dev": {
+    "codeception/codeception": "*",
+    "codeception/base": "^2.2.3",
+    "codeception/verify": "~0.3.1",
     "phpunit/phpunit": "~4.4"
   },
   "config": {
