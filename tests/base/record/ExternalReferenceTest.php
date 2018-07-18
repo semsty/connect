@@ -41,7 +41,7 @@ class ExternalReferenceTest extends TestCase
         $refs[1]->save();
         expect(
             ArrayHelper::getColumn($er[0]->getReferenceRecords()->all(), 'id')
-        )->equals([$er[2]->id, $er[1]->id]);
+        )->equals([$er[1]->id, $er[2]->id]);
         expect(
             ArrayHelper::getColumn($er[1]->getReferenceRecords()->all(), 'id')
         )->equals([$er[0]->id]);

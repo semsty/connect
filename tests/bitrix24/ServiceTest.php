@@ -12,7 +12,6 @@ class ServiceTest extends TestCase
         $action = $this->service->action(Auth::ID);
         $data = $action->run();
         expect(is_array($data))->true();
-        $expected['expires_in'] = strtotime('now') + $expected['expires_in'];
-        expect($action->profile->config)->equals($expected);
+        expect($action->profile->config)->notEquals(3600);
     }
 }
