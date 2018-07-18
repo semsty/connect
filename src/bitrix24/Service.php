@@ -1,28 +1,28 @@
 <?php
 
-namespace semsty\connect\bitrix24;
+namespace connect\crm\bitrix24;
 
-use semsty\connect\base\dict\Action;
-use semsty\connect\base\Service as BaseService;
-use semsty\connect\bitrix24\action\Add;
-use semsty\connect\bitrix24\action\Auth;
-use semsty\connect\bitrix24\action\DealContactAdd;
-use semsty\connect\bitrix24\action\Delete;
-use semsty\connect\bitrix24\action\Fields;
-use semsty\connect\bitrix24\action\Get;
-use semsty\connect\bitrix24\action\ListAction;
-use semsty\connect\bitrix24\action\Update;
-use semsty\connect\bitrix24\action\UserFieldAdd;
-use semsty\connect\bitrix24\action\UserFieldDelete;
-use semsty\connect\bitrix24\action\UserFieldGet;
-use semsty\connect\bitrix24\action\UserFieldList;
-use semsty\connect\bitrix24\action\UserFieldUpdate;
-use semsty\connect\bitrix24\dict\Data;
-use semsty\connect\bitrix24\dict\Entities;
-use semsty\connect\bitrix24\dict\Fields as FieldsDictionary;
-use semsty\connect\bitrix24\dict\Selects;
-use semsty\connect\bitrix24\dict\Types;
-use semsty\connect\bitrix24\query\Query;
+use connect\crm\base\dict\Action;
+use connect\crm\base\Service as BaseService;
+use connect\crm\bitrix24\action\Add;
+use connect\crm\bitrix24\action\Auth;
+use connect\crm\bitrix24\action\DealContactAdd;
+use connect\crm\bitrix24\action\Delete;
+use connect\crm\bitrix24\action\Fields;
+use connect\crm\bitrix24\action\Get;
+use connect\crm\bitrix24\action\ListAction;
+use connect\crm\bitrix24\action\Update;
+use connect\crm\bitrix24\action\UserFieldAdd;
+use connect\crm\bitrix24\action\UserFieldDelete;
+use connect\crm\bitrix24\action\UserFieldGet;
+use connect\crm\bitrix24\action\UserFieldList;
+use connect\crm\bitrix24\action\UserFieldUpdate;
+use connect\crm\bitrix24\dict\Data;
+use connect\crm\bitrix24\dict\Entities;
+use connect\crm\bitrix24\dict\Fields as FieldsDictionary;
+use connect\crm\bitrix24\dict\Selects;
+use connect\crm\bitrix24\dict\Types;
+use connect\crm\bitrix24\query\Query;
 use yii\helpers\ArrayHelper;
 
 class Service extends BaseService

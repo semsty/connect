@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\bitrix24\action;
+namespace connect\crm\bitrix24\action;
 
-use semsty\connect\base\traits\ProviderAction;
+use connect\crm\base\traits\ProviderAction;
 
 class Enums extends ListAction
 {

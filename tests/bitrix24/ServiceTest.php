@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\bitrix24;
+namespace connect\crm\tests\bitrix24;
 
-use semsty\connect\bitrix24\action\Auth;
+use connect\crm\bitrix24\action\Auth;
 
 class ServiceTest extends TestCase
 {

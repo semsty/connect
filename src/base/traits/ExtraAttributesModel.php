@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\traits;
+namespace connect\crm\base\traits;
 
 use yii\base\UnknownPropertyException;
 use yii\helpers\ArrayHelper;

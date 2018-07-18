@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\base\record;
+namespace connect\crm\base\record;
 
-use semsty\connect\base\db\ActiveRecord;
+use connect\crm\base\db\ActiveRecord;
 use yii\db\ActiveQuery;
 
 class ExternalReference extends ActiveRecord

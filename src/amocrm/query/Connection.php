@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\amocrm\query;
+namespace connect\crm\amocrm\query;
 
-use semsty\connect\base\query\Connection as BaseConnection;
+use connect\crm\base\query\Connection as BaseConnection;
 use yii\helpers\ArrayHelper;
 
 class Connection extends BaseConnection

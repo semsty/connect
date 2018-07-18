@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\query;
+namespace connect\crm\base\query;
 
 use yii\httpclient\Response as BaseResponse;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace tests\custom;
+namespace connect\crm\tests\custom;
 
-use semsty\connect\custom\Profile;
-use semsty\connect\custom\Service;
+use connect\crm\custom\Profile;
+use connect\crm\custom\Service;
 
-class TestCase extends \tests\TestCase
+class TestCase extends \connect\crm\tests\TestCase
 {
     public $_service_class = Service::class;
     public $_profile_class = Profile::class;

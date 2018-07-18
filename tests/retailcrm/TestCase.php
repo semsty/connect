@@ -1,14 +1,14 @@
 <?php
 
-namespace tests\retailcrm;
+namespace connect\crm\tests\retailcrm;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\retailcrm\action\lists\Dictionaries;
-use semsty\connect\retailcrm\Profile;
-use semsty\connect\retailcrm\query\Connection;
-use semsty\connect\retailcrm\Service;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\retailcrm\action\lists\Dictionaries;
+use connect\crm\retailcrm\Profile;
+use connect\crm\retailcrm\query\Connection;
+use connect\crm\retailcrm\Service;
 
-class TestCase extends \tests\TestCase
+class TestCase extends \connect\crm\tests\TestCase
 {
     public $_connection_class = Connection::class;
     public $_service_class = Service::class;

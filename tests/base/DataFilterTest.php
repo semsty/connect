@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\base;
+namespace connect\crm\tests\base;
 
-use semsty\connect\base\data\Filter as DataFilter;
+use connect\crm\base\data\Filter as DataFilter;
 
 class DataFilterTest extends TestCase
 {

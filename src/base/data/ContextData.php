@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\data;
+namespace connect\crm\base\data;
 
 class ContextData extends BaseData
 {

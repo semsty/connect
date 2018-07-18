@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\base\traits;
+namespace connect\crm\base\traits;
 
-use semsty\connect\base\exception\ProfileDoesNotExists;
-use semsty\connect\base\Profile;
-use semsty\connect\base\query\exception\InvalidConfiguration;
+use connect\crm\base\exception\ProfileDoesNotExists;
+use connect\crm\base\Profile;
+use connect\crm\base\query\exception\InvalidConfiguration;
 
 /**
  * Trait ProfiledModelTrait
@@ -23,7 +23,7 @@ trait ProfiledModel
      * @return ProfiledModel
      * @throws InvalidConfiguration
      * @throws ProfileDoesNotExists
-     * @throws \semsty\connect\base\exception\ProfileException
+     * @throws \connect\crm\base\exception\ProfileException
      */
     public function withProfile($profile): self
     {
@@ -90,7 +90,7 @@ trait ProfiledModel
 
     /**
      * @param Profile $profile
-     * @throws \semsty\connect\base\exception\ProfileException
+     * @throws \connect\crm\base\exception\ProfileException
      */
     public function setProfile(Profile &$profile)
     {

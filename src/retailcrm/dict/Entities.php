@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\retailcrm\dict;
+namespace connect\crm\retailcrm\dict;
 
-use semsty\connect\base\dict\Entities as BaseEntities;
+use connect\crm\base\dict\Entities as BaseEntities;
 
 class Entities extends BaseEntities
 {

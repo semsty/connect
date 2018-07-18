@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\amocrm\query;
+namespace connect\crm\amocrm\query;
 
-use semsty\connect\base\query\Response as BaseResponse;
+use connect\crm\base\query\Response as BaseResponse;
 
 class Response extends BaseResponse
 {

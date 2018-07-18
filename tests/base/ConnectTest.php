@@ -1,9 +1,9 @@
 <?php
 
-namespace tests\base;
+namespace connect\crm\tests\base;
 
-use semsty\connect\custom\Profile;
-use semsty\connect\custom\Service as CustomService;
+use connect\crm\custom\Profile;
+use connect\crm\custom\Service as CustomService;
 use Yii;
 
 class ConnectTest extends TestCase

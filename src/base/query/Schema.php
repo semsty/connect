@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\base\query;
+namespace connect\crm\base\query;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\Service;
-use semsty\connect\base\traits\ReferenceReflection;
-use semsty\connect\base\traits\ServiceModel;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\Service;
+use connect\crm\base\traits\ReferenceReflection;
+use connect\crm\base\traits\ServiceModel;
 use yii\base\BaseObject;
 
 /**

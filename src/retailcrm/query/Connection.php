@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\retailcrm\query;
+namespace connect\crm\retailcrm\query;
 
-use semsty\connect\base\query\Connection as BaseConnection;
+use connect\crm\base\query\Connection as BaseConnection;
 
 class Connection extends BaseConnection
 {

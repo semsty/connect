@@ -1,18 +1,18 @@
 <?php
 
-namespace semsty\connect\base\operation;
+namespace connect\crm\base\operation;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\operation\traits\ServiceOperation as ServiceOperationTrait;
-use semsty\connect\base\Profile;
-use semsty\connect\base\Service;
-use semsty\connect\base\traits\ReferenceReflection;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\operation\traits\ServiceOperation as ServiceOperationTrait;
+use connect\crm\base\Profile;
+use connect\crm\base\Service;
+use connect\crm\base\traits\ReferenceReflection;
 
 /**
  * Class ServiceOperation
  * @property $service
  * @property $profile
- * @package semsty\connect\base\operation
+ * @package connect\crm\base\operation
  */
 class BaseServiceOperation extends Operation
 {

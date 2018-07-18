@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\retailcrm\dict;
+namespace connect\crm\retailcrm\dict;
 
-use semsty\connect\base\dict\Dictionary;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\retailcrm\query\Schema;
+use connect\crm\base\dict\Dictionary;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\retailcrm\query\Schema;
 
 class Fields extends Dictionary
 {

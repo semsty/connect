@@ -1,9 +1,9 @@
 <?php
 
-namespace tests\base;
+namespace connect\crm\tests\base;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\Settings;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\Settings;
 use yii\base\InvalidConfigException;
 
 class IdentifiersTest extends TestCase

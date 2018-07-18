@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\custom;
+namespace connect\crm\custom;
 
-use semsty\connect\base\dict\Action;
-use semsty\connect\base\Service as BaseService;
-use semsty\connect\custom\action\Action as BaseAction;
+use connect\crm\base\dict\Action;
+use connect\crm\base\Service as BaseService;
+use connect\crm\custom\action\Action as BaseAction;
 
 class Service extends BaseService
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\base\traits;
+namespace connect\crm\base\traits;
 
-use semsty\connect\base\Session;
+use connect\crm\base\Session;
 
 trait SessionModel
 {

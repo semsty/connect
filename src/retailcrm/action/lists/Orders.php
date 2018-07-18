@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\retailcrm\action\lists;
+namespace connect\crm\retailcrm\action\lists;
 
-use semsty\connect\base\dict\Action;
-use semsty\connect\retailcrm\action\base\ListAction;
-use semsty\connect\retailcrm\dict\Entities;
-use semsty\connect\retailcrm\filter\Orders as Filter;
+use connect\crm\base\dict\Action;
+use connect\crm\retailcrm\action\base\ListAction;
+use connect\crm\retailcrm\dict\Entities;
+use connect\crm\retailcrm\filter\Orders as Filter;
 
 class Orders extends ListAction
 {

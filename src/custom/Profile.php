@@ -1,9 +1,9 @@
 <?php
 
-namespace semsty\connect\custom;
+namespace connect\crm\custom;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\Profile as BaseProfile;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\Profile as BaseProfile;
 
 class Profile extends BaseProfile
 {

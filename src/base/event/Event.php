@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\event;
+namespace connect\crm\base\event;
 
 use yii\base\Event as BaseEvent;
 

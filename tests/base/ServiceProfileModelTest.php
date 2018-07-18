@@ -1,11 +1,11 @@
 <?php
 
-namespace tests\base;
+namespace connect\crm\tests\base;
 
-use semsty\connect\base\Action;
-use semsty\connect\base\Profile;
-use semsty\connect\base\Service;
-use semsty\connect\base\Session;
+use connect\crm\base\Action;
+use connect\crm\base\Profile;
+use connect\crm\base\Service;
+use connect\crm\base\Session;
 
 class ServiceProfileModelTest extends TestCase
 {

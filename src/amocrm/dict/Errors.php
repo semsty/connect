@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\amocrm\dict;
+namespace connect\crm\amocrm\dict;
 
-use semsty\connect\base\dict\Dictionary;
+use connect\crm\base\dict\Dictionary;
 
 class Errors extends Dictionary
 {

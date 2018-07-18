@@ -6,7 +6,7 @@ return [
             'class' => \yii\console\controllers\MigrateController::class,
             'db' => 'db',
             'migrationNamespaces' => [
-                'semsty\connect\base\db\migrations',
+                'connect\crm\base\db\migrations',
             ],
         ]
     ],

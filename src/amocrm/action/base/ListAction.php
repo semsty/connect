@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\amocrm\action\base;
+namespace connect\crm\amocrm\action\base;
 
-use semsty\connect\base\traits\ProviderAction;
+use connect\crm\base\traits\ProviderAction;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
  * @property $id
  * @property $modifiedSince
  * @property $query
- * @package semsty\connect\amocrm\action\base
+ * @package connect\crm\amocrm\action\base
  */
 class ListAction extends Action
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace semsty\connect\retailcrm\filter;
+namespace connect\crm\retailcrm\filter;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\retailcrm\filter\base\Filter;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\retailcrm\filter\base\Filter;
 
 /**
  * Class HistoryFilter
- * @package semsty\connect\retailcrm\filter
+ * @package connect\crm\retailcrm\filter
  */
 class History extends Filter
 {

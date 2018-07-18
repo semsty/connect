@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\amocrm\action;
+namespace connect\crm\amocrm\action;
 
-use semsty\connect\amocrm\action\base\SetAction;
-use semsty\connect\amocrm\dict\Entities;
-use semsty\connect\base\dict\Action;
+use connect\crm\amocrm\action\base\SetAction;
+use connect\crm\amocrm\dict\Entities;
+use connect\crm\base\dict\Action;
 use yii\helpers\ArrayHelper;
 
 class CustomFieldsSet extends SetAction

@@ -1,15 +1,15 @@
 <?php
 
-namespace semsty\connect\base\record;
+namespace connect\crm\base\record;
 
-use semsty\connect\base\dict\Entities;
-use semsty\connect\base\Profile;
-use semsty\connect\base\Service;
-use semsty\connect\base\traits\ExtraAttributesDbModel;
-use semsty\connect\base\traits\ExtraAttributesModel;
-use semsty\connect\Settings;
+use connect\crm\base\db\ActiveRecord;
+use connect\crm\base\dict\Entities;
+use connect\crm\base\Profile;
+use connect\crm\base\Service;
+use connect\crm\base\traits\ExtraAttributesDbModel;
+use connect\crm\base\traits\ExtraAttributesModel;
+use connect\crm\Settings;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 /**

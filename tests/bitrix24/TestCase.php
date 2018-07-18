@@ -1,14 +1,14 @@
 <?php
 
-namespace tests\bitrix24;
+namespace connect\crm\tests\bitrix24;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\bitrix24\action\Auth;
-use semsty\connect\bitrix24\Profile;
-use semsty\connect\bitrix24\query\Connection;
-use semsty\connect\bitrix24\Service;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\bitrix24\action\Auth;
+use connect\crm\bitrix24\Profile;
+use connect\crm\bitrix24\query\Connection;
+use connect\crm\bitrix24\Service;
 
-class TestCase extends \tests\TestCase
+class TestCase extends \connect\crm\tests\TestCase
 {
     public $_connection_class = Connection::class;
     public $_service_class = Service::class;

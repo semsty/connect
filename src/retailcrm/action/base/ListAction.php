@@ -1,9 +1,9 @@
 <?php
 
-namespace semsty\connect\retailcrm\action\base;
+namespace connect\crm\retailcrm\action\base;
 
-use semsty\connect\base\traits\ProviderAction;
-use semsty\connect\retailcrm\filter\base\Filter;
+use connect\crm\base\traits\ProviderAction;
+use connect\crm\retailcrm\filter\base\Filter;
 use yii\helpers\ArrayHelper;
 
 class ListAction extends Action

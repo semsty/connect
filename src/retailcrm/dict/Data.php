@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\retailcrm\dict;
+namespace connect\crm\retailcrm\dict;
 
-use semsty\connect\base\dict\Data as BaseData;
+use connect\crm\base\dict\Data as BaseData;
 
 class Data extends BaseData
 {

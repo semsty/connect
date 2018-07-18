@@ -1,11 +1,11 @@
 <?php
 
-namespace tests\base\record;
+namespace connect\crm\tests\base\record;
 
-use Codeception\Test\Unit;
-use semsty\connect\base\record\ExternalRecord;
+use connect\crm\base\record\ExternalRecord;
+use connect\crm\tests\base\TestCase;
 
-class ExternalRecordTest extends Unit
+class ExternalRecordTest extends TestCase
 {
     public function testSetExtraAttributes()
     {

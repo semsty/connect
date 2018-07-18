@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base;
+namespace connect\crm\base;
 
 use yii\base\BaseObject;
 

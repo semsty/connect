@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\retailcrm;
+namespace connect\crm\tests\retailcrm;
 
 class ServiceTest extends TestCase
 {

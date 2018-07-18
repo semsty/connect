@@ -1,9 +1,9 @@
 <?php
 
-namespace semsty\connect\bitrix24\action;
+namespace connect\crm\bitrix24\action;
 
-use semsty\connect\base\traits\RecipientAction;
-use semsty\connect\bitrix24\action\base\Action;
+use connect\crm\base\traits\RecipientAction;
+use connect\crm\bitrix24\action\base\Action;
 use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
 

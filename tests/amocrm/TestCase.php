@@ -1,14 +1,14 @@
 <?php
 
-namespace tests\amocrm;
+namespace connect\crm\tests\amocrm;
 
-use semsty\connect\amocrm\action\Auth;
-use semsty\connect\amocrm\Profile;
-use semsty\connect\amocrm\query\Connection;
-use semsty\connect\amocrm\Service;
-use semsty\connect\base\helpers\ArrayHelper;
+use connect\crm\amocrm\action\Auth;
+use connect\crm\amocrm\Profile;
+use connect\crm\amocrm\query\Connection;
+use connect\crm\amocrm\Service;
+use connect\crm\base\helpers\ArrayHelper;
 
-class TestCase extends \tests\TestCase
+class TestCase extends \connect\crm\tests\TestCase
 {
     public $_connection_class = Connection::class;
     public $_service_class = Service::class;

@@ -18,7 +18,7 @@ $config = [
             'charset' => 'utf8'
         ],
         'connect' => [
-            'class' => \semsty\connect\Connect::class
+            'class' => \connect\crm\Connect::class
         ]
     ],
 ];

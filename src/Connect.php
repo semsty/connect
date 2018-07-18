@@ -1,17 +1,17 @@
 <?php
 
-namespace semsty\connect;
+namespace connect\crm;
 
-use semsty\connect\base\exception\InvalidConfiguration;
-use semsty\connect\base\exception\ProfileDoesNotExists;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\Profile;
+use connect\crm\base\exception\InvalidConfiguration;
+use connect\crm\base\exception\ProfileDoesNotExists;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\Profile;
 use yii\base\Component;
 
 /**
  * Class Connect
  * @property $profile
- * @package semsty\connect
+ * @package connect\crm
  */
 class Connect extends Component
 {

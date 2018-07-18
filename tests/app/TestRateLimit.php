@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\app;
+namespace connect\crm\tests\app;
 
-use semsty\connect\base\query\traits\RateLimitedModel;
+use connect\crm\base\query\traits\RateLimitedModel;
 
 class TestRateLimit
 {

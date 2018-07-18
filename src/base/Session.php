@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\base;
+namespace connect\crm\base;
 
-use semsty\connect\base\db\ActiveRecord;
-use semsty\connect\base\helpers\Json;
-use semsty\connect\base\traits\ReferenceReflection;
-use semsty\connect\base\traits\ServiceModel;
+use connect\crm\base\db\ActiveRecord;
+use connect\crm\base\helpers\Json;
+use connect\crm\base\traits\ReferenceReflection;
+use connect\crm\base\traits\ServiceModel;
 use yii\db\ActiveQuery;
 
 /**

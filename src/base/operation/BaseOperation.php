@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\base\operation;
+namespace connect\crm\base\operation;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\helpers\DateHelper;
-use semsty\connect\Settings;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\DateHelper;
+use connect\crm\Settings;
 
 
 /**

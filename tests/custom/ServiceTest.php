@@ -1,10 +1,10 @@
 <?php
 
-namespace tests\custom;
+namespace connect\crm\tests\custom;
 
-use semsty\connect\custom\action\Action;
-use semsty\connect\custom\Profile;
-use semsty\connect\custom\Service;
+use connect\crm\custom\action\Action;
+use connect\crm\custom\Profile;
+use connect\crm\custom\Service;
 
 class ServiceTest extends TestCase
 {

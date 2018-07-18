@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\base\dict;
+namespace connect\crm\base\dict;
 
-use semsty\connect\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\ArrayHelper;
 
 class BaseData extends Dictionary
 {

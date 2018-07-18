@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\amocrm;
+namespace connect\crm\tests\amocrm;
 
-use semsty\connect\amocrm\action\Auth;
+use connect\crm\amocrm\action\Auth;
 
 class ServiceTest extends TestCase
 {

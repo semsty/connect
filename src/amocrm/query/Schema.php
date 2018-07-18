@@ -1,12 +1,12 @@
 <?php
 
-namespace semsty\connect\amocrm\query;
+namespace connect\crm\amocrm\query;
 
-use semsty\connect\amocrm\dict\Data;
-use semsty\connect\amocrm\dict\Entities;
-use semsty\connect\amocrm\dict\Types;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\query\Schema as BaseSchema;
+use connect\crm\amocrm\dict\Data;
+use connect\crm\amocrm\dict\Entities;
+use connect\crm\amocrm\dict\Types;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\query\Schema as BaseSchema;
 
 class Schema extends BaseSchema
 {

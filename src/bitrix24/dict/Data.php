@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\bitrix24\dict;
+namespace connect\crm\bitrix24\dict;
 
-use semsty\connect\base\dict\Data as BaseData;
+use connect\crm\base\dict\Data as BaseData;
 
 class Data extends BaseData
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\retailcrm\action\set;
+namespace connect\crm\retailcrm\action\set;
 
-use semsty\connect\base\dict\Action;
-use semsty\connect\retailcrm\action\base\CreateAction;
-use semsty\connect\retailcrm\dict\Entities;
+use connect\crm\base\dict\Action;
+use connect\crm\retailcrm\action\base\CreateAction;
+use connect\crm\retailcrm\dict\Entities;
 
 class OrderCreate extends CreateAction
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\retailcrm\filter\base;
+namespace connect\crm\retailcrm\filter\base;
 
-use semsty\connect\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\ArrayHelper;
 use yii\base\Model;
 
 /**

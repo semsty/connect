@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\amocrm\action;
+namespace connect\crm\amocrm\action;
 
-use semsty\connect\amocrm\action\base\Action as BaseAction;
-use semsty\connect\base\dict\Action;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\traits\ProviderAction;
+use connect\crm\amocrm\action\base\Action as BaseAction;
+use connect\crm\base\dict\Action;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\traits\ProviderAction;
 use yii\helpers\Json;
 
 class Auth extends BaseAction

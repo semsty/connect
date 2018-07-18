@@ -1,17 +1,17 @@
 <?php
 
-namespace semsty\connect\base\operation;
+namespace connect\crm\base\operation;
 
-use semsty\connect\base\db\ActiveRecord;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\helpers\DateHelper;
+use connect\crm\base\db\ActiveRecord;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\DateHelper;
 use yii\base\Event;
 
 /**
  * Class AbstractDataOperation
  * @property $status_id
  * @property $config
- * @package semsty\connect\base\operation
+ * @package connect\crm\base\operation
  */
 abstract class AbstractDataOperation extends ActiveRecord
 {

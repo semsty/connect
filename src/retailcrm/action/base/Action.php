@@ -1,13 +1,13 @@
 <?php
 
-namespace semsty\connect\retailcrm\action\base;
+namespace connect\crm\retailcrm\action\base;
 
-use semsty\connect\base\Action as BaseAction;
-use semsty\connect\base\helpers\Json;
-use semsty\connect\retailcrm\action\lists\Credentials;
-use semsty\connect\retailcrm\action\lists\CustomFields;
-use semsty\connect\retailcrm\action\lists\Dictionaries;
-use semsty\connect\retailcrm\Service;
+use connect\crm\base\Action as BaseAction;
+use connect\crm\base\helpers\Json;
+use connect\crm\retailcrm\action\lists\Credentials;
+use connect\crm\retailcrm\action\lists\CustomFields;
+use connect\crm\retailcrm\action\lists\Dictionaries;
+use connect\crm\retailcrm\Service;
 use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;
 
@@ -66,7 +66,7 @@ class Action extends BaseAction
     /**
      * @return array
      * @throws ErrorException
-     * @throws \semsty\connect\base\exception\ConnectException
+     * @throws \connect\crm\base\exception\ConnectException
      */
     public function getResponse(): array
     {

@@ -1,18 +1,18 @@
 <?php
 
-namespace semsty\connect\base;
+namespace connect\crm\base;
 
-use semsty\connect\base\exception\ConnectException;
-use semsty\connect\base\exception\Exception;
-use semsty\connect\base\exception\ProfileException;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\helpers\Json;
-use semsty\connect\base\query\Connection;
-use semsty\connect\base\query\Query;
-use semsty\connect\base\traits\ProfiledModel;
-use semsty\connect\base\traits\ReferenceReflection;
-use semsty\connect\base\traits\ServiceModel;
-use semsty\connect\Settings;
+use connect\crm\base\exception\ConnectException;
+use connect\crm\base\exception\Exception;
+use connect\crm\base\exception\ProfileException;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\Json;
+use connect\crm\base\query\Connection;
+use connect\crm\base\query\Query;
+use connect\crm\base\traits\ProfiledModel;
+use connect\crm\base\traits\ReferenceReflection;
+use connect\crm\base\traits\ServiceModel;
+use connect\crm\Settings;
 use yii\base\Model;
 
 /**
@@ -21,7 +21,7 @@ use yii\base\Model;
  * @property $service Service
  * @property $profile Profile
  * @property $client
- * @package semsty\connect\base\action
+ * @package connect\crm\base\action
  */
 class BaseAction extends Model
 {

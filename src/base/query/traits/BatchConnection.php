@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\base\query\traits;
+namespace connect\crm\base\query\traits;
 
-use semsty\connect\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\ArrayHelper;
 
 /**
  * Trait BatchConnection

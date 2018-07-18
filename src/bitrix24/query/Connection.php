@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\bitrix24\query;
+namespace connect\crm\bitrix24\query;
 
-use semsty\connect\base\query\Connection as BaseConnection;
+use connect\crm\base\query\Connection as BaseConnection;
 
 class Connection extends BaseConnection
 {

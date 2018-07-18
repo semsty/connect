@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\bitrix24\action\base;
+namespace connect\crm\bitrix24\action\base;
 
-use semsty\connect\base\Action as BaseAction;
-use semsty\connect\bitrix24\action\Auth;
-use semsty\connect\bitrix24\action\Fields;
-use semsty\connect\bitrix24\dict\Entities;
+use connect\crm\base\Action as BaseAction;
+use connect\crm\bitrix24\action\Auth;
+use connect\crm\bitrix24\action\Fields;
+use connect\crm\bitrix24\dict\Entities;
 use yii\helpers\ArrayHelper;
 
 class Action extends BaseAction

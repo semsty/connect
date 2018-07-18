@@ -1,14 +1,14 @@
 <?php
 
-namespace semsty\connect\amocrm\action\base;
+namespace connect\crm\amocrm\action\base;
 
-use semsty\connect\amocrm\action\Auth;
-use semsty\connect\amocrm\action\Info;
-use semsty\connect\amocrm\dict\Entities;
-use semsty\connect\amocrm\Profile;
-use semsty\connect\base\Action as BaseAction;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\helpers\FileHelper;
+use connect\crm\amocrm\action\Auth;
+use connect\crm\amocrm\action\Info;
+use connect\crm\amocrm\dict\Entities;
+use connect\crm\amocrm\Profile;
+use connect\crm\base\Action as BaseAction;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\FileHelper;
 
 /**
  * Class Action
@@ -19,7 +19,7 @@ use semsty\connect\base\helpers\FileHelper;
  * @property $with_auth
  * @property $with_info
  * @property-read  $entity
- * @package semsty\connect\amocrm\action\base
+ * @package connect\crm\amocrm\action\base
  */
 class Action extends BaseAction
 {

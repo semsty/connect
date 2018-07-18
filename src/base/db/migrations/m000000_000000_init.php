@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\db\migrations;
+namespace connect\crm\base\db\migrations;
 
 use yii\db\Migration;
 
@@ -34,6 +34,20 @@ class m000000_000000_init extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ]);
+        $this->createTable('{{%external_record}}', [
+            'id' => $this->bigPrimaryKey(),
+            'profile_id' => $this->integer()->notNull(),
+            'external_id' => $this->string()->notNull(),
+            'type' => $this->string()->notNull(),
+            'extra_attributes' => $this->text(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+        ]);
+        $this->createTable('{{%external_reference}}', [
+            'id' => $this->bigPrimaryKey(),
+            'external_id_1' => $this->string()->notNull(),
+            'external_id_2' => $this->string()->notNull()
+        ]);
     }
 
     public function down()
@@ -41,5 +55,7 @@ class m000000_000000_init extends Migration
         $this->dropTable('{{%profile}}');
         $this->dropTable('{{%session}}');
         $this->dropTable('{{%operation}}');
+        $this->dropTable('{{%external_record}}');
+        $this->dropTable('{{%external_reference}}');
     }
 }

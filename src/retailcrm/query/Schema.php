@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\retailcrm\query;
+namespace connect\crm\retailcrm\query;
 
-use semsty\connect\base\dict\Data;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\query\Schema as BaseSchema;
-use semsty\connect\retailcrm\dict\Entities;
+use connect\crm\base\dict\Data;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\query\Schema as BaseSchema;
+use connect\crm\retailcrm\dict\Entities;
 
 class Schema extends BaseSchema
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\helpers;
+namespace connect\crm\base\helpers;
 
 use yii\helpers\FileHelper as BaseFileHelper;
 

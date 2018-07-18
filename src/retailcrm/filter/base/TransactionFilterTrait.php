@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\retailcrm\filter\base;
+namespace connect\crm\retailcrm\filter\base;
 
 /**
  * Trait TransactionFilterTrait

@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\base\helpers;
+namespace connect\crm\base\helpers;
 
-use semsty\connect\Settings;
+use connect\crm\Settings;
 use yii\helpers\ArrayHelper as BaseArrayHelper;
 use yii\helpers\ReplaceArrayValue;
 use yii\helpers\UnsetArrayValue;

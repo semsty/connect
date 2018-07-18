@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\custom\action;
+namespace connect\crm\custom\action;
 
-use semsty\connect\base\Action as BaseAction;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\traits\ProviderAction;
+use connect\crm\base\Action as BaseAction;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\traits\ProviderAction;
 
 class Action extends BaseAction
 {

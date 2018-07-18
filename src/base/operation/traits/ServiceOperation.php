@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\base\operation\traits;
+namespace connect\crm\base\operation\traits;
 
-use semsty\connect\base\Action;
-use semsty\connect\base\traits\ProfiledModel;
-use semsty\connect\base\traits\ServiceModel;
+use connect\crm\base\Action;
+use connect\crm\base\traits\ProfiledModel;
+use connect\crm\base\traits\ServiceModel;
 
 trait ServiceOperation
 {

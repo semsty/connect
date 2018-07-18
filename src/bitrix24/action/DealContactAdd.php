@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\bitrix24\action;
+namespace connect\crm\bitrix24\action;
 
 use yii\base\ErrorException;
 use yii\helpers\ArrayHelper;

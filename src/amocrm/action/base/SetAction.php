@@ -1,14 +1,14 @@
 <?php
 
-namespace semsty\connect\amocrm\action\base;
+namespace connect\crm\amocrm\action\base;
 
-use semsty\connect\base\traits\RecipientAction;
+use connect\crm\base\traits\RecipientAction;
 use yii\helpers\ArrayHelper;
 
 /**
  * Class SetAction
  * @property $data
- * @package semsty\connect\amocrm\action\base
+ * @package connect\crm\amocrm\action\base
  */
 class SetAction extends Action
 {

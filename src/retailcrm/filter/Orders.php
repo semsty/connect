@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\retailcrm\filter;
+namespace connect\crm\retailcrm\filter;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\retailcrm\filter\base\Filter;
-use semsty\connect\retailcrm\filter\base\TransactionFilterTrait;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\retailcrm\filter\base\Filter;
+use connect\crm\retailcrm\filter\base\TransactionFilterTrait;
 
 class Orders extends Filter
 {

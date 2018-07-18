@@ -1,12 +1,12 @@
 <?php
 
-namespace semsty\connect;
+namespace connect\crm;
 
-use semsty\connect\amocrm\Service as AmoCRM;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\bitrix24\Service as Bitrix24;
-use semsty\connect\custom\Service as Custom;
-use semsty\connect\retailcrm\Service as RetailCRM;
+use connect\crm\amocrm\Service as AmoCRM;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\bitrix24\Service as Bitrix24;
+use connect\crm\custom\Service as Custom;
+use connect\crm\retailcrm\Service as RetailCRM;
 use yii\base\BaseObject;
 
 class Settings extends BaseObject

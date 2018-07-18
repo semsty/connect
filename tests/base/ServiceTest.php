@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\base;
+namespace connect\crm\tests\base;
 
 class ServiceTest extends TestCase
 {

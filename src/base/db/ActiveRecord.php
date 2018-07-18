@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\base\db;
+namespace connect\crm\base\db;
 
-use semsty\connect\base\data\BaseData;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\helpers\Json;
+use connect\crm\base\data\BaseData;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\helpers\Json;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord as BaseActiveRecord;
 use yii\helpers\Inflector;

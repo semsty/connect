@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\bitrix24\action;
+namespace connect\crm\bitrix24\action;
 
-use semsty\connect\base\traits\RecipientAction;
+use connect\crm\base\traits\RecipientAction;
 use yii\helpers\ArrayHelper;
 
 class Update extends Add

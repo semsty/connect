@@ -1,9 +1,9 @@
 <?php
 
-namespace semsty\connect\retailcrm\action\base;
+namespace connect\crm\retailcrm\action\base;
 
-use semsty\connect\base\helpers\Json;
-use semsty\connect\base\traits\RecipientAction;
+use connect\crm\base\helpers\Json;
+use connect\crm\base\traits\RecipientAction;
 use yii\helpers\ArrayHelper;
 
 class CreateAction extends Action

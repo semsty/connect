@@ -1,13 +1,13 @@
 <?php
 
-namespace tests\base\record;
+namespace connect\crm\tests\base\record;
 
-use Codeception\Test\Unit;
+use connect\crm\base\record\ExternalRecord;
+use connect\crm\base\record\ExternalReference;
+use connect\crm\tests\base\TestCase;
 use yii\helpers\ArrayHelper;
-use semsty\connect\base\record\ExternalRecord;
-use semsty\connect\base\record\ExternalReference;
 
-class ExternalReferenceTest extends Unit
+class ExternalReferenceTest extends TestCase
 {
     public function testManyToManyReferences()
     {
@@ -41,7 +41,7 @@ class ExternalReferenceTest extends Unit
         $refs[1]->save();
         expect(
             ArrayHelper::getColumn($er[0]->getReferenceRecords()->all(), 'id')
-        )->equals([$er[1]->id, $er[2]->id]);
+        )->equals([$er[2]->id, $er[1]->id]);
         expect(
             ArrayHelper::getColumn($er[1]->getReferenceRecords()->all(), 'id')
         )->equals([$er[0]->id]);

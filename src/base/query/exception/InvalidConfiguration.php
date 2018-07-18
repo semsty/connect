@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\base\query\exception;
+namespace connect\crm\base\query\exception;
 
-use semsty\connect\base\exception\ConnectException;
+use connect\crm\base\exception\ConnectException;
 
 class InvalidConfiguration extends ConnectException
 {

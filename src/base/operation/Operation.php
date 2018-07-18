@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\operation;
+namespace connect\crm\base\operation;
 
 class Operation extends BaseOperation
 {

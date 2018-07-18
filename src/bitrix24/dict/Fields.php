@@ -1,10 +1,10 @@
 <?php
 
-namespace semsty\connect\bitrix24\dict;
+namespace connect\crm\bitrix24\dict;
 
-use semsty\connect\base\dict\Dictionary;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\bitrix24\query\Schema;
+use connect\crm\base\dict\Dictionary;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\bitrix24\query\Schema;
 
 class Fields extends Dictionary
 {

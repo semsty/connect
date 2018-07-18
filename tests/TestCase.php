@@ -1,16 +1,16 @@
 <?php
 
-namespace tests;
+namespace connect\crm\tests;
 
 use Codeception\Util\Stub;
-use semsty\connect\base\exception\InvalidConfiguration;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\Profile;
-use semsty\connect\base\query\Connection;
-use semsty\connect\base\query\Query;
-use semsty\connect\base\query\Response;
-use semsty\connect\base\BaseService;
-use semsty\connect\base\Session;
+use connect\crm\base\BaseService;
+use connect\crm\base\exception\InvalidConfiguration;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\Profile;
+use connect\crm\base\query\Connection;
+use connect\crm\base\query\Query;
+use connect\crm\base\query\Response;
+use connect\crm\base\Session;
 
 /**
  * Class TestCase

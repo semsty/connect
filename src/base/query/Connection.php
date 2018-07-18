@@ -1,11 +1,11 @@
 <?php
 
-namespace semsty\connect\base\query;
+namespace connect\crm\base\query;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\query\traits\BatchConnection;
-use semsty\connect\base\query\traits\RateLimitedModel;
-use semsty\connect\base\traits\ServiceModel;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\query\traits\BatchConnection;
+use connect\crm\base\query\traits\RateLimitedModel;
+use connect\crm\base\traits\ServiceModel;
 use yii\base\Event;
 use yii\httpclient\Client;
 

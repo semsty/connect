@@ -1,26 +1,26 @@
 <?php
 
-namespace semsty\connect\retailcrm;
+namespace connect\crm\retailcrm;
 
-use semsty\connect\base\dict\Action;
-use semsty\connect\base\Service as BaseService;
-use semsty\connect\retailcrm\action\lists\Credentials;
-use semsty\connect\retailcrm\action\lists\Customers;
-use semsty\connect\retailcrm\action\lists\CustomFields;
-use semsty\connect\retailcrm\action\lists\Dictionaries;
-use semsty\connect\retailcrm\action\lists\History;
-use semsty\connect\retailcrm\action\lists\Notes;
-use semsty\connect\retailcrm\action\lists\Orders;
-use semsty\connect\retailcrm\action\lists\Statuses;
-use semsty\connect\retailcrm\action\set\CustomerCreate;
-use semsty\connect\retailcrm\action\set\CustomerEdit;
-use semsty\connect\retailcrm\action\set\NoteCreate;
-use semsty\connect\retailcrm\action\set\OrderCreate;
-use semsty\connect\retailcrm\action\set\OrderEdit;
-use semsty\connect\retailcrm\dict\Data;
-use semsty\connect\retailcrm\dict\Entities;
-use semsty\connect\retailcrm\dict\Fields;
-use semsty\connect\retailcrm\query\Query;
+use connect\crm\base\dict\Action;
+use connect\crm\base\Service as BaseService;
+use connect\crm\retailcrm\action\lists\Credentials;
+use connect\crm\retailcrm\action\lists\Customers;
+use connect\crm\retailcrm\action\lists\CustomFields;
+use connect\crm\retailcrm\action\lists\Dictionaries;
+use connect\crm\retailcrm\action\lists\History;
+use connect\crm\retailcrm\action\lists\Notes;
+use connect\crm\retailcrm\action\lists\Orders;
+use connect\crm\retailcrm\action\lists\Statuses;
+use connect\crm\retailcrm\action\set\CustomerCreate;
+use connect\crm\retailcrm\action\set\CustomerEdit;
+use connect\crm\retailcrm\action\set\NoteCreate;
+use connect\crm\retailcrm\action\set\OrderCreate;
+use connect\crm\retailcrm\action\set\OrderEdit;
+use connect\crm\retailcrm\dict\Data;
+use connect\crm\retailcrm\dict\Entities;
+use connect\crm\retailcrm\dict\Fields;
+use connect\crm\retailcrm\query\Query;
 use yii\helpers\ArrayHelper;
 
 class Service extends BaseService

@@ -1,29 +1,29 @@
 <?php
 
-namespace semsty\connect\amocrm;
+namespace connect\crm\amocrm;
 
-use semsty\connect\amocrm\action\Auth;
-use semsty\connect\amocrm\action\CompanyList;
-use semsty\connect\amocrm\action\CompanySet;
-use semsty\connect\amocrm\action\ContactsList;
-use semsty\connect\amocrm\action\ContactsSet;
-use semsty\connect\amocrm\action\CustomFieldsSet;
-use semsty\connect\amocrm\action\Info;
-use semsty\connect\amocrm\action\LeadsList;
-use semsty\connect\amocrm\action\LeadsSet;
-use semsty\connect\amocrm\action\NotesList;
-use semsty\connect\amocrm\action\NotesSet;
-use semsty\connect\amocrm\action\TasksList;
-use semsty\connect\amocrm\action\TasksSet;
-use semsty\connect\amocrm\dict\Data;
-use semsty\connect\amocrm\dict\Entities;
-use semsty\connect\amocrm\dict\Errors;
-use semsty\connect\amocrm\dict\Fields;
-use semsty\connect\amocrm\dict\Types;
-use semsty\connect\amocrm\query\Query;
-use semsty\connect\amocrm\query\Response;
-use semsty\connect\base\dict\Action;
-use semsty\connect\base\Service as BaseService;
+use connect\crm\amocrm\action\Auth;
+use connect\crm\amocrm\action\CompanyList;
+use connect\crm\amocrm\action\CompanySet;
+use connect\crm\amocrm\action\ContactsList;
+use connect\crm\amocrm\action\ContactsSet;
+use connect\crm\amocrm\action\CustomFieldsSet;
+use connect\crm\amocrm\action\Info;
+use connect\crm\amocrm\action\LeadsList;
+use connect\crm\amocrm\action\LeadsSet;
+use connect\crm\amocrm\action\NotesList;
+use connect\crm\amocrm\action\NotesSet;
+use connect\crm\amocrm\action\TasksList;
+use connect\crm\amocrm\action\TasksSet;
+use connect\crm\amocrm\dict\Data;
+use connect\crm\amocrm\dict\Entities;
+use connect\crm\amocrm\dict\Errors;
+use connect\crm\amocrm\dict\Fields;
+use connect\crm\amocrm\dict\Types;
+use connect\crm\amocrm\query\Query;
+use connect\crm\amocrm\query\Response;
+use connect\crm\base\dict\Action;
+use connect\crm\base\Service as BaseService;
 use yii\helpers\ArrayHelper;
 
 class Service extends BaseService

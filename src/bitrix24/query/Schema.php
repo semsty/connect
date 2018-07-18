@@ -1,9 +1,9 @@
 <?php
 
-namespace semsty\connect\bitrix24\query;
+namespace connect\crm\bitrix24\query;
 
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\query\Schema as BaseSchema;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\query\Schema as BaseSchema;
 
 class Schema extends BaseSchema
 {

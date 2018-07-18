@@ -1,20 +1,20 @@
 <?php
 
-namespace semsty\connect\base;
+namespace connect\crm\base;
 
-use semsty\connect\base\dict\Data;
-use semsty\connect\base\dict\Dictionaries;
-use semsty\connect\base\dict\Entities;
-use semsty\connect\base\dict\Utm;
-use semsty\connect\base\exception\Exception;
-use semsty\connect\base\exception\InvalidConfiguration;
-use semsty\connect\base\helpers\ArrayHelper;
-use semsty\connect\base\query\Connection;
-use semsty\connect\base\query\Query;
-use semsty\connect\base\query\Response;
-use semsty\connect\base\query\Schema;
-use semsty\connect\base\traits\ProfiledModel;
-use semsty\connect\base\traits\ReferenceReflection;
+use connect\crm\base\dict\Data;
+use connect\crm\base\dict\Dictionaries;
+use connect\crm\base\dict\Entities;
+use connect\crm\base\dict\Utm;
+use connect\crm\base\exception\Exception;
+use connect\crm\base\exception\InvalidConfiguration;
+use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\query\Connection;
+use connect\crm\base\query\Query;
+use connect\crm\base\query\Response;
+use connect\crm\base\query\Schema;
+use connect\crm\base\traits\ProfiledModel;
+use connect\crm\base\traits\ReferenceReflection;
 use yii\base\Component;
 
 /**

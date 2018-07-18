@@ -1,9 +1,9 @@
 <?php
 
-namespace semsty\connect\bitrix24\action;
+namespace connect\crm\bitrix24\action;
 
-use semsty\connect\base\traits\ProviderAction;
-use semsty\connect\bitrix24\action\base\Action;
+use connect\crm\base\traits\ProviderAction;
+use connect\crm\bitrix24\action\base\Action;
 
 class Fields extends Action
 {

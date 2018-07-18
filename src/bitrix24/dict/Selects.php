@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\bitrix24\dict;
+namespace connect\crm\bitrix24\dict;
 
-use semsty\connect\base\dict\Dictionary;
+use connect\crm\base\dict\Dictionary;
 
 class Selects extends Dictionary
 {

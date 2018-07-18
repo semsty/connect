@@ -1,8 +1,8 @@
 <?php
 
-namespace semsty\connect\bitrix24\dict;
+namespace connect\crm\bitrix24\dict;
 
-use semsty\connect\base\dict\Entities as BaseEntities;
+use connect\crm\base\dict\Entities as BaseEntities;
 
 class Entities extends BaseEntities
 {

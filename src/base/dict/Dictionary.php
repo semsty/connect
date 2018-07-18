@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\dict;
+namespace connect\crm\base\dict;
 
 use yii\base\BaseObject;
 use yii\base\UnknownMethodException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\base\record;
+namespace connect\crm\base\record;
 
 /**
  * Class PolymorphicRecord

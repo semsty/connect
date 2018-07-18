@@ -1,9 +1,9 @@
 <?php
 
-namespace tests\base\query;
+namespace connect\crm\tests\base\query;
 
-use tests\app\TestRateLimit;
-use tests\base\TestCase;
+use connect\crm\tests\app\TestRateLimit;
+use connect\crm\tests\base\TestCase;
 
 class RateLimitTest extends TestCase
 {

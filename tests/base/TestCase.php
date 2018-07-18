@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\base;
+namespace connect\crm\tests\base;
 
-class TestCase extends \tests\TestCase
+class TestCase extends \connect\crm\tests\TestCase
 {
 
 }

@@ -13,9 +13,6 @@
     "yiisoft/yii2-httpclient": "*"
   },
   "require-dev": {
-    "yiisoft/yii2-shell": "^2.0",
-    "yiisoft/yii2-debug": "~2.0.0",
-    "yiisoft/yii2-faker": "~2.0.0",
     "codeception/codeception": "*",
     "codeception/base": "^2.2.3",
     "codeception/verify": "~0.3.1",
@@ -32,18 +29,18 @@
   ],
   "autoload": {
     "psr-4": {
-      "semsty\\connect\\": "src",
-      "semsty\\connect\\base\\": "src/base",
-      "semsty\\connect\\amocrm\\": "src/amocrm",
-      "semsty\\connect\\bitrix24\\": "src/bitrix24",
-      "semsty\\connect\\custom\\": "src/custom",
-      "semsty\\connect\\retailcrm\\": "src/retailcrm",
-      "semsty\\connect\\test": "src/tests",
-      "semsty\\connect\\test\\base\\": "src/tests/base",
-      "semsty\\connect\\test\\amocrm\\": "src/tests/amocrm",
-      "semsty\\connect\\test\\bitrix24\\": "src/tests/bitrix24",
-      "semsty\\connect\\test\\custom\\": "src/tests/custom",
-      "semsty\\connect\\test\\retailcrm\\": "src/tests/retailcrm"
+      "connect\\crm\\": "src",
+      "connect\\crm\\base\\": "src/base",
+      "connect\\crm\\amocrm\\": "src/amocrm",
+      "connect\\crm\\bitrix24\\": "src/bitrix24",
+      "connect\\crm\\custom\\": "src/custom",
+      "connect\\crm\\retailcrm\\": "src/retailcrm",
+      "connect\\crm\\tests\\": "tests",
+      "connect\\crm\\tests\\base\\": "tests/base",
+      "connect\\crm\\tests\\amocrm\\": "tests/amocrm",
+      "connect\\crm\\tests\\bitrix24\\": "tests/bitrix24",
+      "connect\\crm\\tests\\custom\\": "tests/custom",
+      "connect\\crm\\tests\\retailcrm\\": "tests/retailcrm"
     }
   }
 }

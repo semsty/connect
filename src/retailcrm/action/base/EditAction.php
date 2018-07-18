@@ -1,6 +1,6 @@
 <?php
 
-namespace semsty\connect\retailcrm\action\base;
+namespace connect\crm\retailcrm\action\base;
 
 use yii\helpers\ArrayHelper;
 

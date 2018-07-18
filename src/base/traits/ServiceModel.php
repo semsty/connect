@@ -1,12 +1,12 @@
 <?php
 
-namespace semsty\connect\base\traits;
+namespace connect\crm\base\traits;
 
-use semsty\connect\base\Service;
+use connect\crm\base\Service;
 
 /**
  * Trait ServiceModel
- * @package semsty\connect\base\traits
+ * @package connect\crm\base\traits
  */
 trait ServiceModel
 {
