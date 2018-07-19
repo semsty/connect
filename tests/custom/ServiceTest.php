@@ -14,7 +14,7 @@ class ServiceTest extends TestCase
             'custom_config' => [
                 'requestConfig' => [
                     'url' => [
-                        'https://jsonplaceholder.typicode.com/posts/1'
+                        'http://jsonplaceholder.typicode.com/posts/1'
                     ]
                 ]
             ]

@@ -65,7 +65,6 @@ class ConnectionTest extends TestCase
     public function testBatch()
     {
         $action = $this->service->action(Action::ID);
-        $action->isBatch = true;
         $i = 0;
         while ($chunk = $action->batch()) {
             expect($chunk)->equals($this->responses[Action::NAME]['responses'][$i]['orders']);

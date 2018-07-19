@@ -38,6 +38,17 @@ class BaseAction extends Model
     protected $_batch = false;
     protected $path;
 
+    public function __call($name, $params)
+    {
+        if ($name = 'batch') {
+            if (!$this->_batch) {
+                $this->isBatch = true;
+            }
+            return $this->runBatch();
+        }
+        return parent::__call($name, $params);
+    }
+
     public static function getProfileClass()
     {
         return static::getReferenceClass('Profile', Profile::class);
@@ -118,7 +129,7 @@ class BaseAction extends Model
     public function run()
     {
         if ($this->isBatch) {
-            return $this->batch();
+            return $this->runBatch();
         } else {
             $this->trigger(static::EVENT_RUN);
             if ($this->validate()) {
@@ -129,7 +140,7 @@ class BaseAction extends Model
         }
     }
 
-    public function batch()
+    public function runBatch()
     {
         return $this->service->connection->batch();
     }

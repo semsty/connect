@@ -26,6 +26,11 @@ use connect\crm\base\dict\Action;
 use connect\crm\base\Service as BaseService;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class Service
+ * @link https://www.amocrm.ru/developers/content/api/auth
+ * @package connect\crm\amocrm
+ */
 class Service extends BaseService
 {
     const ID = 1;

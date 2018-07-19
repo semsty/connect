@@ -23,6 +23,11 @@ use connect\crm\retailcrm\dict\Fields;
 use connect\crm\retailcrm\query\Query;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class Service
+ * @link https://www.retailcrm.ru/docs/Developers/Index
+ * @package connect\crm\retailcrm
+ */
 class Service extends BaseService
 {
     const ID = 2;
