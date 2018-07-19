@@ -127,7 +127,13 @@ trait BatchConnection
             $i++;
             $result = ArrayHelper::merge($result, $data);
         }
-        $this->current_batch = 0;
+        $this->reset();
         return $result;
+    }
+
+    public function reset()
+    {
+        $this->current_batch = 0;
+        $this->previous_result = true;
     }
 }
