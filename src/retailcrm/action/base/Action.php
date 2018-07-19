@@ -56,7 +56,8 @@ class Action extends BaseAction
             $infoActions = [Credentials::class, CustomFields::class, Dictionaries::class];
             foreach (array_diff($infoActions, [static::class]) as $infoAction) {
                 $action = new $infoAction([
-                    'service' => $this->service
+                    'service' => $this->service,
+                    'profile' => $this->profile
                 ]);
                 $action->run();
             }
