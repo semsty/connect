@@ -21,7 +21,20 @@ class BaseConnection extends Client
 
     const EVENT_CHECK_RATE_LIMIT = 'check-rate-limit';
 
-    public $owner = null;
+    protected $_owner = null;
+
+    public function getOwner()
+    {
+        return $this->_owner;
+    }
+
+    public function setOwner($owner)
+    {
+        if ($this->_owner != $owner) {
+            $this->reset();
+        }
+        $this->_owner = $owner;
+    }
 
     public function init()
     {

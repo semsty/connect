@@ -74,8 +74,9 @@ trait BatchConnection
      */
     protected $previous_result = true;
 
-    public function batch()
+    public function batch(): array
     {
+        $data = [];
         if (
             $this->previous_result
             &&
@@ -92,8 +93,8 @@ trait BatchConnection
             $this->increment($payload);
             $this->previous_result = $this->checkPayload($payload);
             $data = ArrayHelper::getValue($payload, $this->cursor, []);
-            return $data;
         }
+        return $data;
     }
 
     protected function prepareRequest()
