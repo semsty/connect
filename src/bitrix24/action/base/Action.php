@@ -67,6 +67,14 @@ class Action extends BaseAction
         return parent::run();
     }
 
+    public function runBatch()
+    {
+        if ($this->checkAuth()) {
+            $this->auth();
+        }
+        return parent::runBatch();
+    }
+
     public function checkAuth()
     {
         $this->with_auth = $this->profile->config['expires_in'] < strtotime('now');
