@@ -17,6 +17,6 @@ class LeadsSet extends SetAction
 
     public static function getSystemFields()
     {
-        return ArrayHelper::merge(parent::getSystemFields(), ['status_id', 'price', 'tags']);
+        return ArrayHelper::merge(parent::getSystemFields(), ['status_id', 'sale', 'tags']);
     }
 }
