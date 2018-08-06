@@ -98,7 +98,7 @@ class ListAction extends Action
         }
         return [
             'domain' => $this->domain,
-            'select' => $this->select,
+            'select' => $this->select ? $this->select : Selects::dictSelects(),
             'filter' => $this->filter,
             'order' => $this->order
         ];
