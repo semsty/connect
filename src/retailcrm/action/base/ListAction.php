@@ -16,6 +16,7 @@ class ListAction extends Action
      */
     public $_filter;
     public $limit;
+    public $offset = 0;
     public $max_offset = 0;
     public $page = 1;
     public $keys = [];
@@ -47,7 +48,7 @@ class ListAction extends Action
             'offset_increment' => 1,
             'max_limit' => $this->limit,
             'max_offset' => $this->max_offset,
-            'current_offset' => 1,
+            'current_offset' => $this->offset,
             'cursor' => $this->getEntityResponseName(),
             'requestConfig' => [
                 'url' => [
