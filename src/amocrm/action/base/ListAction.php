@@ -24,6 +24,7 @@ class ListAction extends Action
     public $limit_rows;
     public $limit_offset;
     public $max_offset = 0;
+    public $offset = 0;
     public $eav_key = 'custom_fields';
     public $eav_name_key = 'name';
     public $eav_value_key = 'values.0.value';
@@ -50,7 +51,7 @@ class ListAction extends Action
             'max_limit' => $this->limit_rows,
             'max_offset' => $this->max_offset,
             'offset_increment' => $this->limit_offset,
-            'current_offset' => 0,
+            'current_offset' => $this->offset,
             'cursor' => '_embedded.items',
             'requestConfig' => [
                 'url' => $this->getQuery(),
