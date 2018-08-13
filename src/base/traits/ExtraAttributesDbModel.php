@@ -42,6 +42,7 @@ trait ExtraAttributesDbModel
     public function setExtraAttributes($value)
     {
         $this->setJsonField($this->_extra_attributes_column, $value);
+        $this->_extra_attributes = $value;
     }
 
     public function beforeSave($insert)

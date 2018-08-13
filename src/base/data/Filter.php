@@ -140,11 +140,11 @@ class Filter extends BaseObject
             case static::FILTER_NOT_IN:
                 return !in_array($value, $expected);
             case static::FILTER_CONTAIN:
-                return in_array($expected, $value);
+                return in_array($expected, $value ?? []);
             case static::FILTER_NOT_CONTAIN:
-                return !in_array($expected, $value);
+                return !in_array($expected, $value ?? []);
             case static::FILTER_PARTIALLY_CONTAIN:
-                return !empty(array_intersect([$expected], $value));
+                return !empty(array_intersect([$expected], $value ?? []));
             case static::FILTER_EMPTY:
                 return empty($value);
             case static::FILTER_NOT_EMPTY:
