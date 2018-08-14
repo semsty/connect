@@ -64,7 +64,6 @@ class Auth extends Action
     public function getDefaultConfig(): array
     {
         $config = ArrayHelper::merge(parent::getDefaultConfig(), [
-            'transport' => 'yii\httpclient\CurlTransport',
             'requestConfig' => [
                 'url' => [
                     'client_id' => $this->client_id,
@@ -78,10 +77,11 @@ class Auth extends Action
         ]);
         $username = ArrayHelper::getValue($this->profile->config, 'username');
         $password = ArrayHelper::getValue($this->profile->config, 'password');
-        if ($username && $password) {
+        if ($username && $password && $this->service->isBoxed()) {
             $config['requestConfig']['options'] = [
                 'userpwd' => "$username:$password"
             ];
+            $config['transport'] = 'yii\httpclient\CurlTransport';
         }
         return $config;
     }
