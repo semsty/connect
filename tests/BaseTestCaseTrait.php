@@ -3,6 +3,7 @@
 namespace connect\crm\tests;
 
 use Codeception\Util\Stub;
+use Codeception\Stub\Expected;
 use connect\crm\base\exception\InvalidConfiguration;
 use connect\crm\base\helpers\ArrayHelper;
 use connect\crm\base\Profile;
@@ -34,7 +35,7 @@ trait BaseTestCaseTrait
         $this->request = Stub::make(
             Query::class,
             [
-                'send' => Stub::atLeastOnce(function () {
+                'send' => Expected::atLeastOnce(function () {
                     $owner = $this->connection->owner;
                     if ($owner && defined(get_class($owner) . '::NAME')) {
                         $current = ArrayHelper::getValue($this->calls, $owner::NAME, 0);
@@ -67,12 +68,12 @@ trait BaseTestCaseTrait
         $this->connection = Stub::make(
             $connection_class,
             [
-                'send' => Stub::atLeastOnce(function () {
+                'send' => Expected::atLeastOnce(function () {
                     return new Response([
                         'data' => $this->getResponses()
                     ]);
                 }),
-                'createRequest' => Stub::atLeastOnce(function () {
+                'createRequest' => Expected::atLeastOnce(function () {
                     return $this->request;
                 }),
             ]
