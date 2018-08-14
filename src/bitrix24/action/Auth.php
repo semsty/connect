@@ -24,12 +24,13 @@ class Auth extends Action
     public $client_secret;
     public $refresh_token;
     public $scope;
+    public $code;
 
     public function rules(): array
     {
-        return [
-            [['refresh_token', 'scope'], 'required'],
-            [['client_id', 'client_secret', 'grant_type', 'refresh_token', 'scope'], 'string'],
+        $rules = [
+            [['scope'], 'required'],
+            [['client_id', 'client_secret', 'grant_type', 'refresh_token', 'scope', 'code'], 'string'],
             /**
              * TODO: mv to dict
              */
@@ -40,42 +41,58 @@ class Auth extends Action
             [['client_id'], 'default', 'value' => \Yii::$app->params['bitrix24']['client_id']],
             [['client_secret'], 'default', 'value' => \Yii::$app->params['bitrix24']['client_secret']]
         ];
+        if ($this->grant_type == 'authorization_code') {
+            $rules[] = [['code'], 'required'];
+        } else {
+            $rules[] = [['refresh_token'], 'required'];
+        }
+        return $rules;
     }
 
     public static function getGrantTypes()
     {
         return [
-            'refresh_token'
+            'refresh_token', 'authorization_code'
         ];
     }
 
     public static function getScopes()
     {
-        return [
-            'crm'
-        ];
+        return ['crm'];
     }
 
     public function getDefaultConfig(): array
     {
-        return ArrayHelper::merge(parent::getDefaultConfig(), [
+        $config = ArrayHelper::merge(parent::getDefaultConfig(), [
+            'transport' => 'yii\httpclient\CurlTransport',
             'requestConfig' => [
                 'url' => [
                     'client_id' => $this->client_id,
                     'client_secret' => $this->client_secret,
                     'grant_type' => $this->grant_type,
                     'refresh_token' => $this->refresh_token,
-                    'scope' => $this->scope
+                    'scope' => $this->scope,
+                    'code' => $this->code
                 ]
             ]
         ]);
+        $username = ArrayHelper::getValue($this->profile->config, 'username');
+        $password = ArrayHelper::getValue($this->profile->config, 'password');
+        if ($username && $password) {
+            $config['requestConfig']['options'] = [
+                'userpwd' => "$username:$password"
+            ];
+        }
+        return $config;
     }
 
     public function getAuthKeys(): array
     {
-        return [
-            'domain', 'scope', 'refresh_token'
-        ];
+        $keys = ['domain', 'scope'];
+        if (!$this->grant_type == 'authorization_code') {
+            $keys[] = 'refresh_token';
+        }
+        return $keys;
     }
 
     public function checkAuth()
@@ -92,7 +109,9 @@ class Auth extends Action
             }
         }
         $data['expires_in'] = strtotime('now') + $data['expires_in'];
-        $this->profile->setConfig($data);
+        $this->profile->setConfig(
+            ArrayHelper::merge($this->profile->config, $data)
+        );
         $this->profile->save();
         return $data;
     }
