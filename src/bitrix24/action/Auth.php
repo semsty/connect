@@ -89,7 +89,7 @@ class Auth extends Action
     public function getAuthKeys(): array
     {
         $keys = ['domain', 'scope'];
-        if (!$this->grant_type == 'authorization_code') {
+        if ($this->grant_type != 'authorization_code') {
             $keys[] = 'refresh_token';
         }
         return $keys;
