@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 class Action extends BaseAction
 {
     const TMP_BASE_PATH = '@log/bitrix24';
-    const MAX_LIMIT = 500;
+    const MAX_LIMIT = 50;
     const REQUEST_LIMIT = 5;
     public $auth;
     public $with_auth = true;
