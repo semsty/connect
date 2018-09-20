@@ -33,9 +33,13 @@ class Auth extends BaseAction
         ]);
     }
 
+    /**
+     * @param $response Query
+     * @throws ConnectException
+     */
     public function raiseErrorByResponse($response)
     {
-        if ($code = ArrayHelper::getValue($response, ['response', 'code'])) {
+        if ($code = ArrayHelper::getValue($response->content, ['response', 'error_code'])) {
             if (ArrayHelper::keyExists($code, Errors::dictCommonErrors())) {
                 throw new ConnectException(Errors::dictCommonErrors()[$code]);
             }
