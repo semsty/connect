@@ -39,7 +39,7 @@ class Auth extends BaseAction
      */
     public function raiseErrorByResponse($response)
     {
-        if ($code = ArrayHelper::getValue($response->content, ['response', 'error_code'])) {
+        if ($code = ArrayHelper::getValue($response->data, ['response', 'error_code'])) {
             if (ArrayHelper::keyExists($code, Errors::dictCommonErrors())) {
                 throw new ConnectException(Errors::dictCommonErrors()[$code]);
             }
