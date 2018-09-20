@@ -3,7 +3,9 @@
 namespace connect\crm\amocrm\action;
 
 use connect\crm\amocrm\action\base\Action as BaseAction;
+use connect\crm\amocrm\dict\Errors;
 use connect\crm\base\dict\Action;
+use connect\crm\base\exception\ConnectException;
 use connect\crm\base\helpers\ArrayHelper;
 use connect\crm\base\traits\ProviderAction;
 use yii\helpers\Json;
@@ -29,5 +31,15 @@ class Auth extends BaseAction
                 ])
             ]
         ]);
+    }
+
+    public function raiseErrorByResponse($response)
+    {
+        if ($code = ArrayHelper::getValue($response, ['response', 'code'])) {
+            if (ArrayHelper::keyExists($code, Errors::dictCommonErrors())) {
+                throw new ConnectException(Errors::dictCommonErrors()[$code]);
+            }
+        }
+        parent::raiseErrorByResponse($response);
     }
 }
