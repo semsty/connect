@@ -58,7 +58,7 @@ class Auth extends Action
 
     public static function getScopes()
     {
-        return ['crm'];
+        return ['crm', 'app'];
     }
 
     public function getDefaultConfig(): array
@@ -86,6 +86,20 @@ class Auth extends Action
         return $config;
     }
 
+    public function getConfig(): array
+    {
+        if ($this->service->isBoxed()) {
+            return ArrayHelper::merge(parent::getConfig(), [
+                'requestConfig' => [
+                    'url' => [
+                        'domain' => 'oauth.bitrix.info'
+                    ]
+                ]
+            ]);
+        }
+        return parent::getConfig();
+    }
+
     public function getAuthKeys(): array
     {
         $keys = ['domain', 'scope'];
@@ -109,6 +123,8 @@ class Auth extends Action
             }
         }
         $data['expires_in'] = strtotime('now') + $data['expires_in'];
+        $unparsed = parse_url($data['client_endpoint']);
+        $data['domain'] = $unparsed['host'];
         $this->profile->setConfig(
             ArrayHelper::merge($this->profile->config, $data)
         );
