@@ -16,7 +16,7 @@ class ListAction extends Action
      */
     public $_filter;
     public $limit;
-    public $offset = 0;
+    public $offset = 1;
     public $max_offset = 0;
     public $page = 1;
     public $keys = [];
