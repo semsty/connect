@@ -13,6 +13,7 @@ class Entities extends BaseEntities
     const CUSTOMER = 'customer';
     const HISTORY = 'history';
     const STATUS = 'status';
+    const USER = 'user';
 
     const CUSTOM_DICTIONARY_PLURALIZE = 'custom-dictionaries';
     const STATUS_PLURALIZE = 'statuses';
@@ -26,7 +27,8 @@ class Entities extends BaseEntities
             static::ORDER => 'order',
             static::CUSTOMER => 'customer',
             static::TASK => 'task',
-            static::HISTORY => 'history'
+            static::HISTORY => 'history',
+            static::USER => 'user'
         ];
     }
 
