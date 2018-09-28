@@ -89,7 +89,6 @@ class Action extends BaseAction
         return ArrayHelper::merge(parent::getConfig(), [
             'requestConfig' => [
                 'url' => [
-                    $this->getUrl(),
                     'subdomain' => $this->subdomain,
                     'apiKey' => $this->apiKey,
                     'version' => $this->version,

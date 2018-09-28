@@ -12,6 +12,7 @@ use connect\crm\retailcrm\action\lists\History;
 use connect\crm\retailcrm\action\lists\Notes;
 use connect\crm\retailcrm\action\lists\Orders;
 use connect\crm\retailcrm\action\lists\Statuses;
+use connect\crm\retailcrm\action\lists\Users;
 use connect\crm\retailcrm\action\set\Calls;
 use connect\crm\retailcrm\action\set\CustomerCreate;
 use connect\crm\retailcrm\action\set\CustomerEdit;
@@ -73,6 +74,9 @@ class Service extends BaseService
             ],
             Entities::NOTE => [
                 Action::LIST => Notes::class
+            ],
+            Entities::USER => [
+                Action::LIST => Users::class
             ]
         ];
     }

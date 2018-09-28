@@ -29,7 +29,7 @@ class CreateAction extends Action
     {
         return ArrayHelper::merge(parent::getDefaultConfig(), [
             'requestConfig' => [
-                'data' => $this->getData()
+                'data' => $this->urlEncodeWithEmbeddedJson($this->getData())
             ]
         ]);
     }
@@ -46,6 +46,11 @@ class CreateAction extends Action
                 $query[$this->entity]['customFields'][$key] = $value;
             }
         }
+        return $query;
+    }
+
+    public function urlEncodeWithEmbeddedJson($query)
+    {
         /**
          * @link https://www.retailcrm.ru/docs/Developers/ApiRules#post
          */
