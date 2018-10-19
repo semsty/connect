@@ -35,10 +35,13 @@ class Service extends BaseService
     const ID = 5;
     const NAME = 'bitrix24';
 
-    const CLOUD_DOMAIN = 'bitrix24.ru';
+    const CLOUD_DOMAIN = 'bitrix24.(ru|by|kz|ua)';
+    const WEBHOOKS_PATTERN = '\/rest\/[\d]+\/[\w\d]+';
 
     public $url = 'https://{domain}/';
     public $formats = ['json'];
+
+    protected $_domain;
 
     public static function getDictionariesList(): array
     {
@@ -127,6 +130,11 @@ class Service extends BaseService
         ]);
     }
 
+    protected function setAuth(array $config)
+    {
+        $this->_domain = $config['domain'];
+    }
+
     public function isBoxed()
     {
         return !$this->isCloud();
@@ -134,6 +142,17 @@ class Service extends BaseService
 
     public function isCloud()
     {
-        return strpos($this->url, static::CLOUD_DOMAIN) !== false;
+        preg_match('/' . static::CLOUD_DOMAIN . '/', $this->_domain, $matches);
+        return !empty($matches[0]);
+    }
+
+    /**
+     * Разработчики Битрикс24 сделали доступ к API через ссылку и назвали это Webhooks - так не нужен разработчик.
+     * Совсем. Программирующий маркетолог справится. Честное слово. Ведь это уже не REST API, это Webhooks!
+     */
+    public function isWebhooks()
+    {
+        preg_match('/' . static::WEBHOOKS_PATTERN . '/', $this->_domain, $matches);
+        return !empty($matches[0]);
     }
 }
