@@ -21,18 +21,29 @@ class Action extends BaseAction
 
     public function rules(): array
     {
-        return [
-            [['auth'], 'required'],
+        $rules = [
             [['auth'], 'string'],
             [['entity'], 'default', 'value' => array_values(Entities::dictEntityTypes())[0]],
-            //['entity', 'in', 'range' => Entities::dictEntityTypes()],
             [['path'], 'safe']
         ];
+        if (!$this->service->isWebhooks()) {
+            $rules[] = [['auth'], 'required'];
+        }
+        return $rules;
     }
 
     public function getName(): string
     {
         return $this->entity . '.' . parent::getName();
+    }
+
+    protected function getUrl(): string
+    {
+        $path = $this->getPath();
+        if ($this->service->isWebhooks()) {
+            $path = str_replace('rest/', '', $this->getPath()) . '/';
+        }
+        return $this->service->url . $path;
     }
 
     public function getConfig(): array
@@ -53,7 +64,11 @@ class Action extends BaseAction
 
     public function getAuthKeys(): array
     {
-        return ['auth' => 'access_token', 'domain'];
+        $keys = ['domain'];
+        if (!$this->service->isWebhooks()) {
+            $keys['auth'] = 'access_token';
+        }
+        return $keys;
     }
 
     public function run()
@@ -77,8 +92,10 @@ class Action extends BaseAction
 
     public function checkAuth()
     {
-        $this->with_auth = $this->profile->config['expires_in'] < strtotime('now');
-        return $this->with_auth;
+        if (!$this->service->isWebhooks()) {
+            $this->with_auth = $this->profile->config['expires_in'] < strtotime('now');
+            return $this->with_auth;
+        }
     }
 
     public function auth()
@@ -99,10 +116,5 @@ class Action extends BaseAction
             $info->setProfile($this->profile);
             $info->run();
         }
-    }
-
-    protected function getUrl(): string
-    {
-        return $this->service->url . $this->getPath();
     }
 }
