@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
  * @property $id
  * @property $modifiedSince
  * @property $query
+ * @property $filter
  * @package connect\crm\amocrm\action\base
  */
 class ListAction extends Action
@@ -20,6 +21,7 @@ class ListAction extends Action
 
     public $id;
     public $modifiedSince = '';
+    public $filter = [];
     public $query = [];
     public $limit_rows;
     public $limit_offset;
@@ -43,7 +45,7 @@ class ListAction extends Action
 
     public function getDefaultConfig(): array
     {
-        return ArrayHelper::merge(parent::getDefaultConfig(), [
+        $config = ArrayHelper::merge(parent::getDefaultConfig(), [
             'rateLimit' => [1, static::REQUEST_LIMIT],
             'limit_request_key' => 'limit_rows',
             'offset_request_key' => 'limit_offset',
@@ -54,20 +56,24 @@ class ListAction extends Action
             'current_offset' => $this->offset,
             'cursor' => '_embedded.items',
             'requestConfig' => [
-                'url' => $this->getQuery(),
-                'headers' => [
-                    'if-modified-since' => \Yii::$app->formatter->asDatetime(
-                        $this->modifiedSince,
-                        static::MODIFIED_SINCE_FORMAT
-                    )
-                ]
+                'url' => $this->getQuery()
             ]
         ]);
+        if ($this->modifiedSince) {
+            $config['requestConfig']['headers']['if-modified-since'] = \Yii::$app->formatter->asDatetime(
+                $this->modifiedSince,
+                static::MODIFIED_SINCE_FORMAT
+            );
+        }
+        return $config;
     }
 
     public function getQuery()
     {
-        return ['query' => $this->query];
+        return [
+            'query' => $this->query,
+            'filter' => $this->filter
+        ];
     }
 
     public function getResponse(): array
