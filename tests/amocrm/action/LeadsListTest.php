@@ -120,7 +120,8 @@ class LeadsListTest extends TestCase
                     'responsible_user_id' => null,
                     'id' => null,
                     'version' => 'v2',
-                    'subdomain' => 'subdomain'
+                    'subdomain' => 'subdomain',
+                    'filter' => []
                 ],
                 'method' => 'GET',
                 'class' => Query::class
