@@ -13,6 +13,14 @@ use connect\crm\base\query\Response;
 use connect\crm\base\Service;
 use connect\crm\base\Session;
 
+class ErrorHandler
+{
+    public function handle($error, $context = [])
+    {
+        return true;
+    }
+}
+
 trait BaseTestCaseTrait
 {
     public $_connection_class = Connection::class;
@@ -55,12 +63,16 @@ trait BaseTestCaseTrait
                     } else {
                         $response = $this->getResponses()[0];
                     }
-                    return new Response([
-                        'data' => $response,
-                        'headers' => [
-                            'http-code' => 200
-                        ]
-                    ]);
+                    if ($config = ArrayHelper::getValue($response, 'responseConfig')) {
+                        return new Response($config);
+                    } else {
+                        return new Response([
+                            'data' => $response,
+                            'headers' => [
+                                'http-code' => 200
+                            ]
+                        ]);
+                    }
                 }),
             ]
         );
@@ -76,6 +88,9 @@ trait BaseTestCaseTrait
                 'createRequest' => Expected::atLeastOnce(function () {
                     return $this->request;
                 }),
+                'getErrorHandler' => Expected::atLeastOnce(function () {
+                    return new ErrorHandler();
+                })
             ]
         );
         $service_class = $this->_service_class;
