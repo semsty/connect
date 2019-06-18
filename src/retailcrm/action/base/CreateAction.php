@@ -34,6 +34,19 @@ class CreateAction extends Action
         ]);
     }
 
+    public function urlEncodeWithEmbeddedJson($query)
+    {
+        /**
+         * @link https://www.retailcrm.ru/docs/Developers/ApiRules#post
+         */
+        foreach ($query as $key => $value) {
+            if (is_array($value)) {
+                $query[$key] = Json::encode($value);
+            }
+        }
+        return $query;
+    }
+
     public function getData()
     {
         $system_fields = $this->service->dictionaries->get($this->entity . '.system.fields');
@@ -44,19 +57,6 @@ class CreateAction extends Action
                 $query[$this->entity][$key] = $value;
             } else {
                 $query[$this->entity]['customFields'][$key] = $value;
-            }
-        }
-        return $query;
-    }
-
-    public function urlEncodeWithEmbeddedJson($query)
-    {
-        /**
-         * @link https://www.retailcrm.ru/docs/Developers/ApiRules#post
-         */
-        foreach ($query as $key => $value) {
-            if (is_array($value)) {
-                $query[$key] = Json::encode($value);
             }
         }
         return $query;

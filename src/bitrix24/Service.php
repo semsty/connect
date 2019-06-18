@@ -130,11 +130,6 @@ class Service extends BaseService
         ]);
     }
 
-    protected function setAuth(array $config)
-    {
-        $this->_domain = $config['domain'];
-    }
-
     public function isBoxed()
     {
         return !$this->isCloud();
@@ -154,5 +149,10 @@ class Service extends BaseService
     {
         preg_match('/' . static::WEBHOOKS_PATTERN . '/', $this->_domain, $matches);
         return !empty($matches[0]);
+    }
+
+    protected function setAuth(array $config)
+    {
+        $this->_domain = $config['domain'];
     }
 }

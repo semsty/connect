@@ -23,6 +23,22 @@ class BaseConnection extends Client
 
     protected $_owner = null;
 
+    protected $_error_handler;
+
+    public function getErrorHandler()
+    {
+        if (empty($this->_error_handler)) {
+            $class = static::getErrorHandlerClass();
+            $this->_error_handler = new $class(['connection' => $this]);
+        }
+        return $this->_error_handler;
+    }
+
+    public static function getErrorHandlerClass()
+    {
+        return static::getReferenceClass('ErrorHandler', ErrorHandler::class, 0);
+    }
+
     public function getOwner()
     {
         return $this->_owner;

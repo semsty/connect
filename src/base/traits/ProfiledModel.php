@@ -70,11 +70,6 @@ trait ProfiledModel
         return $profile;
     }
 
-    public function getProfileAttributes(): array
-    {
-        return [];
-    }
-
     public function getProfile($create = true): Profile
     {
         if ($create && empty($this->_profile)) {
@@ -98,5 +93,10 @@ trait ProfiledModel
         if (method_exists($this, 'setAuth')) {
             $this->setAuth($this->_profile->config);
         }
+    }
+
+    public function getProfileAttributes(): array
+    {
+        return [];
     }
 }
