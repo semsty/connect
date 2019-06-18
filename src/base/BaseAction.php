@@ -38,6 +38,16 @@ class BaseAction extends Model
     protected $_batch = false;
     protected $path;
 
+    public static function getProfileClass()
+    {
+        return static::getReferenceClass('Profile', Profile::class);
+    }
+
+    public static function getServiceClass()
+    {
+        return static::getReferenceClass('Service', Service::class);
+    }
+
     public function __call($name, $params)
     {
         if ($name = 'batch') {
@@ -49,14 +59,9 @@ class BaseAction extends Model
         return parent::__call($name, $params);
     }
 
-    public static function getProfileClass()
+    public function runBatch()
     {
-        return static::getReferenceClass('Profile', Profile::class);
-    }
-
-    public static function getServiceClass()
-    {
-        return static::getReferenceClass('Service', Service::class);
+        return $this->service->connection->batch();
     }
 
     public function getId(): int
@@ -138,11 +143,6 @@ class BaseAction extends Model
                 throw new Exception(Json::encode($this->errors, JSON_PRETTY_PRINT));
             }
         }
-    }
-
-    public function runBatch()
-    {
-        return $this->service->connection->batch();
     }
 
     public function trigger($name, Event $event = null)

@@ -87,14 +87,6 @@ class Action extends BaseAction
         return parent::run();
     }
 
-    public function setIsBatch(bool $value)
-    {
-        if ($this->with_auth && empty($this->auth)) {
-            $this->auth();
-        }
-        parent::setIsBatch($value);
-    }
-
     public function auth()
     {
         $auth = $this->service->getAction(Auth::ID);
@@ -107,5 +99,13 @@ class Action extends BaseAction
             $info = $this->service->getAction(Info::ID);
             $info->run();
         }
+    }
+
+    public function setIsBatch(bool $value)
+    {
+        if ($this->with_auth && empty($this->auth)) {
+            $this->auth();
+        }
+        parent::setIsBatch($value);
     }
 }

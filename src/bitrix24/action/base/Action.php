@@ -37,15 +37,6 @@ class Action extends BaseAction
         return $this->entity . '.' . parent::getName();
     }
 
-    protected function getUrl(): string
-    {
-        $path = $this->getPath();
-        if ($this->service->isWebhooks()) {
-            $path = str_replace('rest/', '', $this->getPath()) . '/';
-        }
-        return $this->service->url . $path;
-    }
-
     public function getConfig(): array
     {
         $parent = parent::getConfig();
@@ -82,14 +73,6 @@ class Action extends BaseAction
         return parent::run();
     }
 
-    public function runBatch()
-    {
-        if ($this->checkAuth()) {
-            $this->auth();
-        }
-        return parent::runBatch();
-    }
-
     public function checkAuth()
     {
         if (!$this->service->isWebhooks()) {
@@ -116,5 +99,22 @@ class Action extends BaseAction
             $info->setProfile($this->profile);
             $info->run();
         }
+    }
+
+    public function runBatch()
+    {
+        if ($this->checkAuth()) {
+            $this->auth();
+        }
+        return parent::runBatch();
+    }
+
+    protected function getUrl(): string
+    {
+        $path = $this->getPath();
+        if ($this->service->isWebhooks()) {
+            $path = str_replace('rest/', '', $this->getPath()) . '/';
+        }
+        return $this->service->url . $path;
     }
 }
