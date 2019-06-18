@@ -37,7 +37,7 @@ class ServiceProfileModelTest extends TestCase
         expect($session->is_active)->false();
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->profile = new Profile([
             'config' => [

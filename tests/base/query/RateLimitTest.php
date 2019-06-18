@@ -38,7 +38,7 @@ class RateLimitTest extends TestCase
         expect(round($seconds))->equals(1);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->instance = new TestRateLimit();
