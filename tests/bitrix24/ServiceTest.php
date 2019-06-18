@@ -13,6 +13,6 @@ class ServiceTest extends TestCase
         $data = $action->run();
         expect(is_array($data))->true();
         $expected['expires_in'] = strtotime('now') + $expected['expires_in'];
-        expect($action->profile->config)->equals($expected);
+        expect($action->profile->config)->equals($expected + ['expires' => 0]);
     }
 }

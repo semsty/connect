@@ -121,7 +121,8 @@ class ContactsListTest extends TestCase
                     'id' => null,
                     'version' => 'v2',
                     'subdomain' => 'subdomain',
-                    'type' => null
+                    'type' => null,
+                    'filter' => []
                 ],
                 'method' => 'GET',
                 'class' => Query::class
