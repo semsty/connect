@@ -9,17 +9,17 @@ namespace connect\crm\tests;
  * @property $service
  * @package connect\crm\tests
  */
-abstract class BaseTestCase extends \PHPUnit_Framework_TestCase
+abstract class BaseTestCase extends \PHPUnit\Framework\TestCase
 {
     use BaseTestCaseTrait;
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->caseTearDown();
         parent::tearDown();
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->caseSetUp();
