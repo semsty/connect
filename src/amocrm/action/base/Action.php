@@ -26,6 +26,7 @@ class Action extends BaseAction
     const MAX_LIMIT = 500;
     const REQUEST_LIMIT = 5;
     const MODIFIED_SINCE_FORMAT = 'php:D, d M Y H:i:s O';
+    const SESSION_LIFETIME = 60 * 15;
     public $version = 'v2';
     public $subdomain;
     public $apiKey;
@@ -43,10 +44,30 @@ class Action extends BaseAction
         ]);
     }
 
+    public function getCookieFilePath(): string
+    {
+        return \Yii::getAlias($this->getLogPath() . '/' . $this->apiKey . '/cookie.txt');
+    }
+
+    public function getCookieFile($auto_create = true, $recreate = false): string
+    {
+        $path = $this->getCookieFilePath();
+        if (file_exists($path)) {
+            if ($recreate) {
+                FileHelper::unlink($path);
+                FileHelper::fileCreate($path);
+            }
+        } else {
+            if ($auto_create) {
+                FileHelper::fileCreate($path);
+            }
+        }
+        return FileHelper::getContent($path);
+    }
+
     public function getConfig(): array
     {
-        $cookie = \Yii::getAlias($this->getLogPath() . '/' . $this->apiKey . '/cookie.txt');
-        FileHelper::fileCreate($cookie);
+        $this->getCookieFile();
         return ArrayHelper::merge(parent::getConfig(), [
             'transport' => 'yii\httpclient\CurlTransport',
             'requestConfig' => [
@@ -56,8 +77,8 @@ class Action extends BaseAction
                 ],
                 'options' => [
                     'referer' => ArrayHelper::getValue(\Yii::$app->params, 'hostname'),
-                    'cookiejar' => $cookie,
-                    'cookiefile' => $cookie,
+                    'cookiejar' => $this->getCookieFilePath(),
+                    'cookiefile' => $this->getCookieFilePath(),
                     'useragent' => 'amoCRM-API-client/1.0',
                     'ssl_verifyhost' => false,
                     'ssl_verifypeer' => false
@@ -89,6 +110,9 @@ class Action extends BaseAction
 
     public function auth()
     {
+        if (!file_exists($this->getCookieFilePath()) || ((filemtime($this->getCookieFilePath()) + static::SESSION_LIFETIME) < strtotime('now'))) {
+            $this->getCookieFile(true, true);
+        }
         $auth = $this->service->getAction(Auth::ID);
         $this->auth = $auth->run();
     }
