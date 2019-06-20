@@ -25,7 +25,7 @@ class BaseQuery extends Request
     /**
      * @throws InvalidConfiguration
      */
-    protected function setSemanticParams()
+    public function setSemanticParams()
     {
         $url = $this->url;
         if (is_array($url)) {
@@ -43,7 +43,7 @@ class BaseQuery extends Request
         }
     }
 
-    protected function getSemanticParams($source)
+    public function getSemanticParams($source)
     {
         preg_match_all('/' . static::LEFT_SEMANTIC_BRACKET . static::SEMANTIC_PATTERN . static::RIGHT_SEMANTIC_BRACKET . '/', $source, $matches);
         return $matches[1];

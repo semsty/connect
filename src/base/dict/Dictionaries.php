@@ -3,10 +3,24 @@
 namespace connect\crm\base\dict;
 
 use yii\base\UnknownMethodException;
+use yii\base\UnknownPropertyException;
+use yii\helpers\ArrayHelper;
 
 class Dictionaries extends Collection
 {
     protected $_instance_class = Dictionary::class;
+
+    public function __get($name)
+    {
+        try {
+            return parent::__get($name);
+        } catch (UnknownPropertyException $e) {
+            if (ArrayHelper::getValue($this->_models, $name)) {
+                return $this->_models[$name];
+            }
+            throw $e;
+        }
+    }
 
     public function values($name, $first = true, $default = null)
     {
