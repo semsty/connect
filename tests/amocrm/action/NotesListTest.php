@@ -108,8 +108,8 @@ class NotesListTest extends TestCase
                     'timeout' => 60,
                     'returntransfer' => true,
                     'referer' => null,
-                    'cookiejar' => '/app/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
-                    'cookiefile' => '/app/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
+                    'cookiejar' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
+                    'cookiefile' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
                     'useragent' => 'amoCRM-API-client/1.0',
                     'ssl_verifyhost' => false,
                     'ssl_verifypeer' => false
