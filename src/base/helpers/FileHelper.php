@@ -2,6 +2,7 @@
 
 namespace connect\crm\base\helpers;
 
+use connect\crm\base\exception\Exception;
 use yii\helpers\FileHelper as BaseFileHelper;
 
 class FileHelper extends BaseFileHelper
@@ -18,6 +19,10 @@ class FileHelper extends BaseFileHelper
         }
     }
 
+    /**
+     * @param $path
+     * @throws Exception
+     */
     public static function fileCreate($path)
     {
         $path = \Yii::getAlias($path);
@@ -28,7 +33,10 @@ class FileHelper extends BaseFileHelper
             mkdir($dir, 0777, true);
         }
         if (!file_exists($path)) {
-            fopen($path, 'w');
+            $resource = fopen($path, 'w');
+            if (!$resource) {
+                throw new Exception("unable to create $path");
+            }
         }
     }
 

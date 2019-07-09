@@ -49,12 +49,23 @@ class Action extends BaseAction
         return \Yii::getAlias($this->getLogPath() . '/' . $this->apiKey . '/cookie.txt');
     }
 
+    /**
+     * @param bool $auto_create
+     * @param bool $recreate
+     * @return string
+     * @throws \connect\crm\base\exception\Exception
+     */
     public function getCookieFile($auto_create = true, $recreate = false): string
     {
         $path = $this->getCookieFilePath();
         if (file_exists($path)) {
             if ($recreate) {
-                FileHelper::unlink($path);
+                try {
+                    #multiple process on one node case
+                    FileHelper::unlink($path);
+                } catch (\Throwable $e) {
+
+                }
                 FileHelper::fileCreate($path);
             }
         } else {
@@ -108,9 +119,20 @@ class Action extends BaseAction
         return parent::run();
     }
 
+    /**
+     * @throws \connect\crm\base\exception\Exception
+     */
     public function auth()
     {
-        if (!file_exists($this->getCookieFilePath()) || ((filemtime($this->getCookieFilePath()) + static::SESSION_LIFETIME) < strtotime('now'))) {
+        if (
+            !file_exists($this->getCookieFilePath())
+            ||
+            (
+                (file_exists($this->getCookieFilePath())
+                &&
+                (filemtime($this->getCookieFilePath()) + static::SESSION_LIFETIME) < strtotime('now'))
+            )
+        ) {
             $this->getCookieFile(true, true);
         }
         $auth = $this->service->getAction(Auth::ID);
