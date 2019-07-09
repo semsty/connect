@@ -37,6 +37,10 @@ class Auth extends BaseAction
         ]);
     }
 
+    /**
+     * @return array
+     * @throws \Throwable
+     */
     public function getResponse(): array
     {
         try {
