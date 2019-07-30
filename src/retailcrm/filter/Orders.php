@@ -88,10 +88,15 @@ class Orders extends Filter
             ],
             [
                 [
-                    'createdAtFrom', 'createdAtTo', 'fullPaidAtFrom', 'fullPaidAtTo', 'deliveryDateFrom',
+                    'fullPaidAtFrom', 'fullPaidAtTo', 'deliveryDateFrom',
                     'deliveryDateTo', 'statusUpdatedAtFrom', 'statusUpdatedAtTo', 'dpdParcelDateFrom',
                     'dpdParcelDateTo', 'shipmentDateFrom', 'shipmentDateTo'
                 ], 'date', 'format' => 'php:Y-m-d'
+            ],
+            [
+                [
+                    'createdAtFrom', 'createdAtTo',
+                ], 'date', 'format' => 'php:Y-m-d H:i:s'
             ]
         ]);
     }
