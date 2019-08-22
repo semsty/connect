@@ -23,10 +23,12 @@ abstract class AbstractDataOperation extends ActiveRecord
     const STATUS_RUNNING = 2;
     const STATUS_ENDED = 3;
     const STATUS_ERROR = 5;
+    const STATUS_PENDING = 6;
     const STATUS_RETRIED = 9;
     const STATUS_MANUALLY_RETRIED = self::STATUS_RETRIED;
 
     const EVENT_PREPARE = 'operation.prepare';
+    const EVENT_PENDING = 'operation.pending';
     const EVENT_RUN = 'operation.run';
     const EVENT_END = 'operation.end';
     const EVENT_ERROR = 'operation.error';
@@ -59,6 +61,11 @@ abstract class AbstractDataOperation extends ActiveRecord
         return ArrayHelper::isIn($this->status_id, [static::STATUS_ERROR, static::STATUS_RETRIED]);
     }
 
+    public function isPending(): bool
+    {
+        return $this->status_id == static::STATUS_PENDING;
+    }
+
     public function isRetried(): bool
     {
         return $this->status_id == static::STATUS_RETRIED;
@@ -81,6 +88,7 @@ abstract class AbstractDataOperation extends ActiveRecord
         return [
             static::STATUS_CREATED => 'Created',
             static::STATUS_PREPARED => 'Prepared',
+            static::STATUS_PENDING => 'Pending',
             static::STATUS_RUNNING => 'Running',
             static::STATUS_ENDED => 'Success',
             static::STATUS_ERROR => 'Error',

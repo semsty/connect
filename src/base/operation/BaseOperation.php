@@ -39,6 +39,7 @@ class BaseOperation extends AbstractDataOperation
     {
         parent::init();
         $this->on('*.' . static::EVENT_PREPARE, [$this, 'handlePrepare']);
+        $this->on('*.' . static::EVENT_PENDING, [$this, 'handlePending']);
         $this->on('*.' . static::EVENT_RUN, [$this, 'handleRun']);
         $this->on('*.' . static::EVENT_END, [$this, 'handleEnd']);
         $this->on('*.' . static::EVENT_ERROR, [$this, 'handleError']);
@@ -49,6 +50,12 @@ class BaseOperation extends AbstractDataOperation
     public function getExecutingTimeSec()
     {
         return round($this->executing_time, 2);
+    }
+
+    public function pending()
+    {
+        $this->trigger(static::EVENT_PENDING);
+        $this->save();
     }
 
     public function runSafely()
@@ -125,7 +132,7 @@ class BaseOperation extends AbstractDataOperation
 
     public function beforeSave($insert)
     {
-        if ($insert) {
+        if ($insert && !$this->status_id) {
             $this->status_id = static::STATUS_CREATED;
         }
         return parent::beforeSave($insert);
@@ -134,6 +141,11 @@ class BaseOperation extends AbstractDataOperation
     public function handlePrepare($event = null)
     {
         $this->status_id = static::STATUS_PREPARED;
+    }
+
+    public function handlePending($event = null)
+    {
+        $this->status_id = static::STATUS_PENDING;
     }
 
     public function handleRun($event = null)
