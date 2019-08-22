@@ -8,12 +8,12 @@ use connect\crm\amocrm\query\Query;
 use connect\crm\base\dict\Action;
 use connect\crm\base\exception\ConnectException;
 use connect\crm\base\helpers\ArrayHelper;
-use connect\crm\base\traits\ProviderAction;
+use connect\crm\base\traits\RecipientAction;
 use yii\helpers\Json;
 
 class Auth extends BaseAction
 {
-    use ProviderAction;
+    use RecipientAction;
 
     const ID = 1;
     const NAME = Action::AUTH;
@@ -29,6 +29,7 @@ class Auth extends BaseAction
     {
         return ArrayHelper::merge(parent::getConfig(), [
             'requestConfig' => [
+                
                 'content' => Json::encode([
                     'USER_LOGIN' => $this->login,
                     'USER_HASH' => $this->apiKey
