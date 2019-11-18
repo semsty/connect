@@ -8,18 +8,17 @@ use connect\crm\amocrm\query\Query;
 use connect\crm\base\dict\Action;
 use connect\crm\base\exception\ConnectException;
 use connect\crm\base\helpers\ArrayHelper;
+use connect\crm\base\traits\RandomRetryActionTrait;
 use connect\crm\base\traits\RecipientAction;
 use yii\helpers\Json;
 
 class Auth extends BaseAction
 {
-    use RecipientAction;
+    use RecipientAction, RandomRetryActionTrait;
 
     const ID = 1;
     const NAME = Action::AUTH;
 
-    public $attempts = 0;
-    public $max_attempts = 10;
     public $ip = null;
     public $with_auth = false;
 
@@ -29,32 +28,12 @@ class Auth extends BaseAction
     {
         return ArrayHelper::merge(parent::getConfig(), [
             'requestConfig' => [
-                
                 'content' => Json::encode([
                     'USER_LOGIN' => $this->login,
                     'USER_HASH' => $this->apiKey
                 ])
             ]
         ]);
-    }
-
-    /**
-     * @return array
-     * @throws \Throwable
-     */
-    public function getResponse(): array
-    {
-        try {
-            $this->attempts++;
-            return parent::getResponse();
-        } catch (\Throwable $e) {
-            if ($this->attempts < $this->max_attempts) {
-                usleep(rand(1000, 1000000));
-                return $this->getResponse();
-            } else {
-                throw $e;
-            }
-        }
     }
 
     /**

@@ -96,11 +96,7 @@ trait BatchConnection
         ) {
             $this->current_batch++;
             $this->prepareRequest();
-            $request = $this->createRequest();
-            /**
-             * @var $request Query
-             */
-            $response = $request->send();
+            $response = $this->getResponse();
             $payload = $response->getData();
             $this->increment($payload);
             $this->previous_result = $this->checkPayload($payload);
