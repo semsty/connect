@@ -66,6 +66,11 @@ class BaseConnection extends Client
         ]);
     }
 
+    public function getResponse(): Response
+    {
+        return $this->createRequest()->send();
+    }
+
     public function getRateLimit()
     {
         return [
