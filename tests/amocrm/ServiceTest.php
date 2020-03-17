@@ -76,6 +76,6 @@ class ServiceTest extends TestCase
         ];
         $action = $this->service->action(Auth::NAME);
         $data = $action->run();
-        expect($action->attempts)->equals(3);
+        expect($action->random_retry_attempts)->equals(3);
     }
 }

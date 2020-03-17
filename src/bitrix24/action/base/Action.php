@@ -12,7 +12,8 @@ class Action extends BaseAction
 {
     const TMP_BASE_PATH = '@log/bitrix24';
     const MAX_LIMIT = 50;
-    const REQUEST_LIMIT = 5;
+    const REQUEST_LIMIT = 1; #instead 1 request per second
+
     public $auth;
     public $with_auth = true;
     public $with_info = false;

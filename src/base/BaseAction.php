@@ -161,8 +161,7 @@ class BaseAction extends Model
         /**
          * @var $request Query
          */
-        $request = $this->connection->createRequest();
-        $response = $request->send();
+        $response = $this->connection->getResponse();
         if ($response->isOk) {
             return $response->getData() ?: [];
         } else {
