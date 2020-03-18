@@ -4,6 +4,7 @@ namespace connect\crm\bitrix24\action;
 
 use connect\crm\base\traits\ProviderAction;
 use connect\crm\bitrix24\action\base\Action;
+use connect\crm\bitrix24\dict\Data;
 use connect\crm\bitrix24\dict\Selects;
 use yii\helpers\ArrayHelper;
 
@@ -11,6 +12,7 @@ class ListAction extends Action
 {
     const ID = 5;
     const NAME = 'list';
+    const IDS_CHUNK_SIZE = 50;
 
     use ProviderAction;
 
@@ -111,7 +113,19 @@ class ListAction extends Action
 
     public function getResponse(): array
     {
-        return $this->connection->all();
+        if ($ids = ArrayHelper::getValue($this->filter, Data::ID)) {
+            $result = [];
+            foreach (array_chunk($ids, static::IDS_CHUNK_SIZE) as $chunk) {
+                $this->filter[Data::ID] = $chunk;
+                $result = ArrayHelper::merge(
+                    $result,
+                    ArrayHelper::getValue(parent::getResponse(), 'result', [])
+                );
+            }
+            return $result;
+        } else {
+            return $this->connection->all();
+        }
     }
 
     public function run()
