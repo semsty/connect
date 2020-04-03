@@ -115,6 +115,9 @@ class ListAction extends Action
     {
         if ($ids = ArrayHelper::getValue($this->filter, Data::ID)) {
             $result = [];
+            if (!is_array($ids)) {
+                $ids = [$ids];   
+            }
             foreach (array_chunk($ids, static::IDS_CHUNK_SIZE) as $chunk) {
                 $this->filter[Data::ID] = $chunk;
                 $result = ArrayHelper::merge(
