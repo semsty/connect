@@ -2,12 +2,14 @@
 
 namespace connect\crm\amocrm;
 
+use connect\crm\amocrm\action\Access;
 use connect\crm\amocrm\action\Auth;
 use connect\crm\amocrm\action\CompanyList;
 use connect\crm\amocrm\action\CompanySet;
 use connect\crm\amocrm\action\ContactsList;
 use connect\crm\amocrm\action\ContactsSet;
 use connect\crm\amocrm\action\CustomFieldsSet;
+use connect\crm\amocrm\action\Exchange;
 use connect\crm\amocrm\action\Info;
 use connect\crm\amocrm\action\LeadsList;
 use connect\crm\amocrm\action\LeadsSet;
@@ -53,6 +55,22 @@ class Service extends BaseService
     public static function getDataProviderActions(): array
     {
         return [
+            'access' => [
+                Access::class,
+                [
+                    'client_id' => getenv('AMOCRM_CLIENT_ID'),
+                    'client_secret' => getenv('AMOCRM_CLIENT_SECRET'),
+                    'redirect_uri' => static::getRedirectUri()
+                ]
+            ],
+            'exchange' => [
+                Exchange::class,
+                [
+                    'client_uuid' => getenv('AMOCRM_CLIENT_ID'),
+                    'client_secret' => getenv('AMOCRM_CLIENT_SECRET'),
+                    'redirect_uri' => static::getRedirectUri()
+                ]
+            ],
             Action::AUTH => Auth::class,
             Action::INFO => Info::class,
             Entities::LEAD => [
@@ -76,6 +94,18 @@ class Service extends BaseService
                 Action::GET => TasksList::class
             ]
         ];
+    }
+
+    public static function getRedirectUri(): string
+    {
+        return $_ENV['APP_HOST']
+            . ($_ENV['APP_LOCATION'] ? str_replace('/', '', $_ENV['APP_LOCATION']) . '/' : '')
+            . static::getRedirectLocation();
+    }
+
+    public static function getRedirectLocation(): string
+    {
+        return getenv('AMOCRM_REDIRECT_LOCATION');
     }
 
     public static function getDataRecipientActions(): array

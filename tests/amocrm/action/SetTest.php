@@ -84,7 +84,8 @@ class SetTest extends TestCase
         $action = new Action([
             'login' => 'login',
             'subdomain' => 'subdomain',
-            'apiKey' => '1234567890',
+            'access_token' => '1234567890',
+            'refresh_token' => '1234567890',
             'data' => [
                 'add' => [
                     [

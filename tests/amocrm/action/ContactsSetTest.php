@@ -25,21 +25,20 @@ class ContactsSetTest extends TestCase
             'baseUrl' => 'https://{subdomain}.amocrm.ru/',
             'requestConfig' => [
                 'headers' => [
-                    'Content-Type' => 'application/json'
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer imanicelittletoken'
                 ],
                 'options' => [
                     'timeout' => 60,
                     'returntransfer' => true,
                     'referer' => null,
-                    'cookiejar' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
-                    'cookiefile' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
                     'useragent' => 'amoCRM-API-client/1.0',
                     'ssl_verifyhost' => false,
                     'ssl_verifypeer' => false
                 ],
                 'url' => [
                     '0' => 'https://{subdomain}.amocrm.ru/api/{version}/contacts',
-                    'version' => 'v2',
+                    'version' => 'v4',
                     'subdomain' => 'subdomain'
                 ],
                 'method' => 'POST',

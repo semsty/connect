@@ -13,7 +13,7 @@ class LeadsListTest extends TestCase
     public $responses = [
         Action::NAME => [
             '_embedded' => [
-                'items' => [
+                'leads' => [
                     [
                         'id' => '1',
                         'name' => 'name',
@@ -96,20 +96,17 @@ class LeadsListTest extends TestCase
     public function testRun()
     {
         $action = $this->service->action(Action::ID);
-        $action->modifiedSince = '2017-01-01';
         expect($action->config)->equals([
             'baseUrl' => 'https://{subdomain}.amocrm.ru/',
             'requestConfig' => [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'if-modified-since' => ArrayHelper::getValue($action->config, 'requestConfig.headers.if-modified-since')
+                    'Authorization' => 'Bearer imanicelittletoken'
                 ],
                 'options' => [
                     'timeout' => 60,
                     'returntransfer' => true,
                     'referer' => null,
-                    'cookiejar' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
-                    'cookiefile' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
                     'useragent' => 'amoCRM-API-client/1.0',
                     'ssl_verifyhost' => false,
                     'ssl_verifypeer' => false
@@ -119,9 +116,11 @@ class LeadsListTest extends TestCase
                     'query' => [],
                     'responsible_user_id' => null,
                     'id' => null,
-                    'version' => 'v2',
+                    'version' => 'v4',
                     'subdomain' => 'subdomain',
-                    'filter' => []
+                    'filter' => [],
+                    'order' => [],
+                    'with' => []
                 ],
                 'method' => 'GET',
                 'class' => Query::class
@@ -133,17 +132,17 @@ class LeadsListTest extends TestCase
                 1,
                 5
             ],
-            'limit_request_key' => 'limit_rows',
-            'offset_request_key' => 'limit_offset',
-            'offset_response_key' => '_embedded.items',
+            'limit_request_key' => 'limit',
+            'offset_request_key' => 'page',
+            'offset_response_key' => '_embedded.leads',
             'max_limit' => null,
             'max_offset' => 0,
             'offset_increment' => null,
             'current_offset' => 0,
-            'cursor' => '_embedded.items',
+            'cursor' => '_embedded.leads',
             'transport' => 'yii\\httpclient\\CurlTransport'
         ]);
         $result = $action->run();
-        expect($result)->equals($this->responses[Action::NAME]['_embedded']['items']);
+        expect($result)->equals($this->responses[Action::NAME]['_embedded']['leads']);
     }
 }
