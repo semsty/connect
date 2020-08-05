@@ -8,6 +8,7 @@ use connect\crm\amocrm\action\CompanyList;
 use connect\crm\amocrm\action\CompanySet;
 use connect\crm\amocrm\action\ContactsList;
 use connect\crm\amocrm\action\ContactsSet;
+use connect\crm\amocrm\action\CustomFieldList;
 use connect\crm\amocrm\action\CustomFieldsSet;
 use connect\crm\amocrm\action\Exchange;
 use connect\crm\amocrm\action\Info;
@@ -15,6 +16,7 @@ use connect\crm\amocrm\action\LeadsList;
 use connect\crm\amocrm\action\LeadsSet;
 use connect\crm\amocrm\action\NotesList;
 use connect\crm\amocrm\action\NotesSet;
+use connect\crm\amocrm\action\PipelineList;
 use connect\crm\amocrm\action\TasksList;
 use connect\crm\amocrm\action\TasksSet;
 use connect\crm\amocrm\dict\Data;
@@ -92,6 +94,12 @@ class Service extends BaseService
             Entities::TASK => [
                 Action::LIST => TasksList::class,
                 Action::GET => TasksList::class
+            ],
+            Entities::CUSTOM_FIELD => [
+                Action::LIST => CustomFieldList::class
+            ],
+            'pipeline' => [
+                Action::LIST => PipelineList::class
             ]
         ];
     }

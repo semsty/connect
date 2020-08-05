@@ -37,7 +37,7 @@ class NotesSetTest extends TestCase
                     'ssl_verifypeer' => false
                 ],
                 'url' => [
-                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/notes',
+                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/events',
                     'version' => 'v4',
                     'subdomain' => 'subdomain'
                 ],

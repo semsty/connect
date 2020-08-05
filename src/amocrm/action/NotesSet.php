@@ -12,7 +12,7 @@ class NotesSet extends SetAction
     const ID = 11;
     const NAME = Entities::NOTE . Action::NAME_DELIMITER . Action::SET;
 
-    protected $path = 'api/{version}/notes';
+    protected $path = 'api/{version}/events';
     protected $entity = Entities::NOTE;
 
     public static function getSystemFields()

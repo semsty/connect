@@ -13,7 +13,7 @@ class NotesListTest extends TestCase
     public $responses = [
         Action::NAME => [
             '_embedded' => [
-                'notes' => [
+                'events' => [
                     [
                         'id' => '1',
                         'name' => 'name',
@@ -112,7 +112,7 @@ class NotesListTest extends TestCase
                     'ssl_verifypeer' => false
                 ],
                 'url' => [
-                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/notes',
+                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/events',
                     'query' => [],
                     'element_id' => null,
                     'id' => null,
@@ -135,16 +135,16 @@ class NotesListTest extends TestCase
             ],
             'limit_request_key' => 'limit',
             'offset_request_key' => 'page',
-            'offset_response_key' => '_embedded.notes',
+            'offset_response_key' => '_embedded.events',
             'max_limit' => null,
             'max_offset' => 0,
             'offset_increment' => null,
             'current_offset' => 0,
-            'cursor' => '_embedded.notes',
+            'cursor' => '_embedded.events',
             'transport' => 'yii\\httpclient\\CurlTransport'
         ]);
         $action->service->connection = $this->connection;
         $result = $action->run();
-        expect($result)->equals($this->responses[Action::NAME]['_embedded']['notes']);
+        expect($result)->equals($this->responses[Action::NAME]['_embedded']['events']);
     }
 }
