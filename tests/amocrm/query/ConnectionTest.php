@@ -13,7 +13,7 @@ class ConnectionTest extends TestCase
             'responses' => [
                 [
                     '_embedded' => [
-                        'items' => [
+                        'leads' => [
                             [
                                 'id' => '1',
                                 'name' => 'name',
@@ -36,7 +36,7 @@ class ConnectionTest extends TestCase
                 ],
                 [
                     '_embedded' => [
-                        'items' => []
+                        'leads' => []
                     ]
                 ]
             ]
@@ -45,18 +45,18 @@ class ConnectionTest extends TestCase
 
     public function testAll()
     {
-        $action = $this->service->action(Action::ID, ['limit_rows' => 1, 'limit_offset' => 1]);
+        $action = $this->service->action(Action::ID, ['limit' => 1, 'page' => 1]);
         $data = $action->run();
         expect($this->calls[Action::NAME])->equals(2);
-        expect($data)->equals($this->responses[Action::NAME]['responses'][0]['_embedded']['items']);
+        expect($data)->equals($this->responses[Action::NAME]['responses'][0]['_embedded']['leads']);
     }
 
     public function testBatch()
     {
-        $action = $this->service->action(Action::ID, ['limit_rows' => 1, 'limit_offset' => 1]);
+        $action = $this->service->action(Action::ID, ['limit' => 1, 'page' => 1]);
         $i = 0;
         while ($chunk = $action->batch()) {
-            expect($chunk)->equals($this->responses[Action::NAME]['responses'][$i]['_embedded']['items']);
+            expect($chunk)->equals($this->responses[Action::NAME]['responses'][$i]['_embedded']['leads']);
         }
     }
 }

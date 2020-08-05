@@ -2,8 +2,10 @@
 
 namespace connect\crm\amocrm\action\base;
 
+use connect\crm\amocrm\action\Access;
 use connect\crm\amocrm\action\Auth;
 use connect\crm\amocrm\action\Info;
+use connect\crm\amocrm\action\OAuth;
 use connect\crm\amocrm\dict\Entities;
 use connect\crm\amocrm\Profile;
 use connect\crm\base\Action as BaseAction;
@@ -18,6 +20,8 @@ use connect\crm\base\helpers\FileHelper;
  * @property $login
  * @property $with_auth
  * @property $with_info
+ * @property $access_token
+ * @property $refresh_token
  * @property-read  $entity
  * @package connect\crm\amocrm\action\base
  */
@@ -27,20 +31,25 @@ class Action extends BaseAction
     const REQUEST_LIMIT = 5;
     const MODIFIED_SINCE_FORMAT = 'php:D, d M Y H:i:s O';
     const SESSION_LIFETIME = 60 * 15;
-    public $version = 'v2';
+    const USER_AGENT = 'amoCRM-API-client/1.0';
+
+    public $version = 'v4';
     public $subdomain;
     public $apiKey;
+    public $access_token;
+    public $refresh_token;
     public $login;
     public $with_auth = true;
     public $auth;
     public $with_info = false;
+
     protected $entity;
 
     public function rules(): array
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['subdomain', 'apiKey', 'login', 'version'], 'required'],
-            [['subdomain', 'apiKey', 'login', 'version'], 'string'],
+            [['subdomain', 'login', 'version', 'access_token', 'refresh_token'], 'required'],
+            [['subdomain', 'login', 'version', 'access_token', 'refresh_token'], 'string'],
         ]);
     }
 
@@ -78,23 +87,36 @@ class Action extends BaseAction
 
     public function getConfig(): array
     {
-        $this->getCookieFile();
-        return ArrayHelper::merge(parent::getConfig(), [
-            'transport' => 'yii\httpclient\CurlTransport',
-            'requestConfig' => [
-                'url' => [
-                    'version' => $this->version,
-                    'subdomain' => $this->subdomain
-                ],
+        $config = [
+            'url' => [
+                'version' => $this->version,
+                'subdomain' => $this->subdomain
+            ],
+            'options' => [
+                'referer' => ArrayHelper::getValue(\Yii::$app->params, 'hostname'),
+                'useragent' => static::USER_AGENT,
+                'ssl_verifyhost' => false,
+                'ssl_verifypeer' => false
+            ]
+        ];
+        if ($this->profile->isOauth()) {
+            $config = ArrayHelper::merge($config, [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->access_token
+                ]
+            ]);
+        } else {
+            $this->getCookieFile();
+            $config = ArrayHelper::merge($config, [
                 'options' => [
-                    'referer' => ArrayHelper::getValue(\Yii::$app->params, 'hostname'),
                     'cookiejar' => $this->getCookieFilePath(),
                     'cookiefile' => $this->getCookieFilePath(),
-                    'useragent' => 'amoCRM-API-client/1.0',
-                    'ssl_verifyhost' => false,
-                    'ssl_verifypeer' => false
                 ]
-            ]
+            ]);
+        }
+        return ArrayHelper::merge(parent::getConfig(), [
+            'transport' => 'yii\httpclient\CurlTransport',
+            'requestConfig' => $config
         ]);
     }
 
@@ -124,18 +146,27 @@ class Action extends BaseAction
      */
     public function auth()
     {
-        if (
-            !file_exists($this->getCookieFilePath())
-            ||
-            (
+        if ($this->profile->isOauth()) {
+            if ($this->profile->config['expires_in'] > strtotime('now')) {
+                return;
+            }
+            $auth = $this->service->getAction(Access::ID, [
+                'refresh_token' => $this->profile->refresh_token
+            ]);
+        } else {
+            if (
+                !file_exists($this->getCookieFilePath())
+                ||
+                (
                 (file_exists($this->getCookieFilePath())
-                &&
-                (filemtime($this->getCookieFilePath()) + static::SESSION_LIFETIME) < strtotime('now'))
-            )
-        ) {
-            $this->getCookieFile(true, true);
+                    &&
+                    (filemtime($this->getCookieFilePath()) + static::SESSION_LIFETIME) < strtotime('now'))
+                )
+            ) {
+                $this->getCookieFile(true, true);
+            }
+            $auth = $this->service->getAction(Auth::ID);
         }
-        $auth = $this->service->getAction(Auth::ID);
         $this->auth = $auth->run();
     }
 

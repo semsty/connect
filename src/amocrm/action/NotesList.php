@@ -14,7 +14,7 @@ class NotesList extends ListAction
     public $type;
     public $element_id;
     public $note_type;
-    protected $path = 'api/{version}/notes';
+    protected $path = 'api/{version}/events';
     protected $entity = Entities::NOTE;
 
     public function rules(): array
@@ -28,6 +28,11 @@ class NotesList extends ListAction
             [['element_id'], 'integer']
         ]);
         return $rules;
+    }
+
+    public function getEntityPluralizeName(): string
+    {
+        return 'events';
     }
 
     public function getQuery()

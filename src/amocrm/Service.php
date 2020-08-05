@@ -2,17 +2,21 @@
 
 namespace connect\crm\amocrm;
 
+use connect\crm\amocrm\action\Access;
 use connect\crm\amocrm\action\Auth;
 use connect\crm\amocrm\action\CompanyList;
 use connect\crm\amocrm\action\CompanySet;
 use connect\crm\amocrm\action\ContactsList;
 use connect\crm\amocrm\action\ContactsSet;
+use connect\crm\amocrm\action\CustomFieldList;
 use connect\crm\amocrm\action\CustomFieldsSet;
+use connect\crm\amocrm\action\Exchange;
 use connect\crm\amocrm\action\Info;
 use connect\crm\amocrm\action\LeadsList;
 use connect\crm\amocrm\action\LeadsSet;
 use connect\crm\amocrm\action\NotesList;
 use connect\crm\amocrm\action\NotesSet;
+use connect\crm\amocrm\action\PipelineList;
 use connect\crm\amocrm\action\TasksList;
 use connect\crm\amocrm\action\TasksSet;
 use connect\crm\amocrm\dict\Data;
@@ -53,6 +57,21 @@ class Service extends BaseService
     public static function getDataProviderActions(): array
     {
         return [
+            'access' => [
+                Access::class,
+                [
+                    'client_id' => getenv('AMOCRM_CLIENT_ID'),
+                    'client_secret' => getenv('AMOCRM_CLIENT_SECRET'),
+                    'redirect_uri' => static::getRedirectUri()
+                ]
+            ],
+            'exchange' => [
+                Exchange::class,
+                [
+                    'client_id' => getenv('AMOCRM_CLIENT_ID'),
+                    'client_secret' => getenv('AMOCRM_CLIENT_SECRET')
+                ]
+            ],
             Action::AUTH => Auth::class,
             Action::INFO => Info::class,
             Entities::LEAD => [
@@ -74,8 +93,26 @@ class Service extends BaseService
             Entities::TASK => [
                 Action::LIST => TasksList::class,
                 Action::GET => TasksList::class
+            ],
+            Entities::CUSTOM_FIELD => [
+                Action::LIST => CustomFieldList::class
+            ],
+            'pipeline' => [
+                Action::LIST => PipelineList::class
             ]
         ];
+    }
+
+    public static function getRedirectUri(): string
+    {
+        return $_ENV['APP_HOST']
+            . ($_ENV['APP_LOCATION'] ? str_replace('/', '', $_ENV['APP_LOCATION']) . '/' : '')
+            . static::getRedirectLocation();
+    }
+
+    public static function getRedirectLocation(): string
+    {
+        return getenv('AMOCRM_REDIRECT_LOCATION');
     }
 
     public static function getDataRecipientActions(): array
