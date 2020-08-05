@@ -69,8 +69,7 @@ class Service extends BaseService
                 Exchange::class,
                 [
                     'client_id' => getenv('AMOCRM_CLIENT_ID'),
-                    'client_secret' => getenv('AMOCRM_CLIENT_SECRET'),
-                    'redirect_uri' => static::getRedirectUri()
+                    'client_secret' => getenv('AMOCRM_CLIENT_SECRET')
                 ]
             ],
             Action::AUTH => Auth::class,
