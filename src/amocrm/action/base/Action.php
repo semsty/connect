@@ -150,7 +150,7 @@ class Action extends BaseAction
             if ($this->profile->config['expires_in'] > strtotime('now')) {
                 return;
             }
-            $auth = $this->service->getAction(Access::ID, [
+            $auth = $this->service->getAction(Access::NAME, [
                 'refresh_token' => $this->profile->refresh_token
             ]);
         } else {
