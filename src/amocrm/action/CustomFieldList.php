@@ -34,10 +34,7 @@ class CustomFieldList extends ListAction
     public function run()
     {
         $data = parent::run();
-        $this->service->schema->_info['custom_fields'] = ArrayHelper::merge(
-            [$this->subentity => $data],
-            ArrayHelper::getValue($this->service->schema->_info, ['custom_fields'], [])
-        );
+        $this->service->schema->_info['custom_fields'][$this->subentity] = $data;
         return $data;
     }
 

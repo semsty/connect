@@ -26,6 +26,7 @@ class SetAction extends Action
     {
         return ArrayHelper::merge(parent::getDefaultConfig(), [
             'requestConfig' => [
+                'format' => 'json',
                 'data' => $this->getData()
             ]
         ]);
@@ -68,8 +69,8 @@ class SetAction extends Action
         if ($update) {
             $mode[$no]['updated_at'] = strtotime('now');
         }
-        $mode[$no]['custom_fields'][] = [
-            'id' => $field_name,
+        $mode[$no]['custom_fields_values'][] = [
+            'field_id' => $field_name,
             'values' => array_values($values)
         ];
     }
@@ -77,7 +78,7 @@ class SetAction extends Action
     public static function getSystemFields()
     {
         return [
-            'id', 'name', 'last_modified', 'responsible_user_id'
+            'id', 'name', 'last_modified', 'responsible_user_id', '_embedded'
         ];
     }
 
@@ -112,9 +113,9 @@ class SetAction extends Action
     public function setFieldEnumType(&$values, $field_name)
     {
         if ($field_info = $this->getFieldInfo($field_name)) {
-            if ($field_info['multiple'] == 'Y' && !ArrayHelper::keyExists('enum', $values)) {
-                $enums_keys = array_flip($field_info['enums']);
-                $values['enum'] = array_shift($enums_keys);
+            if ($field_info['type'] == 'multitext' && !ArrayHelper::keyExists('enum', $values)) {
+                $enums_keys = ArrayHelper::getColumn($field_info['enums'], 'value');
+                $values['enum_code'] = array_shift($enums_keys);
             }
         }
     }
@@ -122,6 +123,6 @@ class SetAction extends Action
     public function run()
     {
         $data = parent::run();
-        return $data['_embedded']['items'];
+        return $data['_embedded'][$this->getEntityPluralizeName()];
     }
 }

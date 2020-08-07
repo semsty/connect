@@ -14,6 +14,7 @@ use connect\crm\amocrm\action\Exchange;
 use connect\crm\amocrm\action\Info;
 use connect\crm\amocrm\action\LeadsList;
 use connect\crm\amocrm\action\LeadsSet;
+use connect\crm\amocrm\action\Link;
 use connect\crm\amocrm\action\NotesList;
 use connect\crm\amocrm\action\NotesSet;
 use connect\crm\amocrm\action\PipelineList;
@@ -72,6 +73,7 @@ class Service extends BaseService
                     'client_secret' => getenv('AMOCRM_CLIENT_SECRET')
                 ]
             ],
+            'link' => Link::class,
             Action::AUTH => Auth::class,
             Action::INFO => Info::class,
             Entities::LEAD => [
