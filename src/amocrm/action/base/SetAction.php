@@ -42,6 +42,7 @@ class SetAction extends Action
                 }
             }
         }
+        $query = $query[$mode];
         return $query;
     }
 

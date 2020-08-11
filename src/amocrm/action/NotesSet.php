@@ -49,17 +49,13 @@ class NotesSet extends SetAction
 
     public function getConfig(): array
     {
-        $config = ArrayHelper::merge(parent::getConfig(), [
+        return ArrayHelper::merge(parent::getConfig(), [
             'requestConfig' => [
                 'url' => [
                     'subentity' => $this->subentity
                 ]
             ]
         ]);
-        if ($add = ArrayHelper::getValue($config, ['requestConfig', 'data', 'add'])) {
-            $config['requestConfig']['data'] = $add;
-        }
-        return $config;
     }
 
     public function getData()

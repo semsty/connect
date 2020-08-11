@@ -3,8 +3,6 @@
 namespace connect\crm\amocrm\action;
 
 use connect\crm\amocrm\action\base\SetAction;
-use connect\crm\amocrm\dict\Entities;
-use connect\crm\amocrm\dict\Types;
 use connect\crm\base\dict\Action;
 use yii\helpers\ArrayHelper;
 
@@ -54,10 +52,12 @@ class Link extends SetAction
                     'subentity' => $this->subentity,
                     'entity_id' => $this->entity_id
                 ],
-                'data' =>  [
-                    'to_entity_id' => $this->to_entity_id,
-                    'to_entity_type' => $this->to_entity_type,
-                    'metadata' => $this->metadata
+                'data' => [
+                    [
+                        'to_entity_id' => $this->to_entity_id,
+                        'to_entity_type' => $this->to_entity_type,
+                        'metadata' => $this->metadata
+                    ]
                 ]
             ]
         ]);
