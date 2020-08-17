@@ -99,32 +99,29 @@ class SetTest extends TestCase
         $action->service->schema->info = $info;
         expect($action->getFieldIdByName('phone'))->equals('000002');
         expect($action->getData())->equals([
-            'add' => [
-                [
-                    'custom_fields' => [
-                        [
-                            'id' => 'status_id',
-                            'values' => [
-                                [
-                                    'value' => 1
-                                ]
+            [
+                'custom_fields_values' => [
+                    [
+                        'field_id' => 'status_id',
+                        'values' => [
+                            [
+                                'value' => 1
                             ]
-                        ],
-                        [
-                            'id' => '000005',
-                            'values' => [
-                                [
-                                    'value' => '6543210'
-                                ]
+                        ]
+                    ],
+                    [
+                        'field_id' => '000005',
+                        'values' => [
+                            [
+                                'value' => '6543210'
                             ]
-                        ],
-                        [
-                            'id' => '000002',
-                            'values' => [
-                                [
-                                    'value' => '1234567',
-                                    'enum' => 282707
-                                ]
+                        ]
+                    ],
+                    [
+                        'field_id' => '000002',
+                        'values' => [
+                            [
+                                'value' => '1234567'
                             ]
                         ]
                     ]

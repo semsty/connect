@@ -43,27 +43,26 @@ class LeadsSetTest extends TestCase
                 ],
                 'method' => 'POST',
                 'data' => [
-                    'add' => [
-                        [
-                            'status_id' => 1,
-                            'custom_fields' => [
-                                [
-                                    'id' => 123456,
-                                    'values' => [
-                                        ['value' => '654321']
-                                    ]
-                                ],
-                                [
-                                    'id' => 654321,
-                                    'values' => [
-                                        ['value' => '123456']
-                                    ]
+                    [
+                        'status_id' => 1,
+                        'custom_fields_values' => [
+                            [
+                                'field_id' => 123456,
+                                'values' => [
+                                    ['value' => '654321']
+                                ]
+                            ],
+                            [
+                                'field_id' => 654321,
+                                'values' => [
+                                    ['value' => '123456']
                                 ]
                             ]
                         ]
                     ]
                 ],
-                'class' => Query::class
+                'class' => Query::class,
+                'format' => 'json'
             ],
             'responseConfig' => [
                 'class' => Response::class

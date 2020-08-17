@@ -37,40 +37,38 @@ class NotesSetTest extends TestCase
                     'ssl_verifypeer' => false
                 ],
                 'url' => [
-                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/events',
+                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/{subentity}/notes',
                     'version' => 'v4',
-                    'subdomain' => 'subdomain'
+                    'subdomain' => 'subdomain',
+                    'subentity' => 'contacts'
                 ],
                 'method' => 'POST',
                 'data' => [
-                    'add' => [
-                        [
-                            'custom_fields' => [
-                                [
-                                    'id' => 'status_id',
-                                    'values' => [
-                                        ['value' => 1]
-                                    ]
-                                ],
-                                [
-                                    'id' => 123456,
-                                    'values' => [
-                                        ['value' => '654321']
-                                    ]
-                                ],
-                                [
-                                    'id' => 654321,
-                                    'values' => [
-                                        ['value' => '123456']
-                                    ]
+                    [
+                        'custom_fields_values' => [
+                            [
+                                'field_id' => 'status_id',
+                                'values' => [
+                                    ['value' => 1]
                                 ]
                             ],
-                            'element_type' => 1,
-                            'note_type' => 1
+                            [
+                                'field_id' => 123456,
+                                'values' => [
+                                    ['value' => '654321']
+                                ]
+                            ],
+                            [
+                                'field_id' => 654321,
+                                'values' => [
+                                    ['value' => '123456']
+                                ]
+                            ]
                         ]
                     ]
                 ],
-                'class' => Query::class
+                'class' => Query::class,
+                'format' => 'json'
             ],
             'responseConfig' => [
                 'class' => Response::class

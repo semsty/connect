@@ -43,32 +43,31 @@ class ContactsSetTest extends TestCase
                 ],
                 'method' => 'POST',
                 'data' => [
-                    'add' => [
-                        [
-                            'custom_fields' => [
-                                [
-                                    'id' => 'status_id',
-                                    'values' => [
-                                        ['value' => 1]
-                                    ]
-                                ],
-                                [
-                                    'id' => 123456,
-                                    'values' => [
-                                        ['value' => '654321']
-                                    ]
-                                ],
-                                [
-                                    'id' => 654321,
-                                    'values' => [
-                                        ['value' => '123456']
-                                    ]
+                    [
+                        'custom_fields_values' => [
+                            [
+                                'field_id' => 'status_id',
+                                'values' => [
+                                    ['value' => 1]
+                                ]
+                            ],
+                            [
+                                'field_id' => 123456,
+                                'values' => [
+                                    ['value' => '654321']
+                                ]
+                            ],
+                            [
+                                'field_id' => 654321,
+                                'values' => [
+                                    ['value' => '123456']
                                 ]
                             ]
                         ]
                     ]
                 ],
-                'class' => Query::class
+                'class' => Query::class,
+                'format' => 'json'
             ],
             'responseConfig' => [
                 'class' => Response::class
