@@ -43,6 +43,9 @@ class SetAction extends Action
             }
         }
         $query = $query[$mode];
+        if ($mode == 'update') {
+            $this->method = 'PATCH';
+        }
         return $query;
     }
 
