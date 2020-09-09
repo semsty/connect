@@ -52,6 +52,9 @@ class SetAction extends Action
     public function setFieldData(&$mode, $no, $field_name, $field_value, $update = false)
     {
         if (ArrayHelper::isIn($field_name, static::getSystemFields())) {
+            if (ArrayHelper::isIn($field_name, static::getSystemNumericFields())) {
+                $field_value = (int)$field_value;
+            }
             $mode[$no][$field_name] = $field_value;
             return;
         } elseif (!is_numeric($field_name)) {
@@ -76,6 +79,13 @@ class SetAction extends Action
         $mode[$no]['custom_fields_values'][] = [
             'field_id' => $field_name,
             'values' => array_values($values)
+        ];
+    }
+
+    public static function getSystemNumericFields()
+    {
+        return [
+            'responsible_user_id'
         ];
     }
 
