@@ -52,10 +52,12 @@ class SetAction extends Action
     public function setFieldData(&$mode, $no, $field_name, $field_value, $update = false)
     {
         if (ArrayHelper::isIn($field_name, static::getSystemFields())) {
-            if (ArrayHelper::isIn($field_name, static::getSystemNumericFields())) {
-                $field_value = (int)$field_value;
+            if ($field_value) {
+                if (ArrayHelper::isIn($field_name, static::getSystemNumericFields())) {
+                    $field_value = (int)$field_value;
+                }
+                $mode[$no][$field_name] = $field_value;
             }
-            $mode[$no][$field_name] = $field_value;
             return;
         } elseif (!is_numeric($field_name)) {
             if (($field_id = $this->getFieldIdByName($field_name)) || ($field_id = $this->getFieldIdByName($field_name, 'code'))) {

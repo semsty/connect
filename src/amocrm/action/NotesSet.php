@@ -76,6 +76,10 @@ class NotesSet extends SetAction
                     $this->subentity = Entities::getEntityTypePluralize(Types::dictElementTypes()[$type]);
                     unset($data['element_type']);
                 }
+                if ($text = ArrayHelper::getValue($data, 'text')) {
+                    unset($data['text']);
+                    $data['params']['text'] = $text;
+                }
                 if ($mapped = ArrayHelper::getValue(static::mapTypes(), $this->data[$mode][$no]['note_type'])) {
                     $this->data[$mode][$no]['note_type'] = $mapped;
                 }
