@@ -39,7 +39,7 @@ class ListAction extends Action
         $rules = ArrayHelper::merge($rules, [
             [['limit', 'page'], 'integer'],
             [['limit'], 'default', 'value' => static::MAX_LIMIT],
-            [['page'], 'default', 'value' => static::MAX_LIMIT]
+            [['page'], 'default', 'value' => 1]
         ]);
         return $rules;
     }
