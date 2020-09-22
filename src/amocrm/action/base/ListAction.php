@@ -53,8 +53,8 @@ class ListAction extends Action
             'offset_response_key' => '_embedded.' . $this->getEntityPluralizeName(),
             'max_limit' => $this->limit,
             'max_offset' => $this->max_offset,
-            'offset_increment' => $this->page,
-            'current_offset' => $this->offset,
+            'offset_increment' => 1,
+            'current_offset' => $this->page,
             'cursor' => '_embedded.' . $this->getEntityPluralizeName(),
             'requestConfig' => [
                 'url' => $this->getQuery()

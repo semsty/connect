@@ -27,7 +27,7 @@ use connect\crm\base\helpers\FileHelper;
  */
 class Action extends BaseAction
 {
-    const MAX_LIMIT = 500;
+    const MAX_LIMIT = 50;
     const REQUEST_LIMIT = 5;
     const MODIFIED_SINCE_FORMAT = 'php:D, d M Y H:i:s O';
     const SESSION_LIFETIME = 60 * 15;

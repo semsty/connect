@@ -11,6 +11,7 @@ class NotesList extends ListAction
 {
     const ID = 6;
     const NAME = Entities::NOTE . Action::NAME_DELIMITER . Action::LIST;
+    #const MAX_LIMIT = 100;
     public $type;
     public $element_id;
     public $note_type;
