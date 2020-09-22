@@ -138,8 +138,8 @@ class NotesListTest extends TestCase
             'offset_response_key' => '_embedded.events',
             'max_limit' => null,
             'max_offset' => 0,
-            'offset_increment' => null,
-            'current_offset' => 0,
+            'offset_increment' => 1,
+            'current_offset' => null,
             'cursor' => '_embedded.events',
             'transport' => 'yii\\httpclient\\CurlTransport'
         ]);

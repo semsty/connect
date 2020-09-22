@@ -137,8 +137,8 @@ class LeadsListTest extends TestCase
             'offset_response_key' => '_embedded.leads',
             'max_limit' => null,
             'max_offset' => 0,
-            'offset_increment' => null,
-            'current_offset' => 0,
+            'offset_increment' => 1,
+            'current_offset' => null,
             'cursor' => '_embedded.leads',
             'transport' => 'yii\\httpclient\\CurlTransport'
         ]);
