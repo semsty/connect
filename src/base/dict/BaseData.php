@@ -18,7 +18,7 @@ class BaseData extends Dictionary
     const CLIENT_ID = 'client_id';
     const GA_CLIENT_ID = self::CLIENT_ID;
     const GA_CLIENT_ID_ALIAS = 'ga_client_id';
-    const YA_CLIENT_ID = 'ym_client_id';
+    const YM_CLIENT_ID = 'ym_client_id';
     const PHONE_NUMBER = 'phone_number';
     const EMAIL = 'email';
     const NAME = 'name';
@@ -103,7 +103,7 @@ class BaseData extends Dictionary
     {
         return [
             static::GA_CLIENT_ID,
-            static::YA_CLIENT_ID
+            static::YM_CLIENT_ID
         ];
     }
 
