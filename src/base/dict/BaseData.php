@@ -15,7 +15,10 @@ class BaseData extends Dictionary
     const UTM_CONTENT = 'utm_content';
     const UTM_CAMPAIGN = 'utm_campaign';
     const UTM_TERM = 'utm_term';
-    const GA_CLIENT_ID = 'client_id';
+    const CLIENT_ID = 'client_id';
+    const GA_CLIENT_ID = 'ga_client_id';
+    const GA_CLIENT_ID_2 = self::CLIENT_ID;
+    const YA_CLIENT_ID = 'ya_client_id';
     const PHONE_NUMBER = 'phone_number';
     const EMAIL = 'email';
     const NAME = 'name';
@@ -82,9 +85,7 @@ class BaseData extends Dictionary
 
     public static function dictContextAttributes(): array
     {
-        return ArrayHelper::merge(static::dictUtmTags(), [
-            static::GA_CLIENT_ID
-        ]);
+        return ArrayHelper::merge(static::dictUtmTags(), static::dictClientIds());
     }
 
     public static function dictUtmTags(): array
@@ -95,6 +96,14 @@ class BaseData extends Dictionary
             static::UTM_CONTENT,
             static::UTM_CAMPAIGN,
             static::UTM_TERM
+        ];
+    }
+
+    public static function dictClientIds(): array
+    {
+        return [
+            static::GA_CLIENT_ID,
+            static::YA_CLIENT_ID
         ];
     }
 
