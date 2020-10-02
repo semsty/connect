@@ -16,9 +16,9 @@ class BaseData extends Dictionary
     const UTM_CAMPAIGN = 'utm_campaign';
     const UTM_TERM = 'utm_term';
     const CLIENT_ID = 'client_id';
-    const GA_CLIENT_ID = 'ga_client_id';
-    const GA_CLIENT_ID_2 = self::CLIENT_ID;
-    const YA_CLIENT_ID = 'ya_client_id';
+    const GA_CLIENT_ID = self::CLIENT_ID;
+    const GA_CLIENT_ID_ALIAS = 'ga_client_id';
+    const YA_CLIENT_ID = 'ym_client_id';
     const PHONE_NUMBER = 'phone_number';
     const EMAIL = 'email';
     const NAME = 'name';
