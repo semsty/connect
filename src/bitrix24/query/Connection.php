@@ -10,7 +10,7 @@ class Connection extends BaseConnection
     protected function increment($data = null)
     {
         $next = ArrayHelper::getValue($data, $this->limit_response_key);
-        if ($this->max_limit < $next) {
+        if ($next && $this->max_limit < $next) {
             $this->max_limit = $next;
         }
     }
