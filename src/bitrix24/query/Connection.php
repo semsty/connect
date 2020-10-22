@@ -9,11 +9,14 @@ class Connection extends BaseConnection
 {
     protected function increment($data = null)
     {
-        $this->max_limit = ArrayHelper::getValue($data, $this->limit_response_key);
+        $next = ArrayHelper::getValue($data, $this->limit_response_key);
+        if ($this->max_limit < $next) {
+            $this->max_limit = $next;
+        }
     }
 
     protected function checkPayload($data)
     {
-        return ArrayHelper::getValue($data, $this->limit_response_key);
+        return $this->max_limit < ArrayHelper::getValue($data, 'total');
     }
 }
