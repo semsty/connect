@@ -102,8 +102,7 @@ class BaseData extends Dictionary
     public static function dictClientIds(): array
     {
         return [
-            static::GA_CLIENT_ID,
-            static::YM_CLIENT_ID
+            static::GA_CLIENT_ID
         ];
     }
 
