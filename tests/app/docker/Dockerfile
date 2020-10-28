@@ -1,36 +1,51 @@
-FROM php:7.2-cli
+FROM php:7.3-cli
 
-RUN apt-get update \
-    && apt-get install -y curl \
-    && apt-get install -y zlib1g-dev \
-    && docker-php-ext-install zip \
-    && apt-get install -y libicu-dev \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install pcntl \
-    && pecl install igbinary \
-    && docker-php-ext-enable igbinary \
-    && docker-php-ext-install bcmath \
-    && docker-php-ext-install pdo_mysql \
-    && apt-get install -y libpq-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo_pgsql \
-    && apt-get -y install libgearman-dev \
-    && TMPDIR=$(mktemp -d) \
-    && cd $TMPDIR \
-    && curl -L https://github.com/wcgallego/pecl-gearman/archive/gearman-2.0.3.tar.gz | tar xzv --strip 1 \
-    && phpize \
-    && ./configure \
-    && make -j$(nproc) \
-    && make install \
-    && cd - \
-    && rm -r $TMPDIR \
-    && docker-php-ext-enable gearman \
-    && curl -L -o /tmp/composer-setup.php https://getcomposer.org/installer \
+RUN apt-get update && \
+    apt-get -y install \
+        sudo \
+        git \
+        libzip-dev \
+        libicu-dev \
+        libpq-dev \
+        zlib1g-dev \
+        libssh2-1-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        --no-install-recommends
+
+# Required extension
+RUN pecl install apcu && \
+    docker-php-ext-enable apcu && \
+    git clone https://github.com/php/pecl-networking-ssh2.git /usr/src/php/ext/ssh2 && \
+    docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+    docker-php-ext-install -j$(nproc) \
+        intl \
+        opcache \
+        mbstring \
+        zip \
+        ssh2 \
+        pdo \
+        pdo_pgsql \
+        pgsql \
+        bcmath \
+        gd \
+    && \
+    apt-mark manual libpq5
+
+# Cleanup to keep the images size small
+RUN apt-get purge -y \
+        icu-devtools \
+        libicu-dev \
+    && \
+    apt-get autoremove -y && \
+    rm -r /var/lib/apt/lists/*
+
+RUN curl -L -o /tmp/composer-setup.php https://getcomposer.org/installer \
     && php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    && rm /tmp/composer-setup.php \
-    && curl -L -o /usr/local/bin/php-cs-fixer https://cs.sensiolabs.org/download/php-cs-fixer-v2.phar \
-    && chmod a+x /usr/local/bin/php-cs-fixer
+    && rm /tmp/composer-setup.php
 
 COPY . /app
 WORKDIR /app
