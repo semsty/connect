@@ -5,11 +5,11 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: app/docker/Dockerfile
+      dockerfile: tests/app/docker/Dockerfile
     command: ["sleep", "infinity"]
     volumes:
-      - ../.:/app
-      - ../tests/app/runtime/composer:/root/.composer
+      - ./:/app
+      - /tests/app/runtime/composer:/root/.composer
     environment:
       POSTGRES_HOST: db
       POSTGRES_PORT: 5432
