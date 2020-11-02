@@ -23,6 +23,14 @@ class Filter extends BaseObject
     const FILTER_CONTAIN = 'contain';
     const FILTER_NOT_CONTAIN = '!contain';
     const FILTER_PARTIALLY_CONTAIN = 'partially-contain';
+    const FILTER_STRPOS = 'strpos';
+    const FILTER_NOT_STRPOS = '!strpos';
+    const FILTER_STRIPOS = 'stripos';
+    const FILTER_NOT_STRIPOS = '!stripos';
+    const FILTER_STARTS_WITH = 'starts-with';
+    const FILTER_NOT_STARTS_WITH = '!starts-with';
+    const FILTER_ENDS_WITH = 'ends-with';
+    const FILTER_NOT_ENDS_WITH = '!ends-with';
 
     const INTERNAL_CHECK_MARK = 'internal:';
 
@@ -46,7 +54,15 @@ class Filter extends BaseObject
             static::FILTER_NOT_EMPTY,
             static::FILTER_CONTAIN,
             static::FILTER_NOT_CONTAIN,
-            static::FILTER_PARTIALLY_CONTAIN
+            static::FILTER_PARTIALLY_CONTAIN,
+            static::FILTER_STRPOS,
+            static::FILTER_NOT_STRPOS,
+            static::FILTER_STRIPOS,
+            static::FILTER_NOT_STRIPOS,
+            static::FILTER_STARTS_WITH,
+            static::FILTER_NOT_STARTS_WITH,
+            static::FILTER_ENDS_WITH,
+            static::FILTER_NOT_ENDS_WITH
         ];
     }
 
@@ -149,6 +165,22 @@ class Filter extends BaseObject
                 return empty($value);
             case static::FILTER_NOT_EMPTY:
                 return !empty($value);
+            case static::FILTER_STRPOS:
+                return strpos($value, $expected) !== false;
+            case static::FILTER_NOT_STRPOS:
+                return strpos($value, $expected) === false;
+            case static::FILTER_STRIPOS:
+                return stripos($value, $expected) !== false;
+            case static::FILTER_NOT_STRIPOS:
+                return stripos($value, $expected) === false;
+            case static::FILTER_STARTS_WITH:
+                return strpos($value, $expected) === 0;
+            case static::FILTER_NOT_STARTS_WITH:
+                return strpos($value, $expected) !== 0;
+            case static::FILTER_ENDS_WITH:
+                return substr($value, strlen($value) - strlen($expected)) == $expected;
+            case static::FILTER_NOT_ENDS_WITH:
+                return substr($value, strlen($value) - strlen($expected)) != $expected;
         }
     }
 
@@ -177,7 +209,15 @@ class Filter extends BaseObject
             'in' => static::FILTER_IN,
             'nin' => static::FILTER_NOT_IN,
             'not-in' => static::FILTER_NOT_IN,
-            'not-empty' => static::FILTER_NOT_EMPTY
+            'not-empty' => static::FILTER_NOT_EMPTY,
+            'strpos' => static::FILTER_STRPOS,
+            'not-strpos' => static::FILTER_NOT_STRPOS,
+            'stripos' => static::FILTER_STRIPOS,
+            'not-stripos' => static::FILTER_NOT_STRIPOS,
+            'starts-with' => static::FILTER_STARTS_WITH,
+            'not-starts-with' => static::FILTER_NOT_STARTS_WITH,
+            'ends-with' => static::FILTER_ENDS_WITH,
+            'not-ends-with' => static::FILTER_NOT_ENDS_WITH
         ];
     }
 
