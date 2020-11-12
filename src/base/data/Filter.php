@@ -10,29 +10,31 @@ class Filter extends BaseObject
     const CONDITION_AND = 'and';
     const CONDITION_OR = 'or';
 
+    const NEGATION_PREFIX = 'not-';
+    const NEGATION_PREFIX_SHORT = '!';
+
     const FILTER_EQUAL = '=';
-    const FILTER_NOT_EQUAL = '!=';
+    const FILTER_NOT_EQUAL = self::NEGATION_PREFIX_SHORT . '=';
     const FILTER_MORE = '>';
     const FILTER_LESS = '<';
     const FILTER_MORE_OR_EQUAL = '>=';
     const FILTER_LESS_OR_EQUAL = '<=';
     const FILTER_IN = 'in';
-    const FILTER_NOT_IN = '!in';
+    const FILTER_NOT_IN = self::NEGATION_PREFIX_SHORT . 'in';
     const FILTER_EMPTY = 'empty';
-    const FILTER_NOT_EMPTY = '!empty';
+    const FILTER_NOT_EMPTY = self::NEGATION_PREFIX_SHORT . 'empty';
     const FILTER_CONTAIN = 'contain';
-    const FILTER_NOT_CONTAIN = '!contain';
+    const FILTER_NOT_CONTAIN = self::NEGATION_PREFIX_SHORT . 'contain';
     const FILTER_PARTIALLY_CONTAIN = 'partially-contain';
     const FILTER_STRPOS = 'strpos';
-    const FILTER_NOT_STRPOS = '!strpos';
+    const FILTER_NOT_STRPOS = self::NEGATION_PREFIX_SHORT . 'strpos';
     const FILTER_STRIPOS = 'stripos';
-    const FILTER_NOT_STRIPOS = '!stripos';
+    const FILTER_NOT_STRIPOS = self::NEGATION_PREFIX_SHORT . 'stripos';
     const FILTER_STARTS_WITH = 'starts-with';
-    const FILTER_NOT_STARTS_WITH = '!starts-with';
+    const FILTER_NOT_STARTS_WITH = self::NEGATION_PREFIX_SHORT . 'starts-with';
     const FILTER_ENDS_WITH = 'ends-with';
-    const FILTER_NOT_ENDS_WITH = '!ends-with';
+    const FILTER_NOT_ENDS_WITH = self::NEGATION_PREFIX_SHORT . 'ends-with';
 
-    const NEGATION_PREFIX = 'not-';
     const INTERNAL_CHECK_MARK = 'internal:';
 
     public static function getFilterNames()
@@ -245,7 +247,12 @@ class Filter extends BaseObject
             } else {
                 if (is_array($attribute_filters)) {
                     foreach ($attribute_filters as $filter => $value) {
-                        $inverse[static::CONDITION_OR][$attribute][static::NEGATION_PREFIX . $filter] = $value;
+                        if (strpos($filter, static::NEGATION_PREFIX) === false && strpos($filter, static::NEGATION_PREFIX_SHORT) === false) {
+                            $inverted = static::NEGATION_PREFIX . $filter;
+                        } else {
+                            $inverted = str_replace([static::NEGATION_PREFIX_SHORT, static::NEGATION_PREFIX], '', $filter);
+                        }
+                        $inverse[static::CONDITION_OR][$attribute][$inverted] = $value;
                     }
                 } elseif (is_string($attribute_filters)) {
                     /**
