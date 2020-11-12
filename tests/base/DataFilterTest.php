@@ -270,12 +270,14 @@ class DataFilterTest extends TestCase
     {
         $filter = [
             'foo' => ['eq' => 'bar'],
-            'bar' => 'baz'
+            'bar' => 'baz',
+            'baz' => ['not-in' => ['foo']]
         ];
         $expected = [
             'or' => [
                 'foo' => ['not-eq' => 'bar'],
-                'bar' => ['!=' => 'baz']
+                'bar' => ['!=' => 'baz'],
+                'baz' => ['in' => ['foo']]
             ]
         ];
         expect(DataFilter::inverse($filter))->equals($expected);
