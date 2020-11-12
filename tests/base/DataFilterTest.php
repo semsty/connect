@@ -265,4 +265,73 @@ class DataFilterTest extends TestCase
         ];
         expect(DataFilter::filter($data, $filter))->true();
     }
+
+    public function testInverse()
+    {
+        $filter = [
+            'foo' => ['eq' => 'bar'],
+            'bar' => 'baz'
+        ];
+        $expected = [
+            'or' => [
+                'foo' => ['not-eq' => 'bar'],
+                'bar' => ['!=' => 'baz']
+            ]
+        ];
+        expect(DataFilter::inverse($filter))->equals($expected);
+    }
+
+    public function testNestedInverse()
+    {
+        $filter = [
+            'foo' => ['eq' => 'bar'],
+            'and' => [
+                'bar' => 'baz',
+                'baz' => [
+                    'in' => ['bar', 'foo']
+                ]
+            ]
+        ];
+        $expected = [
+            'or' => [
+                'foo' => ['not-eq' => 'bar'],
+                'or' => [
+                    'bar' => ['!=' => 'baz'],
+                    'baz' => [
+                        'not-in' => ['bar', 'foo']
+                    ]
+                ]
+            ]
+        ];
+        expect(DataFilter::inverse($filter))->equals($expected);
+    }
+
+    public function testNestedDisjunctionInverse()
+    {
+        $filter = [
+            'or' => [
+                'foo' => ['eq' => 'bar'],
+                'and' => [
+                    'bar' => 'baz',
+                    'baz' => [
+                        'in' => ['bar', 'foo']
+                    ]
+                ]
+            ]
+        ];
+        $expected = [
+            'and' => [
+                'or' => [
+                    'foo' => ['not-eq' => 'bar'],
+                    'or' => [
+                        'bar' => ['!=' => 'baz'],
+                        'baz' => [
+                            'not-in' => ['bar', 'foo']
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        expect(DataFilter::inverse($filter))->equals($expected);
+    }
 }
