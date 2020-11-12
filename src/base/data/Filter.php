@@ -32,6 +32,7 @@ class Filter extends BaseObject
     const FILTER_ENDS_WITH = 'ends-with';
     const FILTER_NOT_ENDS_WITH = '!ends-with';
 
+    const NEGATION_PREFIX = 'not-';
     const INTERNAL_CHECK_MARK = 'internal:';
 
     public static function getFilterNames()
@@ -205,19 +206,20 @@ class Filter extends BaseObject
             'eq' => static::FILTER_EQUAL,
             'equal' => static::FILTER_EQUAL,
             'neq' => static::FILTER_NOT_EQUAL,
-            'not-equal' => static::FILTER_NOT_EQUAL,
+            static::NEGATION_PREFIX . 'eq' => static::FILTER_NOT_EQUAL,
+            static::NEGATION_PREFIX . 'equal' => static::FILTER_NOT_EQUAL,
             'in' => static::FILTER_IN,
             'nin' => static::FILTER_NOT_IN,
-            'not-in' => static::FILTER_NOT_IN,
-            'not-empty' => static::FILTER_NOT_EMPTY,
+            static::NEGATION_PREFIX . 'in' => static::FILTER_NOT_IN,
+            static::NEGATION_PREFIX . 'empty' => static::FILTER_NOT_EMPTY,
             'strpos' => static::FILTER_STRPOS,
-            'not-strpos' => static::FILTER_NOT_STRPOS,
+            static::NEGATION_PREFIX . 'strpos' => static::FILTER_NOT_STRPOS,
             'stripos' => static::FILTER_STRIPOS,
-            'not-stripos' => static::FILTER_NOT_STRIPOS,
+            static::NEGATION_PREFIX . 'stripos' => static::FILTER_NOT_STRIPOS,
             'starts-with' => static::FILTER_STARTS_WITH,
-            'not-starts-with' => static::FILTER_NOT_STARTS_WITH,
+            static::NEGATION_PREFIX . 'starts-with' => static::FILTER_NOT_STARTS_WITH,
             'ends-with' => static::FILTER_ENDS_WITH,
-            'not-ends-with' => static::FILTER_NOT_ENDS_WITH
+            static::NEGATION_PREFIX . 'ends-with' => static::FILTER_NOT_ENDS_WITH
         ];
     }
 
@@ -227,5 +229,33 @@ class Filter extends BaseObject
             $value = ArrayHelper::getValue($data, str_replace(static::INTERNAL_CHECK_MARK, '', $value));
         }
         return $value;
+    }
+
+    /**
+     * @param array $filter
+     * @return array inverted filter
+     */
+    public static function inverse(array $filter): array
+    {
+        $inverse = [];
+        foreach ($filter as $attribute => $attribute_filters) {
+            if (ArrayHelper::isIn($attribute, static::getConditions())) {
+                $mode = $attribute == static::CONDITION_AND ? static::CONDITION_OR : static::CONDITION_AND;
+                $inverse[$mode] = ArrayHelper::merge($inverse[$mode], static::inverse($attribute_filters));
+            } else {
+                if (is_array($attribute_filters)) {
+                    foreach ($attribute_filters as $filter => $value) {
+                        $inverse[static::CONDITION_OR][$attribute][static::NEGATION_PREFIX . $filter] = $value;
+                    }
+                } elseif (is_string($attribute_filters)) {
+                    /**
+                     * default filter case
+                     */
+                    $inverse[static::CONDITION_OR][$attribute][static::FILTER_NOT_EQUAL] = $attribute_filters;
+
+                }
+            }
+        }
+        return $inverse;
     }
 }
