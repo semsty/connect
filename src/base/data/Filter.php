@@ -254,7 +254,7 @@ class Filter extends BaseObject
                         }
                         $inverse[static::CONDITION_OR][$attribute][$inverted] = $value;
                     }
-                } elseif (is_string($attribute_filters)) {
+                } else {
                     /**
                      * default filter case
                      */
