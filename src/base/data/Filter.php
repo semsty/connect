@@ -169,21 +169,21 @@ class Filter extends BaseObject
             case static::FILTER_NOT_EMPTY:
                 return !empty($value);
             case static::FILTER_STRPOS:
-                return strpos($value, $expected) !== false;
+                return mb_strpos($value, $expected) !== false;
             case static::FILTER_NOT_STRPOS:
-                return strpos($value, $expected) === false;
+                return mb_strpos($value, $expected) === false;
             case static::FILTER_STRIPOS:
-                return stripos($value, $expected) !== false;
+                return mb_stripos($value, $expected) !== false;
             case static::FILTER_NOT_STRIPOS:
-                return stripos($value, $expected) === false;
+                return mb_stripos($value, $expected) === false;
             case static::FILTER_STARTS_WITH:
-                return strpos($value, $expected) === 0;
+                return mb_strpos($value, $expected) === 0;
             case static::FILTER_NOT_STARTS_WITH:
-                return strpos($value, $expected) !== 0;
+                return mb_strpos($value, $expected) !== 0;
             case static::FILTER_ENDS_WITH:
-                return substr($value, strlen($value) - strlen($expected)) == $expected;
+                return mb_substr($value, mb_strlen($value) - mb_strlen($expected)) == $expected;
             case static::FILTER_NOT_ENDS_WITH:
-                return substr($value, strlen($value) - strlen($expected)) != $expected;
+                return mb_substr($value, mb_strlen($value) - mb_strlen($expected)) != $expected;
         }
     }
 

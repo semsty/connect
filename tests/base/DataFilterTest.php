@@ -152,6 +152,19 @@ class DataFilterTest extends TestCase
             'foo' => ['strpos' => 'obarr']
         ];
         expect(DataFilter::filter($data, $filter))->false();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['strpos' => 'убар']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+        $filter = [
+            'foo' => ['strpos' => 'убарр']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
     }
 
     public function testNotStrpos()
@@ -166,6 +179,19 @@ class DataFilterTest extends TestCase
         expect(DataFilter::filter($data, $filter))->false();
         $filter = [
             'foo' => ['not-strpos' => 'obarr']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['not-strpos' => 'убар']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+        $filter = [
+            'foo' => ['not-strpos' => 'убарр']
         ];
         expect(DataFilter::filter($data, $filter))->true();
     }
@@ -184,6 +210,19 @@ class DataFilterTest extends TestCase
             'foo' => ['stripos' => 'ObArr']
         ];
         expect(DataFilter::filter($data, $filter))->false();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['stripos' => 'УбАр']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+        $filter = [
+            'foo' => ['stripos' => 'УбАрр']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
     }
 
     public function testNotStripos()
@@ -198,6 +237,19 @@ class DataFilterTest extends TestCase
         expect(DataFilter::filter($data, $filter))->false();
         $filter = [
             'foo' => ['not-stripos' => 'ObArr']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['not-stripos' => 'УбАр']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+        $filter = [
+            'foo' => ['not-stripos' => 'УбАрр']
         ];
         expect(DataFilter::filter($data, $filter))->true();
     }
@@ -216,6 +268,19 @@ class DataFilterTest extends TestCase
             'foo' => ['starts-with' => 'bar']
         ];
         expect(DataFilter::filter($data, $filter))->false();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['starts-with' => 'фуу']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+        $filter = [
+            'foo' => ['starts-with' => 'бар']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
     }
 
     public function testNotStartsWith()
@@ -230,6 +295,19 @@ class DataFilterTest extends TestCase
         expect(DataFilter::filter($data, $filter))->false();
         $filter = [
             'foo' => ['not-starts-with' => 'bar']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['not-starts-with' => 'фуу']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+        $filter = [
+            'foo' => ['not-starts-with' => 'бар']
         ];
         expect(DataFilter::filter($data, $filter))->true();
     }
@@ -248,6 +326,19 @@ class DataFilterTest extends TestCase
             'foo' => ['ends-with' => 'baz']
         ];
         expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['ends-with' => 'бар']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+        $filter = [
+            'foo' => ['ends-with' => 'баз']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
     }
 
     public function testNotEndsWith()
@@ -262,6 +353,19 @@ class DataFilterTest extends TestCase
         expect(DataFilter::filter($data, $filter))->false();
         $filter = [
             'foo' => ['not-ends-with' => 'bar']
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'id' => 1,
+            'foo' => 'фуубарбаз'
+        ];
+        $filter = [
+            'foo' => ['not-ends-with' => 'баз']
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+        $filter = [
+            'foo' => ['not-ends-with' => 'бар']
         ];
         expect(DataFilter::filter($data, $filter))->true();
     }
