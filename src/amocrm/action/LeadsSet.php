@@ -15,8 +15,13 @@ class LeadsSet extends SetAction
     protected $path = 'api/{version}/leads';
     protected $entity = Entities::LEAD;
 
+    public static function getSystemNumericFields()
+    {
+        return ArrayHelper::merge(parent::getSystemNumericFields(), ['status_id', 'pipeline_id']);
+    }
+
     public static function getSystemFields()
     {
-        return ArrayHelper::merge(parent::getSystemFields(), ['pipeline_id', 'status_id', 'sale', 'tags']);
+        return ArrayHelper::merge(parent::getSystemFields(), ['status_id', 'pipeline_id', 'sale', 'tags']);
     }
 }

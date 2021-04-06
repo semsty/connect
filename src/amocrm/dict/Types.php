@@ -31,6 +31,10 @@ class Types extends Dictionary
     const CALL_TYPE_INBOUND = 'inbound';
     const CALL_TYPE_OUTBOUND = 'outbound';
 
+    const EVENT_TYPE_LEAD_STATUS_CHANGES = 'lead_status_changed';
+    const EVENT_TYPE_CALL_IN = 'call_in';
+    const EVENT_TYPE_COMMON = 'common';
+
     const NOTE_TYPE_DEAL_CREATED = 1;
     const NOTE_TYPE_CONTACT_CREATED = 2;
     const NOTE_TYPE_DEAL_STATUS_CHANGED = 3;

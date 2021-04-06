@@ -11,10 +11,11 @@ class NotesList extends ListAction
 {
     const ID = 6;
     const NAME = Entities::NOTE . Action::NAME_DELIMITER . Action::LIST;
+    #const MAX_LIMIT = 100;
     public $type;
     public $element_id;
     public $note_type;
-    protected $path = 'api/{version}/notes';
+    protected $path = 'api/{version}/events';
     protected $entity = Entities::NOTE;
 
     public function rules(): array
@@ -28,6 +29,11 @@ class NotesList extends ListAction
             [['element_id'], 'integer']
         ]);
         return $rules;
+    }
+
+    public function getEntityPluralizeName(): string
+    {
+        return 'events';
     }
 
     public function getQuery()

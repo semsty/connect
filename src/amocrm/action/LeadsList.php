@@ -11,6 +11,7 @@ class LeadsList extends ListAction
 {
     const ID = 3;
     const NAME = Entities::LEAD . Action::NAME_DELIMITER . Action::LIST;
+    #const MAX_LIMIT = 250;
     public $responsible_user_id;
     protected $path = 'api/{version}/leads';
     protected $entity = Entities::LEAD;

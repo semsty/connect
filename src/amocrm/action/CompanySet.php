@@ -21,9 +21,4 @@ class CompanySet extends SetAction
             'contacts_id', 'linked_contacts_id', 'leads_id', 'linked_leads_id', 'company_name'
         ]);
     }
-
-    public function getEntityPluralizeName(): string
-    {
-        return Entities::getEntityTypePluralize(Entities::CONTACT);
-    }
 }

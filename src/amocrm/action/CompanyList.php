@@ -40,9 +40,4 @@ class CompanyList extends ListAction
         $query['id'] = $this->id;
         return $query;
     }
-
-    public function getEntityPluralizeName(): string
-    {
-        return 'companies';
-    }
 }

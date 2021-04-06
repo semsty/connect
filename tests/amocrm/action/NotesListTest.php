@@ -13,7 +13,7 @@ class NotesListTest extends TestCase
     public $responses = [
         Action::NAME => [
             '_embedded' => [
-                'items' => [
+                'events' => [
                     [
                         'id' => '1',
                         'name' => 'name',
@@ -96,33 +96,32 @@ class NotesListTest extends TestCase
     public function testRun()
     {
         $action = $this->service->action(Action::ID);
-        $action->modifiedSince = '2017-01-01';
         expect($action->config)->equals([
             'baseUrl' => 'https://{subdomain}.amocrm.ru/',
             'requestConfig' => [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'if-modified-since' => ArrayHelper::getValue($action->config, 'requestConfig.headers.if-modified-since')
+                    'Authorization' => 'Bearer imanicelittletoken'
                 ],
                 'options' => [
                     'timeout' => 60,
                     'returntransfer' => true,
                     'referer' => null,
-                    'cookiejar' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
-                    'cookiefile' => getenv('CONNECT_CORE_DIR') . '/tests/app/runtime/log/amocrm/imanicelittletoken/cookie.txt',
                     'useragent' => 'amoCRM-API-client/1.0',
                     'ssl_verifyhost' => false,
                     'ssl_verifypeer' => false
                 ],
                 'url' => [
-                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/notes',
+                    '0' => 'https://{subdomain}.amocrm.ru/api/{version}/events',
                     'query' => [],
                     'element_id' => null,
                     'id' => null,
-                    'version' => 'v2',
+                    'version' => 'v4',
                     'subdomain' => 'subdomain',
                     'type' => null,
-                    'filter' => []
+                    'filter' => [],
+                    'order' => [],
+                    'with' => []
                 ],
                 'method' => 'GET',
                 'class' => Query::class
@@ -134,18 +133,18 @@ class NotesListTest extends TestCase
                 1,
                 5
             ],
-            'limit_request_key' => 'limit_rows',
-            'offset_request_key' => 'limit_offset',
-            'offset_response_key' => '_embedded.items',
+            'limit_request_key' => 'limit',
+            'offset_request_key' => 'page',
+            'offset_response_key' => '_embedded.events',
             'max_limit' => null,
             'max_offset' => 0,
-            'offset_increment' => null,
-            'current_offset' => 0,
-            'cursor' => '_embedded.items',
+            'offset_increment' => 1,
+            'current_offset' => null,
+            'cursor' => '_embedded.events',
             'transport' => 'yii\\httpclient\\CurlTransport'
         ]);
         $action->service->connection = $this->connection;
         $result = $action->run();
-        expect($result)->equals($this->responses[Action::NAME]['_embedded']['items']);
+        expect($result)->equals($this->responses[Action::NAME]['_embedded']['events']);
     }
 }

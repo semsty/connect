@@ -8,9 +8,10 @@ use yii\helpers\ArrayHelper;
 /**
  * Class ListAction
  * @property $id
- * @property $modifiedSince
  * @property $query
  * @property $filter
+ * @property $order
+ * @property $with
  * @package connect\crm\amocrm\action\base
  */
 class ListAction extends Action
@@ -20,25 +21,25 @@ class ListAction extends Action
     const IDS_CHUNK_SIZE = 100;
 
     public $id;
-    public $modifiedSince = '';
     public $filter = [];
     public $query = [];
-    public $limit_rows;
-    public $limit_offset;
+    public $limit;
+    public $page;
     public $max_offset = 0;
     public $offset = 0;
     public $eav_key = 'custom_fields';
     public $eav_name_key = 'name';
     public $eav_value_key = 'values.0.value';
+    public $order = [];
+    public $with = [];
 
     public function rules(): array
     {
         $rules = parent::rules();
         $rules = ArrayHelper::merge($rules, [
-            [['modifiedSince'], 'default', 'value' => \Yii::$app->formatter->asDatetime('now')],
-            [['limit_rows', 'limit_offset'], 'integer'],
-            [['limit_rows'], 'default', 'value' => static::MAX_LIMIT],
-            [['limit_offset'], 'default', 'value' => static::MAX_LIMIT]
+            [['limit', 'page'], 'integer'],
+            [['limit'], 'default', 'value' => static::MAX_LIMIT],
+            [['page'], 'default', 'value' => 1]
         ]);
         return $rules;
     }
@@ -47,24 +48,18 @@ class ListAction extends Action
     {
         $config = ArrayHelper::merge(parent::getDefaultConfig(), [
             'rateLimit' => [1, static::REQUEST_LIMIT],
-            'limit_request_key' => 'limit_rows',
-            'offset_request_key' => 'limit_offset',
-            'offset_response_key' => '_embedded.items',
-            'max_limit' => $this->limit_rows,
+            'limit_request_key' => 'limit',
+            'offset_request_key' => 'page',
+            'offset_response_key' => '_embedded.' . $this->getEntityPluralizeName(),
+            'max_limit' => $this->limit,
             'max_offset' => $this->max_offset,
-            'offset_increment' => $this->limit_offset,
-            'current_offset' => $this->offset,
-            'cursor' => '_embedded.items',
+            'offset_increment' => 1,
+            'current_offset' => $this->page,
+            'cursor' => '_embedded.' . $this->getEntityPluralizeName(),
             'requestConfig' => [
                 'url' => $this->getQuery()
             ]
         ]);
-        if ($this->modifiedSince) {
-            $config['requestConfig']['headers']['if-modified-since'] = \Yii::$app->formatter->asDatetime(
-                $this->modifiedSince,
-                static::MODIFIED_SINCE_FORMAT
-            );
-        }
         return $config;
     }
 
@@ -72,7 +67,9 @@ class ListAction extends Action
     {
         return [
             'query' => $this->query,
-            'filter' => $this->filter
+            'filter' => $this->filter,
+            'order' => $this->order,
+            'with' => $this->with
         ];
     }
 
@@ -85,17 +82,12 @@ class ListAction extends Action
                 $this->id = $chunk;
                 $result = ArrayHelper::merge(
                     $result,
-                    ArrayHelper::getValue(parent::getResponse(), '_embedded.items', [])
+                    ArrayHelper::getValue(parent::getResponse(), '_embedded.' . $this->getEntityPluralizeName(), [])
                 );
             }
             return $result;
         } else {
             return $this->connection->all();
         }
-    }
-
-    public function setDateParam($date)
-    {
-        $this->modifiedSince = $date;
     }
 }
