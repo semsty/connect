@@ -18,7 +18,7 @@ class TasksSet extends SetAction
     public static function getSystemFields()
     {
         return ArrayHelper::merge(parent::getSystemFields(), [
-            'element_id', 'element_type', 'task_type', 'text', 'params'
+            'element_id', 'element_type', 'task_type', 'text', 'params', 'complete_till'
         ]);
     }
 
