@@ -110,11 +110,15 @@ class Filter extends BaseObject
                     }
                     foreach ($attribute_filters as $attribute_filter) {
                         foreach ($attribute_filter as $filter_key => $filter_value) {
-                            $result[] = static::checkFilter(
-                                ArrayHelper::getValue($data, $attribute),
-                                $filter_key,
-                                static::getExpectedValue($data, $filter_value)
-                            );
+                            if (ArrayHelper::isIn($filter_key, static::getConditions())) {
+                                $result[] = static::filter($data, $filter_value, $filter_key);
+                            } else {
+                                $result[] = static::checkFilter(
+                                    ArrayHelper::getValue($data, $attribute),
+                                    $filter_key,
+                                    static::getExpectedValue($data, $filter_value)
+                                );
+                            }
                         }
                     }
                 } else {
@@ -177,13 +181,13 @@ class Filter extends BaseObject
             case static::FILTER_NOT_STRIPOS:
                 return mb_stripos($value, $expected) === false;
             case static::FILTER_STARTS_WITH:
-                return mb_strpos($value, $expected) === 0;
+                return mb_stripos($value, $expected) === 0;
             case static::FILTER_NOT_STARTS_WITH:
-                return mb_strpos($value, $expected) !== 0;
+                return mb_stripos($value, $expected) !== 0;
             case static::FILTER_ENDS_WITH:
-                return mb_substr($value, mb_strlen($value) - mb_strlen($expected)) == $expected;
+                return mb_strtolower(mb_substr($value, mb_strlen($value) - mb_strlen($expected))) == mb_strtolower($expected);
             case static::FILTER_NOT_ENDS_WITH:
-                return mb_substr($value, mb_strlen($value) - mb_strlen($expected)) != $expected;
+                return mb_strtolower(mb_substr($value, mb_strlen($value) - mb_strlen($expected))) != mb_strtolower($expected);
         }
     }
 

@@ -440,4 +440,38 @@ class DataFilterTest extends TestCase
         ];
         expect(DataFilter::inverse($filter))->equals($expected);
     }
+
+    public function testNestedGroups()
+    {
+        $filter = [
+            'or' => [
+                [
+                    'or' => [
+                        'foo' => ['eq' => 'bar'],
+                        'bar' => ['contains' => 'bar'],
+                    ]
+                ],
+                [
+                    'or' => [
+                        'baz' => ['in' => ['bar']],
+                        'foo' => ['not-in' => ['baz']],
+                    ]
+                ],
+            ]
+        ];
+        $data = [
+            'foo' => 'bar',
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'foo' => 'baz',
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+
+        $data = [
+            'bar' => 'bar',
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+    }
 }
