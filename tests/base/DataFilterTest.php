@@ -440,4 +440,209 @@ class DataFilterTest extends TestCase
         ];
         expect(DataFilter::inverse($filter))->equals($expected);
     }
+
+    public function testFilterByNestedGroups()
+    {
+        $filter = [
+            'or' => [
+                [
+                    'or' => [
+                        'foo' => ['eq' => 'bar'],
+                        'bar' => ['contains' => 'bar'],
+                    ]
+                ],
+                [
+                    'or' => [
+                        'baz' => ['in' => ['bar']],
+                        'foo' => ['not-in' => ['baz']],
+                    ]
+                ],
+            ]
+        ];
+        $data = [
+            'foo' => 'bar',
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'foo' => 'baz',
+        ];
+        expect(DataFilter::filter($data, $filter))->false();
+
+        $data = [
+            'bar' => 'bar',
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $filter = [
+            'or' => [
+                [
+                    'or' => [
+                        [
+                            'foo' => ['eq' => 'bar']
+                        ],
+                        [
+                            'bar' => ['not-contains' => 'bar']
+                        ],
+                    ]
+                ],
+                [
+                    'or' => [
+                        [
+                            'baz' => ['in' => ['bar']]
+                        ],
+                        [
+                            'foo' => ['not-in' => ['baz']]
+                        ],
+                    ]
+                ],
+            ]
+        ];
+        $data = [
+            'bar' => 'bar',
+        ];
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $subgroup11 = [
+            'and' => [
+                [
+                    'foo' => [
+                        'stripos' => 'bar',
+                    ],
+                ],
+                [
+                    'bar' => [
+                        'not-stripos' => 'baz',
+                    ],
+                ],
+            ],
+        ];
+        $subgroup12 = [
+            'and' => [
+                [
+                    'foo' => [
+                        'stripos' => 'foo',
+                    ],
+                ],
+                [
+                    'bar' => [
+                        'not-in' => [
+                            'bar',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        $subgroup1 = [
+            'or' => [
+                $subgroup11,
+                $subgroup12
+            ],
+        ];
+        $subgroup2 = [
+            'or' => [
+                [
+                    'foo' => [
+                        'in' => [
+                            'foo',
+                            'bar',
+                        ],
+                    ],
+                    'bar' => [
+                        'in' => [
+                            'foo',
+                            'foo',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        $filter = [
+            'and' => [
+                $subgroup1,
+                $subgroup2
+            ],
+        ];
+        $data = [
+            'foo' => 'bar',
+            'bar' => 'foo'
+        ];
+        expect(DataFilter::filter($data, $subgroup11))->true();
+        expect(DataFilter::filter($data, $subgroup12))->false();
+        expect(DataFilter::filter($data, $subgroup1))->true();
+        expect(DataFilter::filter($data, $subgroup2))->true();
+        expect(DataFilter::filter($data, $filter))->true();
+
+        $data = [
+            'foo' => 'bar',
+            'bar' => 'baz'
+        ];
+        expect(DataFilter::filter($data, $subgroup11))->false();
+        expect(DataFilter::filter($data, $subgroup12))->false();
+        expect(DataFilter::filter($data, $subgroup1))->false();
+        expect(DataFilter::filter($data, $subgroup2))->true();
+        expect(DataFilter::filter($data, $filter))->false();
+
+        $unbind = [
+            'or' => [
+                'foo' => [
+                    'not-in' => [
+                        'bas',
+                        'baz',
+                    ],
+                ],
+                'bar' => [
+                    'not-in' => [
+                        'bas',
+                        'foo',
+                    ],
+                ],
+            ],
+        ];
+        expect(DataFilter::filter($data, $unbind))->true();
+        $subgroup1 =  [
+            'or' => [
+                'foo' => [
+                    'in' => [
+                        'baz',
+                    ],
+                ],
+                'bar' => [
+                    'in' => [
+                        'foo',
+                    ],
+                ],
+            ],
+        ];
+        $subgroup2 = [
+            'or' => [
+                'foo' => [
+                    'not-in' => [
+                        'foo',
+                    ],
+                ],
+                'bar' => [
+                    'not-in' => [
+                        'bar',
+                    ],
+                ],
+            ],
+        ];
+        $unbind = [
+            'or' => [
+                $subgroup1,
+                $subgroup2
+            ],
+        ];
+        expect(DataFilter::filter($data, $subgroup1))->false();
+        expect(DataFilter::filter($data, $subgroup2))->true();
+        expect(DataFilter::filter($data, $unbind))->true();
+        $unbind = [
+            'and' => [
+                $subgroup1,
+                $subgroup2
+            ],
+        ];
+        expect(DataFilter::filter($data, $unbind))->false();
+    }
 }

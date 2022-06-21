@@ -97,32 +97,40 @@ class Filter extends BaseObject
      *     ]
      * ]
      */
-    public static function filter($data, $filter, $mode = self::CONDITION_AND): bool
+    public static function filter($data, $filter, $mode = self::CONDITION_AND, $i = 1): bool
     {
         $result = [];
         foreach ($filter as $attribute => $attribute_filters) {
-            if (ArrayHelper::isIn($attribute, static::getConditions())) {
-                $result[] = static::filter($data, $attribute_filters, $attribute);
+            if (!static::isFilterControl($attribute) && is_array($attribute_filters) && !ArrayHelper::isAssociative($filter)) {
+                $result[] = static::filter($data, $attribute_filters, $mode, $i + 1);
             } else {
-                if (is_array($attribute_filters)) {
-                    if (ArrayHelper::isAssociative($attribute_filters)) {
-                        $attribute_filters = [$attribute_filters];
-                    }
-                    foreach ($attribute_filters as $attribute_filter) {
-                        foreach ($attribute_filter as $filter_key => $filter_value) {
-                            $result[] = static::checkFilter(
-                                ArrayHelper::getValue($data, $attribute),
-                                $filter_key,
-                                static::getExpectedValue($data, $filter_value)
-                            );
-                        }
-                    }
+                if (ArrayHelper::isIn($attribute, static::getConditions())) {
+                    $result[] = static::filter($data, $attribute_filters, $attribute, $i + 1);
                 } else {
-                    $result[] = static::checkFilter(
-                        ArrayHelper::getValue($data, $attribute),
-                        static::FILTER_EQUAL,
-                        static::getExpectedValue($data, $attribute_filters)
-                    );
+                    if (is_array($attribute_filters)) {
+                        if (ArrayHelper::isAssociative($attribute_filters)) {
+                            $attribute_filters = [$attribute_filters];
+                        }
+                        foreach ($attribute_filters as $middle_key => $attribute_filter) {
+                            foreach ($attribute_filter as $filter_key => $filter_value) {
+                                if (ArrayHelper::isIn($filter_key, static::getConditions())) {
+                                    $result[] = static::filter($data, $filter_value, $filter_key, $i + 1);
+                                } else {
+                                    $result[] = static::checkFilter(
+                                        ArrayHelper::getValue($data, $attribute),
+                                        $filter_key,
+                                        static::getExpectedValue($data, $filter_value)
+                                    );
+                                }
+                            }
+                        }
+                    } else {
+                        $result[] = static::checkFilter(
+                            ArrayHelper::getValue($data, $attribute),
+                            static::FILTER_EQUAL,
+                            static::getExpectedValue($data, $attribute_filters)
+                        );
+                    }
                 }
             }
         }
@@ -177,13 +185,13 @@ class Filter extends BaseObject
             case static::FILTER_NOT_STRIPOS:
                 return mb_stripos($value, $expected) === false;
             case static::FILTER_STARTS_WITH:
-                return mb_strpos($value, $expected) === 0;
+                return mb_stripos($value, $expected) === 0;
             case static::FILTER_NOT_STARTS_WITH:
-                return mb_strpos($value, $expected) !== 0;
+                return mb_stripos($value, $expected) !== 0;
             case static::FILTER_ENDS_WITH:
-                return mb_substr($value, mb_strlen($value) - mb_strlen($expected)) == $expected;
+                return mb_strtolower(mb_substr($value, mb_strlen($value) - mb_strlen($expected))) == mb_strtolower($expected);
             case static::FILTER_NOT_ENDS_WITH:
-                return mb_substr($value, mb_strlen($value) - mb_strlen($expected)) != $expected;
+                return mb_strtolower(mb_substr($value, mb_strlen($value) - mb_strlen($expected))) != mb_strtolower($expected);
         }
     }
 
@@ -194,6 +202,15 @@ class Filter extends BaseObject
             $filter = $normalized;
         }
         return $filter;
+    }
+
+    public static function isFilterControl(string $operator): bool
+    {
+        $short_filters = static::getFilters();
+        foreach ($short_filters as $short_filter) {
+            $filters[] = str_replace(static::NEGATION_PREFIX_SHORT, static::NEGATION_PREFIX, $short_filter);
+        }
+        return ArrayHelper::isIn($operator, ArrayHelper::merge(static::getFilterControls(), $filters, $short_filters));
     }
 
     public static function getFilterControls()
